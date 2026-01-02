@@ -52,7 +52,7 @@ export const CategorySidebar = ({ className }: {
       <div className="flex flex-1 mt-22 flex-col gap-8 items-center overflow-y-auto overflow-x-hidden">
         {sidebarConfig.map((item, i) =>
           // <>
-            <CategoryItem key={i} label={item.label} icon={item.icon} />
+          <CategoryItem key={i} label={item.label} icon={item.icon} />
 
           // </>
         )}
@@ -76,18 +76,18 @@ export const CategoryItem = ({ label, icon: Icon, iconStyle, className, ...props
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   iconStyle?: string
 }) => {
-  const { updateCategory } = useSidebar()
+  const { updateCategory, activeCategory } = useSidebar()
   return (
     <div {...props} className={cn(
-      " p-2 bg-sidebar-accent text-sidebar-foreground  group relative cursor-pointer",
+      " p-2 bg-sidebar-accent   group relative cursor-pointer",
       className
     )}
       onClick={() => updateCategory(label)}
     >
 
-      {Icon && <Icon className={`size-5 ${iconStyle}`} />
+      {Icon && <Icon className={`size-5 ${activeCategory === label ? 'text-sidebar-foreground':'text-sidebar-foreground/70'} ${iconStyle}`} />
       }
-      <div className="absolute top-2 left-12 hidden rounded px-1.5 py-0.5 text-xs font-medium  group-hover:block text-sidebar-foreground bg-sidebar-primary whitespace-nowrap ">
+      <div className={"absolute top-2 left-12 hidden rounded px-1.5 py-0.5 text-xs font-medium  group-hover:block text-sidebar-foreground bg-sidebar-primary whitespace-nowrap "}>
         {label}
       </div>
 
@@ -227,7 +227,7 @@ const SubItem = ({ subitem }: { subitem: SidebarItem }) => {
         to={subitem.path}
         className={({ isActive }) =>
           cn(
-            "flex items-center text-xs pt-2",
+            "flex items-center text-xs mt-1 p-1",
             isActive ? "text-blue-600 font-medium" : "text-gray-700"
           )
         }
