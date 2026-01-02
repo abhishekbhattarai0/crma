@@ -1,6 +1,7 @@
 import { cn } from "@/utils/cn"
 import { Avatar, AvatarImage } from "../ui/Avatar"
 import logo from '@/assets/logo.png'
+import user from '@/assets/user.jpg'
 import { sidebarConfig, type SidebarItem } from "@/dummydata/sidebar"
 import { ChevronRight, DotIcon, type LucideIcon, } from "lucide-react"
 import useScreenSize from "@/hooks/useScreenSize"
@@ -42,7 +43,7 @@ export const CategorySidebar = ({ className }: {
     )}>
       {/* header */}
       <div>
-        <Avatar >
+        <Avatar className="" >
           <AvatarImage src={logo} alt="logo" />
           {/* <AvatarImageFallback text="he" /> */}
         </Avatar>
@@ -61,7 +62,7 @@ export const CategorySidebar = ({ className }: {
       {/* footer */}
       <div>
         <Avatar >
-          <AvatarImage src={logo} alt="logo" />
+          <AvatarImage src={user} alt="logo" />
         </Avatar>
       </div>
     </div >
@@ -85,7 +86,7 @@ export const CategoryItem = ({ label, icon: Icon, iconStyle, className, ...props
       onClick={() => updateCategory(label)}
     >
 
-      {Icon && <Icon className={`size-5 ${activeCategory === label ? 'text-sidebar-foreground':'text-sidebar-foreground/70'} ${iconStyle}`} />
+      {Icon && <Icon className={`size-5 ${activeCategory === label ? 'text-sidebar-foreground' : 'text-sidebar-foreground/70'} ${iconStyle}`} />
       }
       <div className={"absolute top-2 left-12 hidden rounded px-1.5 py-0.5 text-xs font-medium  group-hover:block text-sidebar-foreground bg-sidebar-primary whitespace-nowrap "}>
         {label}
@@ -137,7 +138,7 @@ export const SubCategoryMain = ({ className, items, ...props }: {
   return (
     <div {...props} className={cn("flex flex-col gap-1", className)}>
       {/* <div>{items.label}</div> */}
-      <div className="text-[12px] font-mono font-medium mt-6 text-foreground/90">
+      <div className="text-sm font-mono font-bold mt-6 text-foreground/90">
         {items.label}
       </div>
 
@@ -170,7 +171,7 @@ const SubCategoryItem = ({ item, isOpen, onToggle }: {
       key={item.label}
       className="text-[13px] font-mono font-medium  text-foreground/90  "
     >
-      <div className="ml-3 mt-4 text-xs font-medium text-gray-600  pr-4 ">
+      <div className="ml-3 mt-4 text-xs font-medium text-gray-700  pr-4 ">
         {item.children?.length ? (
           <>
             {/* sidebar items having subitems */}

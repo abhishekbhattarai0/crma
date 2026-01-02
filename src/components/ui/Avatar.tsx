@@ -8,7 +8,7 @@ type AvatarProps = {
 const Avatar = ({ className, children }: AvatarProps) => {
   return (
     <div className={cn(
-      "relative flex size-8 shrink-0 overflow-hidden rounded-full ",
+      "relative flex  shrink-0 overflow-hidden rounded-full ",
       className
     )}>
       {children}
