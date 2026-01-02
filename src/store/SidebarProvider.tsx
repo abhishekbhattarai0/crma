@@ -10,6 +10,7 @@ const SidebarProvider = ({ children }: {
   const [activeSubCategory, setActiveSubCategory] = useState('second')
   const [sidebar, setSidebar] = useState(!isMobile);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSidebar(!isMobile)
   }, [isMobile])
   const toggleSidebar = () => {

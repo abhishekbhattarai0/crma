@@ -8,9 +8,10 @@ const useScreenSize = (breakpoint = 768) => {
     const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
 
     // Set initial value
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobile(mediaQuery.matches);
 
-    const handleChange = (e) => setIsMobile(e.matches);
+    const handleChange = (e: { matches: boolean | ((prevState: boolean) => boolean); }) => setIsMobile(e.matches);
 
     mediaQuery.addEventListener("change", handleChange);
 
