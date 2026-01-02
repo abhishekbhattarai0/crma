@@ -138,7 +138,7 @@ export const SubCategoryMain = ({ className, items, ...props }: {
   return (
     <div {...props} className={cn("flex flex-col gap-1", className)}>
       {/* <div>{items.label}</div> */}
-      <div className="text-sm font-mono font-bold mt-6 text-foreground/90">
+      <div className="text-sm font-mono font-bold mt-6 text-foreground/70">
         {items.label}
       </div>
 
