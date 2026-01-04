@@ -15,7 +15,7 @@ export const SidebarSubCategoryPanel = ({ className }: { className?: string }) =
     return (
         <div className={cn('w-50 h-full flex flex-col border-r border-r-gray-200', className)}>
             {/* header */}
-            <div className="h-12  pl-4 flex items-center text-foreground/90 ">
+            <div className="h-12  pl-4 sm:flex hidden items-center text-foreground/90 ">
                 <h1 className="font-semibold">Metrica</h1>
             </div>
 
