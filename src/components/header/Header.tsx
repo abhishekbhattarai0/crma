@@ -17,7 +17,7 @@ const Navbar = () => {
     }
   }
   return (
-    <div className="flex h-13 border-b border-b-gray-200 text-foreground/90 b-secondary items-center justify-between px-3">
+    <div className="flex h-13 bg-secondary border-b border-b-gray-200 text-foreground/90 b-secondary items-center justify-between px-3">
       {/* left */}
       <div className="flex gap-4">
         <Button
