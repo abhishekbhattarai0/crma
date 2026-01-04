@@ -13,9 +13,9 @@ export const SidebarSubCategoryPanel = ({ className }: { className?: string }) =
     const { activeCategory } = useSidebar()
 
     return (
-        <div className={cn('w-50 h-full flex flex-col', className)}>
+        <div className={cn('w-50 h-full flex flex-col border-r border-r-gray-200', className)}>
             {/* header */}
-            <div className="h-11 mt-1.5 pl-4 flex items-center text-foreground/90 border-b border-b-gray-300">
+            <div className="h-12  pl-4 flex items-center text-foreground/90 ">
                 <h1 className="font-semibold">Metrica</h1>
             </div>
 
@@ -66,7 +66,7 @@ const SubCategoryItem = ({ item, isOpen, onToggle }: {
                         <div className="flex justify-between w-full cursor-pointer" onClick={() => onToggle(item.id)}>
                             {item.icon && <item.icon />}
                             <span>{item.label}</span>
-                            <ChevronRight size={16} className={cn("transition-all duration-300", isOpen ? "rotate-90" : "")} />
+                            <ChevronRight size={16} className={cn("transition-all duration-200", isOpen ? "rotate-90" : "")} />
                         </div>
                         {isOpen && item.children.map((subitem) => (
                             <SidebarSubItem key={subitem.label} subitem={subitem} />

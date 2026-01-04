@@ -14,7 +14,8 @@ const Sidebar = () => {
           <>
             <SidebarCategoryPanel className="w-13.5 " />
             {
-              (isSidebarCategoryVisible || isMobile) && <SidebarSubCategoryPanel className=" bg-secondary" />
+              (isSidebarCategoryVisible || isMobile) 
+                && <SidebarSubCategoryPanel className=" bg-secondary" />
             }
           </>
         )
