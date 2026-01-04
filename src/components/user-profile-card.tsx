@@ -8,7 +8,8 @@ import { CgProfile } from 'react-icons/cg'
 
 const UserProfileCard = () => {
     return (
-        <DropdownMenu>
+        <div className='hidden md:flex'>
+            <DropdownMenu>
             <DropdownMenuTrigger>
 
                 <div className="flex gap-2  px-2 py-1 items-center">
@@ -18,7 +19,7 @@ const UserProfileCard = () => {
                     <div className="flex flex-col text-start">
                         <div className="text-xs text-gray-700">Admin</div>
                         <div className="text-xs tracking-wide font-semibold text-foreground/80 flex gap-1">
-                            <span>Maria Gibson</span>
+                            <span className='shrink-0'>Maria Gibson</span>
                             <ChevronDown size={16} />
                         </div>
 
@@ -49,6 +50,7 @@ const UserProfileCard = () => {
                 </DropdownMenuGroup>
             </DropdownMenuContent>
         </DropdownMenu>
+        </div>
     )
 }
 

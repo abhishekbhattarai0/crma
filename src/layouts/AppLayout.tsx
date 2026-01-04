@@ -1,4 +1,5 @@
 import Navbar from "@/components/header/Header"
+import Breadcrumbs from "@/components/ui/BreadCrum"
 import Sidebar from "@components/sidebar/Sidebar"
 
 
@@ -13,10 +14,12 @@ const AppLayout = () => {
       <Sidebar />
 
 
-      <div className="flex-1 flex flex-col  ">
+      <div className="flex-1 flex flex-col ">
         <Navbar />
-        <div className="flex justify-center items-center  mx-2">
-          hello
+        <div className="flex justify-center items-center  mx-3 mt-2">
+          <div className="w-full">
+            <Breadcrumbs />
+          </div>
         </div>
       </div>
     </div>

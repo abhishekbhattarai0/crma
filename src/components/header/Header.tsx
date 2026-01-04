@@ -30,13 +30,13 @@ const Navbar = () => {
           <Menu color="black" size={20} />
         </Button>
 
-        <div className="relative flex">
+        <div className="relative w-60 hidden mx-2 md:mx-auto sm:flex">
           <input
-            className="border  border-gray-200 rounded-md  pl-6 text-xs text-gray-600   outline-primary/40 outline-px ring-none w-sm "
+            className="border  border-gray-200 rounded-md  pl-6 text-xs text-gray-600   outline-primary/40 outline-px ring-none  w-full "
             placeholder="Type text...."
           />
           <div className="absolute left-2 top-3  ">
-            <Search size={12} color="gray" strokeWidth={3} />
+            <Search size={12} color="gray" strokeWidth={2} />
           </div>
         </div>
       </div>
