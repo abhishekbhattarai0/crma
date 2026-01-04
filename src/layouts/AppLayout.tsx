@@ -1,5 +1,9 @@
-import Navbar from "@/components/navbar/Navbar"
+import Navbar from "@/components/header/Header"
 import Sidebar from "@components/sidebar/Sidebar"
+
+
+
+
 
 const AppLayout = () => {
 
@@ -11,7 +15,9 @@ const AppLayout = () => {
 
       <div className="flex-1 flex flex-col  ">
         <Navbar />
-        <div className="flex justify-center items-center  mx-2">body</div>
+        <div className="flex justify-center items-center  mx-2">
+          hello
+        </div>
       </div>
     </div>
 
