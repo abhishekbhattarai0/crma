@@ -1,18 +1,24 @@
 import { Avatar, AvatarImage } from './ui/avatar'
 import user from '@/assets/user.jpg'
-import { Button } from './ui/button'
-import { ChevronDown, LogOut, Settings } from 'lucide-react'
+// import { Button } from './ui/button'
+import {  LogOut, Settings } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { CgProfile } from 'react-icons/cg'
+import { cn } from '@/utils/cn'
 
 
-const UserProfileCard = () => {
+const UserProfileCard = ({className}:{className: string}) => {
     return (
-        <div className='hidden md:flex'>
+        <div
+         className={cn(
+            '',
+            className
+         )}
+         >
             <DropdownMenu>
                 <DropdownMenuTrigger>
 
-                    <div className="flex gap-2  px-2 py-1 items-center cursor-pointer">
+                    <div className="flex gap-2  px-2 py-1 items-center cursor-pointer hover:bg-primary/20 rounded-md ">
                         <Avatar className="size-9">
                             <AvatarImage src={user} alt="user" />
                         </Avatar>
@@ -20,16 +26,16 @@ const UserProfileCard = () => {
                             <div className="text-xs text-gray-700">Admin</div>
                             <div className="text-xs tracking-wide font-semibold text-foreground/80 flex gap-1">
                                 <span className='shrink-0'>Maria Gibson</span>
-                                <ChevronDown size={16} />
+                                {/* <ChevronDown size={16} /> */}
                             </div>
 
                         </div>
-                        <Button
+                        {/* <Button
                             size={'icon'}
                             className="p-1 bg-gray-100 rounded-full size-7 cursor-pointer"
                         >
                             <Settings className="text-gray-700" size={16} />
-                        </Button>
+                        </Button> */}
                     </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
