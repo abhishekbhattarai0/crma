@@ -1,7 +1,8 @@
+import { cn } from "@/utils/cn";
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation } from "react-router-dom";
 
-const Breadcrumbs = () => {
+const Breadcrumbs = ({className}:{className?: string}) => {
     const location = useLocation();
 
     const pathnames = location.pathname
@@ -13,7 +14,7 @@ const Breadcrumbs = () => {
     }, [])
 
     return (
-        <nav  >
+        <nav className={cn("", className)} >
             <div className="flex w-full justify-between">
                 <h1 className="text-foreground/80 font-semibold capitalize">
                     {location.pathname

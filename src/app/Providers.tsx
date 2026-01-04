@@ -1,14 +1,15 @@
+import { ThemeProvider } from "@/components/theme-provider"
+import { router } from "@/routes/router"
 import SidebarProvider from "@/store/SidebarProvider"
-import type React from "react"
-import { BrowserRouter } from "react-router"
+import { RouterProvider } from "react-router-dom"
 
-const Providers = ({ children }: { children: React.ReactNode }) => {
+const Providers = () => {
   return (
-    <BrowserRouter>
+    <ThemeProvider>
       <SidebarProvider>
-        {children}
+        <RouterProvider router={router} />
       </SidebarProvider>
-    </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

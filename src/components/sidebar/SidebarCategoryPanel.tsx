@@ -1,10 +1,11 @@
 import { sidebarConfig } from "@/dummydata/sidebar"
-import { Avatar, AvatarImage } from "../ui/Avatar"
+import { Avatar, AvatarImage } from "../ui/avatar"
 // import { SidebarCategoryItem } from "./Sidebar"
 import user from '@/assets/user.jpg'
 import logo from '@/assets/logo.png'
 import { cn } from "@/utils/cn"
 import { useSidebar } from "@/hooks/useSidebar"
+import { Button } from "../ui/button"
 
 // Sidebar Left Category Panel
 export const SidebarCategoryPanel = ({ className }: { className?: string }) => {
@@ -44,20 +45,27 @@ export const SidebarCategoryItem = ({ label, icon: Icon, iconStyle, className, .
     icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     iconStyle?: string
 }) => {
-    const { updateCategory, activeCategory } = useSidebar()
+    const { updateCategory, activeCategory, toggleSidebarCategory } = useSidebar()
+
+    const handleClick = (label: string) => {
+        updateCategory(label);
+        toggleSidebarCategory(true)
+
+    }
     return (
-        <div
+        <Button
             {...props}
             className={cn(
-                "p-2 bg-sidebar-accent group relative cursor-pointer",
+                "p-2 bg-sidebar-accent group relative cursor-pointer rounded-md",
                 className
             )}
-            onClick={() => updateCategory(label)}
+            onClick={() => handleClick(label)}
+            size={'icon-lg'}
         >
             {Icon && <Icon className={`size-5 ${activeCategory === label ? 'text-sidebar-foreground' : 'text-sidebar-foreground/70'} ${iconStyle}`} />}
             <div className="absolute top-2 left-12 hidden rounded px-1.5 py-0.5 text-xs font-medium group-hover:block text-sidebar-foreground bg-sidebar-primary whitespace-nowrap">
                 {label}
             </div>
-        </div>
+        </Button>
     )
 }

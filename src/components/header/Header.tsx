@@ -2,9 +2,8 @@ import useScreenSize from "@/hooks/useScreenSize";
 import { useSidebar } from "@/hooks/useSidebar";
 import { BellIcon, Menu, MessageSquareTextIcon, Search } from "lucide-react";
 import { Button } from "../ui/button";
-import { Avatar, AvatarImage } from "../ui/Avatar";
-import user from '@/assets/user.jpg'
 import UserProfileCard from "../user-profile-card";
+import { ModeToggle } from "../mode-toggle";
 
 const Navbar = () => {
   const { toggleSidebar, toggleSidebarCategory } = useSidebar();
@@ -25,7 +24,7 @@ const Navbar = () => {
           onClick={handleSidebar}
           // variant={''}
           size={'icon'}
-          className="p-1.5 bg-gray-100 rounded-full "
+          className=" bg-gray-100 rounded-full "
         >
           <Menu color="black" size={20} />
         </Button>
@@ -45,9 +44,10 @@ const Navbar = () => {
       <div className="flex items-center gap-3">
 
         <div className="flex items-center gap-4">
-          <Avatar className="size-7">
+          {/* <Avatar className="size-7">
             <AvatarImage src={user} alt="user" />
-          </Avatar>
+          </Avatar> */}
+          <ModeToggle />
 
           <div className="relative">
             <div className="absolute w-2 h-2 rounded-full bg-red-600 top-1.5 right-1.5   "></div>

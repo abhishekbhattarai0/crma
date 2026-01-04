@@ -3,7 +3,7 @@ import { useSidebar } from "@/hooks/useSidebar";
 import { cn } from "@/utils/cn";
 import { ChevronRight, DotIcon, type LucideIcon } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
 
 
