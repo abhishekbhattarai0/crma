@@ -40,7 +40,7 @@ const chartConfig = {
 
 export function ChartBarMultiple() {
   return (
-    <div className=" sm:h-113.75 ">
+    <div className=" sm:h-75 ">
       <ResponsiveContainer width="100%" height="100%"  >
         <ChartContainer
           config={chartConfig}
@@ -78,3 +78,5 @@ export function ChartBarMultiple() {
     </div>
   )
 }
+
+

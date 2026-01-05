@@ -62,20 +62,20 @@ const Analytics = () => {
                 <MultipleBarchartWidget />
             </div> */}
 
-            <div className="grid gap-4  md:grid-cols-12  ">
+            <div className="grid gap-4  lg:grid-cols-12  ">
 
-                <div className="md:col-span-9   ">
+                <div className="lg:col-span-6   ">
                     <MultipleBarchartWidget />
                 </div>
-                <div className="md:col-span-3 ">
-                    <ChartPieDonutWidget />
-
-                </div> 
+                <div className="lg:col-span-6 ">
+                    <ChartAreaWidget />
+                </div>
 
             </div>
 
             <div>
-                <ChartAreaWidget/>
+                    {/* <ChartPieDonutWidget /> */}
+                {/* <ChartAreaWidget /> */}
             </div>
 
             <div>hello</div>
@@ -96,6 +96,9 @@ const Analytics = () => {
 }
 
 export default Analytics
+
+
+
 
 
 
