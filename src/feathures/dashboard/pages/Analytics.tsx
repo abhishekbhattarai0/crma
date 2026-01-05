@@ -3,6 +3,7 @@
 import InfoCard from "../components/info-card"
 import { Clock10, Clock5, HeartIcon, TrendingUp, Users2 } from "lucide-react";
 import MultipleBarchartWidget from "../components/widgets/MultipleBarchartWidget";
+import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
 
 const analayticsCardInfo = [
     {
@@ -47,7 +48,7 @@ const analayticsCardInfo = [
 
 const Analytics = () => {
     return (
-        <div className="space-y-4">
+        <div className="space-y-4  ">
             <div className="col-span-12 lg:col-span-9">
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                     {analayticsCardInfo.map((item, idx) => (
@@ -56,9 +57,34 @@ const Analytics = () => {
                 </div>
             </div>
 
-            <div className="w-full md:w-1/2">
+            {/* <div>
                 <MultipleBarchartWidget />
+            </div> */}
+
+            <div className="grid gap-4  md:grid-cols-12  ">
+
+                <div className="md:col-span-9   ">
+                    <MultipleBarchartWidget />
+                </div>
+                <div className="md:col-span-3 ">
+                    <ChartPieDonutWidget />
+
+                </div> 
+
             </div>
+
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+
+
 
         </div>
     )

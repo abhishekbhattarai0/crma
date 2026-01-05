@@ -37,7 +37,7 @@ const Sidebar = () => {
             <SidebarCategoryPanel className="w-13.5 " />
             {
               (isSidebarCategoryVisible || isMobile)
-              && <div className="sm:flex sm:static absolute top-12 bottom-0 left-13.5 ">
+              && <div className="sm:flex sm:static z-1000 absolute top-12 bottom-0 left-13.5 ">
                 <SidebarSubCategoryPanel className=" bg-secondary" />
               </div>
             }

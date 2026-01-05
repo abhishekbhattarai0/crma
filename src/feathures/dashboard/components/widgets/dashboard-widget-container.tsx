@@ -10,6 +10,7 @@ type Props = {
     actionText?: string;
     children?: React.ReactNode;
     summary?: boolean
+    className?:string
 }
 
 const DashboardWidgetContainer = ({
@@ -21,6 +22,7 @@ const DashboardWidgetContainer = ({
     // actionText,
     children, // chart goes here,
     // summary = false,
+    className
 }: Props) => {
 
     return (
@@ -31,7 +33,7 @@ const DashboardWidgetContainer = ({
                     {select && select}
                 </CardAction>
             </CardHeader>
-            <CardContent>
+            <CardContent className={className}>
                 {children}
             </CardContent>
         </Card>
