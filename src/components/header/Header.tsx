@@ -1,22 +1,22 @@
-import useScreenSize from "@/hooks/useScreenSize";
-import { useSidebar } from "@/hooks/useSidebar";
 import { BellIcon, Menu, MessageSquareTextIcon, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import UserProfileCard from "../user-profile-card";
 import { ModeToggle } from "../mode-toggle";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import user from '@/assets/user.jpg'
+import { useSidebar } from "../ui/sidebar";
 
 const Navbar = () => {
-  const { toggleSidebar, toggleSidebarCategory } = useSidebar();
-  const isMobile = useScreenSize()
+  const { toggleSidebar } = useSidebar();
+  // const isMobile = useScreenSize()
 
   const handleSidebar = () => {
-    if (isMobile) {
-      toggleSidebar()
-    } else {
-      toggleSidebarCategory()
-    }
+    toggleSidebar()
+    // if (isMobile) {
+    //   toggleSidebar()
+    // } else {
+    //   toggleSidebarCategory()
+    // }
   }
   return (
     <div className="flex h-13 bg-secondary border-b border-b-gray-200 text-foreground/90 b-secondary items-center justify-between px-3">

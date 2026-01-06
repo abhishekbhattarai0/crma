@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider"
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { router } from "@/routes/router"
-import SidebarProvider from "@/store/SidebarProvider"
 import { RouterProvider } from "react-router-dom"
 
 const Providers = () => {

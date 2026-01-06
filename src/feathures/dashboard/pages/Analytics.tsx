@@ -3,7 +3,7 @@
 import InfoCard from "../components/info-card"
 import { Clock10, Clock5, HeartIcon, TrendingUp, Users2 } from "lucide-react";
 import MultipleBarchartWidget from "../components/widgets/MultipleBarchartWidget";
-import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
+// import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
 import ChartAreaWidget from "../components/widgets/ChartAreaWidget";
 
 const analayticsCardInfo = [

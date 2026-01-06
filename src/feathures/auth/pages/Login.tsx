@@ -32,7 +32,7 @@ const Login = () => {
     console.log(data, errors)
   }
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen w-screen items-center justify-center">
       <div className="mx-2 w-full border border-gray-300 pb-10 shadow-md sm:w-90">
         <div className="flex flex-col items-center bg-linear-to-b from-sky-950 to-sky-900">
           <div className="flex flex-col items-center px-8 py-4">

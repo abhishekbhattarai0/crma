@@ -1,5 +1,5 @@
 import Header from "@/components/header/Header"
-import Sidebar from "@components/sidebar/Sidebar"
+import AppSidebar from "@/components/sidebar/app-sidebar"
 import PageLayout from "./PageLayout"
 import { Outlet } from "react-router-dom"
 
@@ -7,16 +7,15 @@ import { Outlet } from "react-router-dom"
 
 
 
+
 const AppLayout = () => {
 
-
   return (
-    <div className='flex h-screen bg-white '>
-      <Sidebar />
-      <div className="flex-1 flex flex-col ">
+    <div className='flex h-screen bg-white w-screen'>
+      <AppSidebar />
+      <div className="flex-1">
         <Header />
-        <div className="flex-1 overflow-auto">
-          {/* <Breadcrumbs /> */}
+        <div>
           <PageLayout>
             <Outlet />
           </PageLayout>
@@ -28,3 +27,28 @@ const AppLayout = () => {
 }
 
 export default AppLayout
+
+
+
+// const AppLayout = () => {
+
+
+//   return (
+//     <div className='flex h-screen bg-white '>
+//       <AppSidebar />
+//       <div className="flex-1 flex flex-col ">
+//         <Header />
+//         <div className="flex-1 overflow-auto">
+//           {/* <Breadcrumbs /> */}
+//           <PageLayout>
+//             <Outlet />
+//           </PageLayout>
+//         </div>
+//       </div>
+//     </div>
+
+//   )
+// }
+
+// export default AppLayout
+
