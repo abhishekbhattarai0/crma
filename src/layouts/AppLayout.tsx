@@ -13,9 +13,9 @@ const AppLayout = () => {
   return (
     <div className='flex h-screen bg-white w-screen'>
       <AppSidebar />
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col overflow-x-hidden">
         <Header />
-        <div>
+        <div className="flex-1 overflow-auto overflow-x-hidden">
           <PageLayout>
             <Outlet />
           </PageLayout>

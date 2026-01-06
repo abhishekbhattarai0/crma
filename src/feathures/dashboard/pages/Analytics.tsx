@@ -5,6 +5,7 @@ import { Clock10, Clock5, HeartIcon, TrendingUp, Users2 } from "lucide-react";
 import MultipleBarchartWidget from "../components/widgets/MultipleBarchartWidget";
 // import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
 import ChartAreaWidget from "../components/widgets/ChartAreaWidget";
+import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
 
 const analayticsCardInfo = [
     {
@@ -64,18 +65,19 @@ const Analytics = () => {
 
             <div className="grid gap-4  lg:grid-cols-12  ">
 
-                <div className="lg:col-span-6   ">
+                <div className="lg:col-span-9   ">
                     <MultipleBarchartWidget />
                 </div>
-                <div className="lg:col-span-6 ">
-                    <ChartAreaWidget />
+                <div className="lg:col-span-3 ">
+                    {/* <ChartAreaWidget /> */}
+                    <ChartPieDonutWidget />
                 </div>
 
             </div>
 
             <div>
-                    {/* <ChartPieDonutWidget /> */}
-                {/* <ChartAreaWidget /> */}
+                {/* <ChartPieDonutWidget /> */}
+                <ChartAreaWidget />
             </div>
 
             <div>hello</div>

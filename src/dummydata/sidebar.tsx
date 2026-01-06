@@ -44,11 +44,11 @@ export const sidebarData: SidebarData = {
           url: "/dashboard/crypto",
           icon: LayoutDashboard,
         },
-        {
-          title: "Project",
-          url: "/dashboard/project",
-          icon: LayoutDashboard,
-        },
+        // {
+        //   title: "Project",
+        //   url: "/dashboard/project",
+        //   icon: LayoutDashboard,
+        // },
         {
           title: "Project",
           url: "/dashboard/project",

@@ -44,7 +44,7 @@ export function ChartBarMultiple() {
       <ResponsiveContainer width="100%" height="100%"  >
         <ChartContainer
           config={chartConfig}
-          className="md:h-full  w-full min-w-0 "
+          className="h-full  w-full min-w-0 "
         >
           <BarChart data={chartData} >
             <CartesianGrid vertical={false} />
