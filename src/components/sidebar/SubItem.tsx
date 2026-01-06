@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Link, NavLink, type useLocation } from "react-router-dom";
+import { Link, type useLocation } from "react-router-dom";
 import { SidebarMenuSubButton, SidebarMenuSubItem } from "../ui/sidebar";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";

@@ -1,7 +1,10 @@
+import ContactTable from "../components/table/customer-table"
 
 const AnalyticsCustomer = () => {
     return (
-        <div>AnalyticsCustomer</div>
+        <div>
+            <ContactTable />
+        </div>
     )
 }
 
