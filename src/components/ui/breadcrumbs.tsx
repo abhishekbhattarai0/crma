@@ -1,17 +1,13 @@
 import { cn } from "@/utils/cn";
-import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const Breadcrumbs = ({className}:{className?: string}) => {
+const Breadcrumbs = ({ className }: { className?: string }) => {
     const location = useLocation();
 
     const pathnames = location.pathname
         .split("/")
         .filter(Boolean);
 
-    useEffect(() => {
-        console.log("first", location.pathname, pathnames)
-    }, [])
 
     return (
         <nav className={cn("", className)} >

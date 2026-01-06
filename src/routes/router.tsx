@@ -1,4 +1,5 @@
 import PageNotFound from "@/components/common/page-not-found";
+import { appsRoutes } from "@/feathures/apps/route";
 import { loginRoutes } from "@/feathures/auth/routes";
 import { dashboardRoutes } from "@/feathures/dashboard/routes";
 import AppLayout from "@/layouts/AppLayout";
@@ -14,13 +15,14 @@ export const router = createBrowserRouter([
             // default redirect when path is "/"
             { index: true, element: <Navigate to="/dashboard/analytics" replace /> },
             dashboardRoutes,
+            appsRoutes
             // dashboardRoutes,
             // analyticsAppRoutes,
             // cryptoAppRoutes,
         ],
     },
     {
-        path:'/auth',
+        path: '/auth',
         children: [
             loginRoutes
         ]
