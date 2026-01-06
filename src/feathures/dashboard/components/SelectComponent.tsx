@@ -17,7 +17,7 @@ export function SelectComponent({ placeholder, options, onValueChange }: {
     onValueChange: (value: string) => void;
 }) {
     return (
-        <Select onValueChange={onValueChange} >
+        <Select onValueChange={onValueChange}  >
             <SelectTrigger className="w-full " size="sm">
                 <SelectValue placeholder={placeholder} className=""/>
             </SelectTrigger>

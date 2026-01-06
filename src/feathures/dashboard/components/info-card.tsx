@@ -30,16 +30,16 @@ const InfoCard = ({ title, total, rate, Icon, desc, }: InfoCardProps) => {
                     </div>
                 </div>
                 <div>
-                    <div className='flex items-center gap-2 text-xs font-medium text-green-500'>
+                    <div className='flex items-center gap-2 text-[10px] font-medium text-green-500'>
                         {rate > 0 ? (
                             <>
                                 <TrendingUp />
-                                <p>8.5%</p>
+                                <p className='text-sm'>8.5%</p>
                             </>
                         ) : (
                             <>
                                 <TrendingDown color='red' />
-                                <p className='text-red-500 '>{rate}</p>
+                                <p className='text-red-500 text-sm'>{rate}</p>
                             </>
                         )}
                         <p className='text-foreground/50  truncate'>{desc}</p>

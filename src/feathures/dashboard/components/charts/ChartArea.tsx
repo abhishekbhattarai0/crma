@@ -87,7 +87,7 @@ export function ChartAreaInteractive() {
 
     return (
         <Card className="border-0 shadow-none">
-            <CardContent className="  sm:px-6 sm:pt-6">
+            <CardContent className="   sm:pt-6">
                 <ChartContainer
                     config={chartConfig}
                     className="aspect-auto h-64.5 w-full"

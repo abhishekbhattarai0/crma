@@ -26,9 +26,9 @@ const DashboardWidgetContainer = ({
 }: Props) => {
 
     return (
-        <Card className='px-0'>
-            <CardHeader className='border-b flex justify-between items-center px-4  '>
-                <CardTitle className='text-foreground/75 font-semibold text-sm '>{title}</CardTitle>
+        <Card className='px-0 py-1'>
+            <CardHeader className='border-b   flex justify-between items-center px-4 '>
+                <CardTitle className='text-foreground/75 font-semibold text-sm  '>{title}</CardTitle>
                 <CardAction>
                     {select && select}
                 </CardAction>
