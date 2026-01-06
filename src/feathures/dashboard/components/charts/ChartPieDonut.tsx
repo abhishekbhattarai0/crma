@@ -1,5 +1,5 @@
 
-import { Pie, PieChart, ResponsiveContainer } from "recharts"
+import { LabelList, Pie, PieChart, ResponsiveContainer } from "recharts"
 
 
 import {
@@ -76,7 +76,7 @@ const chartConfig = {
 
 export function ChartPieDonut() {
     return (
-        <div className="size-54 w-full   ">
+        <div className="size-54 h-[250px] w-full    ">
             <ResponsiveContainer width="100%" height="100%"
             >
                 <ChartContainer
@@ -92,12 +92,40 @@ export function ChartPieDonut() {
                             data={chartData}
                             dataKey="visitors"
                             nameKey="browser"
-                            innerRadius="80%"
+                            innerRadius="0%"
                             outerRadius="90%"
-                        />
+                            label={({ payload, ...props }) => {
+                                return (
+                                    <text
+                                        cx={props.cx}
+                                        cy={props.cy}
+                                        x={props.x}
+                                        y={props.y}
+                                        textAnchor={props.textAnchor}
+                                        dominantBaseline={props.dominantBaseline}
+                                        fill="hsla(var(--foreground))"
+                                    >
+                                        {payload.visitors}
+                                    </text>
+                                )
+                            }}
+                        //   nameKey="browser"
+                        >
+                            <LabelList
+                                dataKey="browser"
+                                className="fill-background"
+                                stroke="none"
+                                fontSize={12}
+                                formatter={(value: keyof typeof chartConfig) =>
+                                    chartConfig[value]?.label
+                                }
+                            />
+                        </Pie>
                     </PieChart>
                 </ChartContainer>
             </ResponsiveContainer>
         </div>
     )
 }
+
+

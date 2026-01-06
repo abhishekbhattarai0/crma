@@ -5,7 +5,7 @@ import { sidebarData } from '@/dummydata/sidebar'
 const AppSidebar = () => {
   return (
     <Sidebar>
-      <div className="text-lg font-semibold text-gray-800 pl-2">
+      <div className=" font-semibold text-gray-800 pl-2 border-b h-13 flex items-center text-xl">
         Metrica
       </div>
       <SidebarContent>

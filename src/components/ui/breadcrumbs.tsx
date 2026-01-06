@@ -12,7 +12,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
     return (
         <nav className={cn("", className)} >
             <div className="flex w-full justify-between">
-                <h1 className="text-foreground/80 font-semibold text-xl capitalize">
+                <h1 className="text-foreground/80 font-semibold text-lg capitalize">
                     {location.pathname
                         .split("/").at(-1)}
                 </h1>

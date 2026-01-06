@@ -138,20 +138,20 @@ export function DataTable<TData, TValue>({
                             size={'sm'}
                             // className="text-foreground/50  text-xs h-6 rounded-sm"
                             className={cn(
-                                " text-blue-600  text-xs h-6 rounded-sm",
-                                !table.getCanPreviousPage() ? 'text-gray-400 cursor-not-allowed hover:bg-gray-700 ' : 'text-primary'
+                                " text-foreground/90  text-xs h-6 rounded-sm",
+                                !table.getCanPreviousPage() ? 'text-gray-800 border-gray-300  cursor-not-allowed hover:bg-gray-700 ' : 'text-primary'
                             )}
                             onClick={() => table.previousPage()}
                             disabled={!table.getCanPreviousPage()}
                         >
-                            <span>Previous</span>
+                            <span className="text-foreground/90">Previous</span>
                         </Button>
 
                         <div
                             className="flex gap-1"
                         >
                             {[10, 20, 30, 40, 50].map((pageSize) => (
-                                <Button key={pageSize} value={pageSize} className="text-xs h-6  text-blue-600 border-primary" variant={'outline'} size={'icon-sm'}>
+                                <Button key={pageSize} value={pageSize} className="text-xs h-6  text-foreground/90 border-foreground/30 rounded-sm " variant={'outline'} size={'icon-sm'}>
                                     {pageSize}
                                 </Button>
                             ))}
@@ -161,13 +161,13 @@ export function DataTable<TData, TValue>({
                             variant={'outline'}
                             size={'sm'}
                             className={cn(
-                                " text-blue-600  text-xs h-6 rounded-sm",
-                                !table.getCanNextPage() ? 'text-gray-400 cursor-not-allowed hover:bg-gray-700 ' : 'text-primary'
+                                " text-foreground/90  text-xs h-6 rounded-sm",
+                                !table.getCanNextPage() ? 'text-gray-800 border-gray-300  cursor-not-allowed  ' : 'text-primary'
                             )}
                             onClick={() => table.nextPage()}
                             disabled={!table.getCanNextPage()}
                         >
-                            <span>Next</span>
+                            <span className="text-foreground/90">Next</span>
                         </Button>
                     </div>
 

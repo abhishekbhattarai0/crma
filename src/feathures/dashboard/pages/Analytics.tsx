@@ -43,6 +43,13 @@ const analayticsCardInfo = [
         Icon: TrendingUp,
         desc: ''
     },
+    {
+        title: 'Sessions',
+        total: '24k',
+        rate: 8.5,
+        Icon: TrendingUp,
+        desc: ''
+    },
 ];
 
 
@@ -52,9 +59,9 @@ const Analytics = () => {
     return (
         <div className="space-y-4  bg-white">
             <div className="col-span-12 lg:col-span-9">
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {analayticsCardInfo.map((item, idx) => (
-                        <InfoCard  {...item} key={idx} />
+                        <InfoCard  {...item} key={idx}/>
                     ))}
                 </div>
             </div>
@@ -75,9 +82,16 @@ const Analytics = () => {
 
             </div>
 
-            <div>
+            <div className="grid md:grid-cols-2 gap-2">
                 {/* <ChartPieDonutWidget /> */}
+                <div className=" md:grid-cols-1">
                 <ChartAreaWidget />
+
+                </div>
+                <div className="md:grid-cols-1">
+                <ChartAreaWidget />
+
+                </div>
             </div>
 
             <div>hello</div>

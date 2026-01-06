@@ -1,37 +1,37 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import DashboardWidgetContainer from './dashboard-widget-container'
 import { SelectComponent } from '../SelectComponent'
 import { ChartPieDonut } from '../charts/ChartPieDonut'
 import { Calendar } from 'lucide-react'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-type DeviceStats = {
-    device: string;
-    sessions: number;
-    day: number;
-    week: number;
-};
+// type DeviceStats = {
+//     device: string;
+//     sessions: number;
+//     day: number;
+//     week: number;
+// };
 
-const deviceData: DeviceStats[] = [
-    {
-        device: "Desktops",
-        sessions: 1843,
-        day: -3,
-        week: -12,
-    },
-    {
-        device: "Tablets",
-        sessions: 2543,
-        day: -5,
-        week: -2,
-    },
-    {
-        device: "Mobiles",
-        sessions: 3654,
-        day: -5,
-        week: -6,
-    },
-];
+// const deviceData: DeviceStats[] = [
+//     {
+//         device: "Desktops",
+//         sessions: 1843,
+//         day: -3,
+//         week: -12,
+//     },
+//     {
+//         device: "Tablets",
+//         sessions: 2543,
+//         day: -5,
+//         week: -2,
+//     },
+//     {
+//         device: "Mobiles",
+//         sessions: 3654,
+//         day: -5,
+//         week: -6,
+//     },
+// ];
 
 const ChartPieDonutWidget = () => {
     const [time, setTime] = useState<'All' | 'Purchases' | 'Emails'>('All')
@@ -57,16 +57,15 @@ const ChartPieDonutWidget = () => {
             <div className='flex justify-center  '>
                 <ChartPieDonut />
             </div>
-            <div className='space-y-8'>
+            <div className='mb-1'>
                 <div className='flex  gap-2 w-full justify-center  items-center  py-2 text-xs font-semibold text-foreground/70 bg-gray-100'>
                     <Calendar />
                     <span className='w-33'> 01 January 2020 to 31 December 2020</span>
                 </div>
 
                 {/* table */}
-                <div className='px-4 mt-2 border'>
+                {/* <div className='px-4 mt-2 border'>
                     <Table className='text-xs text-gray-600'>
-                        {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="">Device</TableHead>
@@ -86,7 +85,7 @@ const ChartPieDonutWidget = () => {
                             ))}
                         </TableBody>
                     </Table>
-                </div>
+                </div> */}
             </div>
         </DashboardWidgetContainer>
     )
