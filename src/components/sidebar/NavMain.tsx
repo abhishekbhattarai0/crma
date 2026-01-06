@@ -31,7 +31,7 @@ const SubItem = ({
                     rel={rel}
                 >
                     {subitem.icon && <subitem.icon />}
-                    <span>{subitem.title}</span>
+                    <span className="text-foreground">{subitem.title}</span>
                 </Link>
             </SidebarMenuSubButton>
         </SidebarMenuSubItem>
@@ -72,7 +72,7 @@ const NavItem = ({
                             <SidebarMenuButton tooltip={item.title} className="ml-2 ">
                                 {item.icon && <item.icon />}
                                 <span className="text-foreground">{item.title}</span>
-                                <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                <ChevronRight className="ml-auto text-foreground transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                             </SidebarMenuButton>
                         </CollapsibleTrigger>
                         <CollapsibleContent>
