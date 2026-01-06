@@ -24,6 +24,8 @@ const NavItem = ({
     location: ReturnType<typeof useLocation>
 }) => {
     const shouldBeOpen = item.items?.some(subItem => location.pathname === subItem.url) || false;
+    // const isItemActive =  location.pathname === `/${item.url}`;
+
 
     return (
         <Collapsible
@@ -36,7 +38,7 @@ const NavItem = ({
                     <>
                         {/* sidebar items having subitems */}
                         <CollapsibleTrigger asChild>
-                            <SidebarMenuButton tooltip={item.title} className="ml-2 text-foreground/85 ">
+                            <SidebarMenuButton tooltip={item.title} className="ml-2 text-foreground/85 hover ">
                                 {item.icon && <item.icon />}
                                 <span className="text-foreground/85 text-sm">{item.title}</span>
                                 <ChevronRight className="ml-auto text-foreground/85 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -55,12 +57,22 @@ const NavItem = ({
                     <>
                         {/* items which do not have subitems */}
                         <SidebarMenuButton asChild tooltip={item.title} className="cursor-pointer ml-2" isActive={location.pathname === item.url}>
-                            <Link to={item.url as string} className={cn(
-                                "text-foreground/85",
-                                location.pathname === item.url && 'text-foreground/85'
-                            )}>
+                            <Link to={item.url as string}
+                                className={cn(
+                                    "text-foreground/85",
+                                    location.pathname === item.url && 'text-foreground/85'
+                                )}
+                            >
                                 {item.icon && <item.icon />}
-                                <span className="text-foreground/85 text-sm font-medium">{item.title}</span>
+                                <span
+                                    // className="text-foreground/85 text-sm font-medium"
+                                    className={cn(
+                                        "text-foreground/85",
+                                        location.pathname === item.url && 'text-white'
+                                    )}
+                                >
+                                    {item.title}
+                                </span>
                             </Link>
                         </SidebarMenuButton>
                     </>

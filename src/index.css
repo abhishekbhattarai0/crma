@@ -36,8 +36,8 @@ body {
   
   --sidebar-primary:#0B51B7;
   --sidebar-primary-foreground: oklch(1.00 0 0);
-  --sidebar-accent: #c5d9f6;
-  --sidebar-accent-foreground: #033aa8;
+  --sidebar-accent: oklch(0.48 0.20 260.47);
+  --sidebar-accent-foreground: #eceff4;
 
   --sidebar-border: oklch(0.93 0.01 261.82);
   --sidebar-ring: oklch(0.48 0.20 260.47);

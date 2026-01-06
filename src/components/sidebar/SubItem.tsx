@@ -25,6 +25,8 @@ const SubItem = ({
         console.log(location.pathname, 'path')
     }, [location.pathname])
 
+
+    const isItemActive =  location.pathname === `/${subitem.url}`;
     return (
         <SidebarMenuSubItem key={subitem.title} >
             <SidebarMenuSubButton asChild
@@ -37,13 +39,16 @@ const SubItem = ({
                     // className="hover:text-foreground/85 "
                     className={cn(
                         "hover:text-foreground/85 ",
-                        location.pathname === `/${subitem.url}` ? 'w-full bg-primary/40' : 'text-foreground/85'
+                        isItemActive ? 'w-full bg-sidebar-accent' : 'text-foreground/85'
                     )}
 
                 >
                     {subitem.icon && <subitem.icon />}
                     <span
-                        className="text-foreground/85 "
+                        className={cn(
+                            "text-foreground/85 ",
+                            isItemActive && "text-white"
+                        )}
 
                     >{subitem.title}
                     </span>
