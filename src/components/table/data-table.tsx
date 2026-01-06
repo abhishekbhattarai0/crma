@@ -141,8 +141,8 @@ export function DataTable<TData, TValue>({
                                 " text-blue-600  text-xs h-6 rounded-sm",
                                 !table.getCanPreviousPage() ? 'text-gray-400 cursor-not-allowed hover:bg-gray-700 ' : 'text-primary'
                             )}
-                            onClick={() => table.nextPage()}
-                            disabled={table.getCanPreviousPage()}
+                            onClick={() => table.previousPage()}
+                            disabled={!table.getCanPreviousPage()}
                         >
                             <span>Previous</span>
                         </Button>
