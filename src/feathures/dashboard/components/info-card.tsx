@@ -22,7 +22,7 @@ const InfoCard = ({ title, total, rate, Icon, desc, }: InfoCardProps) => {
                     {title}
                 </div>
                 <div className='flex justify-between h-8 items-center'>
-                    <h1 className='text-2xl font-semibold text-foreground/80 '>
+                    <h1 className='text-xl font-semibold text-foreground/80 '>
                         {total}
                     </h1>
                     <div className=' bg-primary/10 rounded-full text-xl p-2 '>

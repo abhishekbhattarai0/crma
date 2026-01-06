@@ -29,6 +29,7 @@ const SubItem = ({
                     to={subitem.url as string}
                     target={target}
                     rel={rel}
+                    className="text-foreground/85"
                 >
                     {subitem.icon && <subitem.icon />}
                     <span className="text-foreground">{subitem.title}</span>
@@ -56,7 +57,7 @@ const NavItem = ({
     },
     location: ReturnType<typeof useLocation>
 }) => {
-    const shouldBeOpen =  item.items?.some(subItem => location.pathname === subItem.url) || false;
+    const shouldBeOpen = item.items?.some(subItem => location.pathname === subItem.url) || false;
 
     return (
         <Collapsible
@@ -64,14 +65,14 @@ const NavItem = ({
             asChild
             defaultOpen={shouldBeOpen}
         >
-            <SidebarMenuItem>
+            <SidebarMenuItem className="pr-2">
                 {item.items?.length ? (
                     <>
                         {/* sidebar items having subitems */}
                         <CollapsibleTrigger asChild>
-                            <SidebarMenuButton tooltip={item.title} className="ml-2 ">
+                            <SidebarMenuButton tooltip={item.title} className="ml-2 text-foreground/85 ">
                                 {item.icon && <item.icon />}
-                                <span className="text-foreground">{item.title}</span>
+                                <span className="text-foreground text-sm">{item.title}</span>
                                 <ChevronRight className="ml-auto text-foreground transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                             </SidebarMenuButton>
                         </CollapsibleTrigger>
@@ -88,9 +89,9 @@ const NavItem = ({
                     <>
                         {/* items which do not have subitems */}
                         <SidebarMenuButton asChild tooltip={item.title} className="cursor-pointer ml-2" isActive={location.pathname === item.url}>
-                            <Link to={item.url as string} className="">
+                            <Link to={item.url as string} className="text-foreground/85">
                                 {item.icon && <item.icon />}
-                                <span className="text-foreground">{item.title}</span>
+                                <span className="text-foreground/85 text-sm font-medium">{item.title}</span>
                             </Link>
                         </SidebarMenuButton>
                     </>
@@ -105,12 +106,12 @@ const NavMain = ({
     items
 }: {
     label: string
-    items: NavItemProp[] 
+    items: NavItemProp[]
 }) => {
 
     const location = useLocation()
 
- 
+
 
     return (
         <SidebarGroup>

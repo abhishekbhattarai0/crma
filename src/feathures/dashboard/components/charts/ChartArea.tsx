@@ -147,6 +147,8 @@ export function ChartAreaInteractive() {
                                     indicator="dot"
                                 />
                             }
+                            isAnimationActive={false}
+                            
                         />
                         <Area
                             dataKey="mobile"
@@ -154,6 +156,8 @@ export function ChartAreaInteractive() {
                             fill="url(#fillMobile)"
                             stroke="var(--color-mobile)"
                             stackId="a"
+                            isAnimationActive={false}
+
                         />
                         <Area
                             dataKey="desktop"
@@ -161,6 +165,7 @@ export function ChartAreaInteractive() {
                             fill="url(#fillDesktop)"
                             stroke="var(--color-desktop)"
                             stackId="a"
+                            isAnimationActive={false}
                         />
                         <ChartLegend content={<ChartLegendContent />} />
                     </AreaChart>

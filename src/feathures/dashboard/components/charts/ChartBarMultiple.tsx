@@ -63,13 +63,14 @@ export function ChartBarMultiple() {
               fill="var(--color-desktop)"
               radius={2}
               barSize={6}
+              isAnimationActive={false}
             />
             <Bar
               dataKey="mobile"
               fill="var(--color-mobile)"
               radius={4}
               barSize={6}
-
+              isAnimationActive={false}
             />
             <ChartLegend />
           </BarChart>
