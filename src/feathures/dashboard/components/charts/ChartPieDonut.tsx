@@ -16,7 +16,7 @@ const chartData = [
     { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
     { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
     { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-    { browser: "other", visitors: 90, fill: "var(--color-other)" },
+    { browser: "other", visitors: 100, fill: "var(--color-other)" },
 ]
 
 const chartConfig = {
@@ -93,7 +93,7 @@ export function ChartPieDonut() {
                             dataKey="visitors"
                             nameKey="browser"
                             innerRadius="0%"
-                            outerRadius="90%"
+                            outerRadius="75%"
                             label={({ payload, ...props }) => {
                                 return (
                                     <text
@@ -102,8 +102,8 @@ export function ChartPieDonut() {
                                         x={props.x}
                                         y={props.y}
                                         textAnchor={props.textAnchor}
-                                        dominantBaseline={props.dominantBaseline}
-                                        fill="hsla(var(--foreground))"
+                                        // dominantBaseline={props.dominantBaseline}
+                                        // fill="hsla(var(--foreground))"
                                     >
                                         {payload.visitors}
                                     </text>
