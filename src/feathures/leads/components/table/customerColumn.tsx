@@ -12,7 +12,7 @@ type RowCellProps<TData> = {
 export const RowCell = <TData,>({ row, name }: RowCellProps<TData>) => {
     return (
         <div>
-            <div className="font-normal text-gray-600">
+            <div className="font-normal text-foreground/80">
                 {row.getValue(name as string)}
             </div>
         </div>
@@ -24,7 +24,7 @@ export const RowCellWithTags = <TData,>({ row, name }: RowCellProps<TData>) => {
 
     return (
         <div >
-            <div className=" font-normal text-gray-600 flex gap-2">
+            <div className=" font-normal text-foreground/80 flex gap-2">
                 {row.getValue(name as string)}
                 {/* {row.getValue(name ).map((item: string) => <div className="bg-blue-500 text-white px-2 py-0.5 rounded-md">{item}</div>)} */}
             </div>

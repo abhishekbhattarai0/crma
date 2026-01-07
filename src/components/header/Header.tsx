@@ -13,7 +13,7 @@ const Navbar = () => {
     toggleSidebar()
   }
   return (
-    <div className="flex h-13 bg-secondary border-b  text-foreground/90 b-secondary items-center justify-between px-3">
+    <div className="flex h-13 bg-secondary dark:bg-slate-900 border-b  text-foreground/90 b-secondary items-center justify-between px-3">
       {/* left */}
       <div className="flex gap-4">
         <Button

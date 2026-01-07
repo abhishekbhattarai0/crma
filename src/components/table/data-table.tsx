@@ -70,7 +70,7 @@ export function DataTable<TData, TValue>({
                         onChange={(event) =>
                             table.getColumn("email")?.setFilterValue(event.target.value)
                         }
-                        className="w-full text-gray-800 text-sm rounded-sm"
+                        className="w-full text-foreground border-kd active:outline-none text-sm rounded-sm"
                     />
                 </div>
                 <div className="overflow-hidden rounded-md border">
