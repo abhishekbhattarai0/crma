@@ -1,4 +1,4 @@
-import { Dot, LayoutDashboard, type LucideIcon } from "lucide-react";
+import { Dot, LayoutDashboard, type LucideIcon } from 'lucide-react';
 
 interface User {
   name: string;
@@ -25,23 +25,22 @@ interface SidebarData {
 
 export const sidebarData: SidebarData = {
   user: {
-    name: "Metrica",
-    email: "metrica@example.com",
-    avatar: "",
+    name: 'Metrica',
+    email: 'metrica@example.com',
+    avatar: '',
   },
   navGroup: [
     {
-      label: "Dashboard",
+      label: 'Dashboard',
       items: [
         {
-          title: "Analytics",
-          url: "/dashboard/analytics",
+          title: 'Analytics',
+          url: '/dashboard/analytics',
           icon: LayoutDashboard,
-
         },
         {
-          title: "Crypto",
-          url: "/dashboard/crypto",
+          title: 'Crypto',
+          url: '/dashboard/crypto',
           icon: LayoutDashboard,
         },
         // {
@@ -50,86 +49,85 @@ export const sidebarData: SidebarData = {
         //   icon: LayoutDashboard,
         // },
         {
-          title: "Project",
-          url: "/dashboard/project",
+          title: 'Project',
+          url: '/dashboard/project',
           icon: LayoutDashboard,
         },
         {
-          title: "Ecommerce",
-          url: "/dashboard/ecommerce",
+          title: 'Ecommerce',
+          url: '/dashboard/ecommerce',
           icon: LayoutDashboard,
         },
         {
-          title: "Helpdesk",
-          url: "dashboard/helpdesk",
+          title: 'Helpdesk',
+          url: 'dashboard/helpdesk',
           icon: LayoutDashboard,
         },
         {
-          title: "Hospital",
-          url: "dashboard/hospital",
+          title: 'Hospital',
+          url: 'dashboard/hospital',
           icon: LayoutDashboard,
         },
-      ]
+      ],
     },
     {
-      label: "Apps",
+      label: 'Apps',
       items: [
         {
-          title: "Analytics",
-          url: "apps/analytics",
+          title: 'Analytics',
+          url: 'apps/analytics',
           icon: LayoutDashboard,
           items: [
             {
               title: 'Customers',
-              url: "apps/analytics/customers",
-              icon: Dot
+              url: 'apps/analytics/customers',
+              icon: Dot,
             },
             {
               title: 'Reports',
-              url: "apps/analytics/reports",
-              icon: Dot
-
-            }
-          ]
+              url: 'apps/analytics/reports',
+              icon: Dot,
+            },
+          ],
         },
         {
-          title: "CRM",
+          title: 'CRM',
           // url: "apps/crm/contacts",
           icon: LayoutDashboard,
           items: [
             {
-              title: "Contacts",
-              url: "apps/crm/contacts",
-              icon: Dot
+              title: 'Contacts',
+              url: 'apps/crm/contacts',
+              icon: Dot,
             },
             {
-              title: "Opportunities",
-              url: "apps/crm/opportunities",
-              icon: Dot
+              title: 'Opportunities',
+              url: 'apps/crm/opportunities',
+              icon: Dot,
             },
             {
-              title: "Leads",
-              url: "apps/crm/leads",
-              icon: Dot
+              title: 'Leads',
+              url: 'apps/crm/leads',
+              icon: Dot,
             },
             {
-              title: "Customers",
-              url: "apps/crm/customers",
-              icon: Dot
+              title: 'Customers',
+              url: 'apps/crm/customers',
+              icon: Dot,
             },
-          ]
+          ],
         },
         {
-          title: "Projects",
-          url: "apps/projects",
+          title: 'Projects',
+          url: 'apps/projects',
           icon: LayoutDashboard,
         },
         {
-          title: "Chat",
-          url: "apps/chat",
+          title: 'Chat',
+          url: 'apps/chat',
           icon: LayoutDashboard,
         },
-      ]
+      ],
     },
     // {
     //   label: "Dashboard",
@@ -172,18 +170,8 @@ export const sidebarData: SidebarData = {
     //     },
     //   ]
     // },
-
-  ]
-}
-
-
-
-
-
-
-
-
-
+  ],
+};
 
 // // import type { SidebarItem } from "@/components/sidebar/types";
 // import {

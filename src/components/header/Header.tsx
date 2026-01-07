@@ -1,4 +1,4 @@
-import { BellIcon, Menu, MessageSquareTextIcon, Search } from "lucide-react";
+import { BellIcon, MenuIcon, MessageSquareTextIcon, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import UserProfileCard from "../user-profile-card";
 import { ModeToggle } from "../mode-toggle";
@@ -8,32 +8,27 @@ import { useSidebar } from "../ui/sidebar";
 
 const Navbar = () => {
   const { toggleSidebar } = useSidebar();
-  // const isMobile = useScreenSize()
 
   const handleSidebar = () => {
     toggleSidebar()
-    // if (isMobile) {
-    //   toggleSidebar()
-    // } else {
-    //   toggleSidebarCategory()
-    // }
   }
   return (
-    <div className="flex h-13 bg-secondary border-b border-b-gray-200 text-foreground/90 b-secondary items-center justify-between px-3">
+    <div className="flex h-13 bg-secondary border-b  text-foreground/90 b-secondary items-center justify-between px-3">
       {/* left */}
       <div className="flex gap-4">
         <Button
-          onClick={handleSidebar}
-          // variant={''}
+          variant={'outline'}
           size={'icon'}
-          className=" bg-gray-100 rounded-full "
+          onClick={handleSidebar}
+
+          className="p-1  rounded-full border    cursor-pointer "
         >
-          <Menu color="black" size={20} />
+          <MenuIcon className="text-foreground/80" size={28} />
         </Button>
 
         <div className="relative w-60 hidden mx-2 md:mx-auto sm:flex">
           <input
-            className="border  border-gray-200 rounded-sm  pl-6 text-xs text-gray-600   outline-primary/40 outline-px ring-none  w-full "
+            className="border   rounded-sm  pl-6 text-xs text-foreground/90   outline-primary/40 outline-px ring-none  w-full  bg-background/80"
             placeholder="Type text...."
           />
           <div className="absolute left-2 top-3  ">
@@ -45,23 +40,33 @@ const Navbar = () => {
       {/* right */}
       <div className="flex items-center gap-3">
 
-        <div className="flex items-center gap-4">
-          {/* <Avatar className="size-7">
-            <AvatarImage src={user} alt="user" />
-          </Avatar> */}
+        <div className="flex items-center gap-4 ">
+
           <ModeToggle />
 
           <div className="relative">
             <div className="absolute w-2 h-2 rounded-full bg-red-600 top-1.5 right-1.5   "></div>
             <Button
+              variant={'outline'}
               size={'icon'}
-              className="p-1 bg-gray-100 rounded-full border  size-8  cursor-pointer"
+              className="p-1  rounded-full border    cursor-pointer "
             >
-              <MessageSquareTextIcon className="text-gray-700" size={28} />
+              <MessageSquareTextIcon className="text-foreground/80" size={28} />
             </Button>
           </div>
 
           <div className="relative">
+            <div className="absolute w-2 h-2 rounded-full bg-red-600 top-1.5 right-1.5   "></div>
+            <Button
+              variant={'outline'}
+              size={'icon'}
+              className="p-1  rounded-full border    cursor-pointer "
+            >
+              <BellIcon className="text-foreground/80" size={28} />
+            </Button>
+          </div>
+
+          {/* <div className="relative">
             <div className="absolute w-2 h-2 rounded-full bg-red-600 top-1.5 right-1.5   "></div>
             <Button
               size={'icon'}
@@ -69,7 +74,7 @@ const Navbar = () => {
             >
               <BellIcon className="text-gray-700" size={28} />
             </Button>
-          </div>
+          </div> */}
         </div>
 
         {/* profile card */}

@@ -1,11 +1,7 @@
-
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, } from "@/components/ui/sidebar"
 import { useLocation } from 'react-router';
 import type { NavItem as NavItemProp } from "@/dummydata/sidebar";
 import NavItem from "./NavItem";
-
-
-
 
 const NavMain = ({
     label,
@@ -16,8 +12,6 @@ const NavMain = ({
 }) => {
 
     const location = useLocation()
-
-
 
     return (
         <SidebarGroup>

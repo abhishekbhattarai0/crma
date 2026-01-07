@@ -45,48 +45,21 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-// export function ChartPieDonut() {
-//     return (
-//         <div className="size-54  ">
-//             <ResponsiveContainer width="100%" height="100%"
-//             >
-//                 <ChartContainer
-//                     config={chartConfig}
-//                     className="mx-auto aspect-square w-full h-full "
-//                 >
-//                     <PieChart>
-//                         <ChartTooltip
-//                             cursor={false}
-//                             content={<ChartTooltipContent hideLabel />}
-//                         />
-//                         <Pie
-//                             data={chartData}
-//                             dataKey="visitors"
-//                             nameKey="browser"
-//                             innerRadius="60%"
-//                             outerRadius="80%"
-//                         />
-//                     </PieChart>
-//                 </ChartContainer>
-//             </ResponsiveContainer>
-//         </div>
-//     )
-// }
-
 
 export function ChartPieDonut() {
     return (
-        <div className="size-54 h-[250px] w-full    ">
+        <div className="size-54 h-[250px] w-full   ">
             <ResponsiveContainer width="100%" height="100%"
             >
                 <ChartContainer
                     config={chartConfig}
                     className="mx-auto aspect-square w-full h-full "
                 >
-                    <PieChart>
+                    <PieChart >
                         <ChartTooltip
                             cursor={false}
                             content={<ChartTooltipContent hideLabel />}
+                            isAnimationActive={false}
                         />
                         <Pie
                             data={chartData}
@@ -102,14 +75,13 @@ export function ChartPieDonut() {
                                         x={props.x}
                                         y={props.y}
                                         textAnchor={props.textAnchor}
-                                        // dominantBaseline={props.dominantBaseline}
-                                        // fill="hsla(var(--foreground))"
                                     >
                                         {payload.visitors}
                                     </text>
                                 )
                             }}
-                        //   nameKey="browser"
+                            //   nameKey="browser"
+                            isAnimationActive={false}
                         >
                             <LabelList
                                 dataKey="browser"

@@ -17,25 +17,18 @@ const UserProfileCard = ({className}:{className: string}) => {
          >
             <DropdownMenu>
                 <DropdownMenuTrigger>
-
                     <div className="flex gap-2  px-2 py-1 items-center cursor-pointer hover:bg-primary/20 rounded-md ">
                         <Avatar className="size-9">
                             <AvatarImage src={user} alt="user" />
                         </Avatar>
                         <div className="flex flex-col text-start">
-                            <div className="text-xs text-gray-700">Admin</div>
+                            <div className="text-xs text-foreground/70">Admin</div>
                             <div className="text-xs tracking-wide font-semibold text-foreground/80 flex gap-1">
                                 <span className='shrink-0'>Maria Gibson</span>
                                 {/* <ChevronDown size={16} /> */}
                             </div>
 
                         </div>
-                        {/* <Button
-                            size={'icon'}
-                            className="p-1 bg-gray-100 rounded-full size-7 cursor-pointer"
-                        >
-                            <Settings className="text-gray-700" size={16} />
-                        </Button> */}
                     </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>

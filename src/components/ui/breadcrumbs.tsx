@@ -32,21 +32,22 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
                         const isLast = index === pathnames.length - 1;
 
                         return (
-                            <li key={to} className="flex items-center ">
+                            <li key={to} className="flex items-center text-foreground/80">
                                 {/* Separator */}
 
-                                {isLast ? (<>
-                                    <span className="mx-2 text-gray-400">/</span>
-                                    <span className=" text-gray-600 capitalize">
-                                        {decodeURIComponent(value)}
-                                    </span>
-                                </>
+                                {isLast ? (
+                                    <div className="">
+                                        <span className="mx-2 t">/</span>
+                                        <span className="  capitalize">
+                                            {decodeURIComponent(value)}
+                                        </span>
+                                    </div>
                                 ) : (
                                     <>
-                                        <span className="mx-2 text-gray-400">/</span>
+                                        <span className="mx-2">/</span>
                                         <Link
                                             to={to}
-                                            className="text-gray-700 hover:text-blue-800 capitalize transition-colors font-medium"
+                                            className="text-foreground/80 hover:text-blue-800 capitalize transition-colors font-medium"
                                         >
                                             {decodeURIComponent(value)}
                                         </Link>

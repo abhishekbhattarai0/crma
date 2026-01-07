@@ -57,7 +57,7 @@ const analayticsCardInfo = [
 
 const Analytics = () => {
     return (
-        <div className="space-y-4  bg-white">
+        <div className="space-y-4  bg-background">
             <div className="col-span-12 lg:col-span-9">
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {analayticsCardInfo.map((item, idx) => (

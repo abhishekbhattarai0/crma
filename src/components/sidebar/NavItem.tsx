@@ -13,18 +13,15 @@ const NavItem = ({
         title: string
         url?: string
         icon?: LucideIcon
-        // isActive?: boolean
         items?: {
             title: string
             url?: string
-            // isActive?: boolean,
             icon?: LucideIcon
         }[]
     },
     location: ReturnType<typeof useLocation>
 }) => {
     const shouldBeOpen = item.items?.some(subItem => location.pathname === subItem.url) || false;
-    // const isItemActive =  location.pathname === `/${item.url}`;
 
 
     return (
@@ -37,11 +34,17 @@ const NavItem = ({
                 {item.items?.length ? (
                     <>
                         {/* sidebar items having subitems */}
-                        <CollapsibleTrigger asChild>
-                            <SidebarMenuButton tooltip={item.title} className="ml-2 text-foreground/85 hover ">
-                                {item.icon && <item.icon />}
-                                <span className="text-foreground/85 text-sm">{item.title}</span>
-                                <ChevronRight className="ml-auto text-foreground/85 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        <CollapsibleTrigger asChild className="hover:text-white text-foreground/85 cursor-pointer ">
+                            <SidebarMenuButton tooltip={item.title} className="ml-2 text-foreground/85 flex justify-between ">
+                                <div className="flex justify-baseline items-center w-full group">
+                                    <div className="flex items-center  gap-2 ">
+                                        {item.icon && <item.icon size={16} />}
+                                        <p className="pt-px"> {item.title}</p>
+                                    </div>
+                                    {/* <div className="hover:text-white "> */}
+                                    <ChevronRight className="ml-auto text-foreground/85 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 group-hover:text-white " />
+                                    {/* </div> */}
+                                </div>
                             </SidebarMenuButton>
                         </CollapsibleTrigger>
                         <CollapsibleContent>
@@ -56,7 +59,14 @@ const NavItem = ({
                 ) : (
                     <>
                         {/* items which do not have subitems */}
-                        <SidebarMenuButton asChild tooltip={item.title} className="cursor-pointer ml-2" isActive={location.pathname === item.url}>
+                        <SidebarMenuButton asChild
+                            tooltip={item.title}
+                            isActive={location.pathname === item.url}
+                            className={cn(
+                                "hover:text-white",
+
+                            )}
+                        >
                             <Link to={item.url as string}
                                 className={cn(
                                     "text-foreground/85",
@@ -64,15 +74,7 @@ const NavItem = ({
                                 )}
                             >
                                 {item.icon && <item.icon />}
-                                <span
-                                    // className="text-foreground/85 text-sm font-medium"
-                                    className={cn(
-                                        "text-foreground/85",
-                                        location.pathname === item.url && 'text-white'
-                                    )}
-                                >
-                                    {item.title}
-                                </span>
+                                {item.title}
                             </Link>
                         </SidebarMenuButton>
                     </>

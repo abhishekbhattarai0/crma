@@ -4,16 +4,17 @@ import { sidebarData } from '@/dummydata/sidebar'
 
 const AppSidebar = () => {
   return (
-    <Sidebar>
-      <div className=" font-semibold text-gray-800 pl-2 border-b h-13 flex items-center text-xl">
+    <Sidebar >
+      <div className=" font-semibold text-foreground/90 pl-2 border-b h-13 flex items-center text-xl">
         Metrica
       </div>
-      <SidebarContent>
 
+      <SidebarContent>
         {sidebarData?.navGroup.map((group) =>
           <NavMain key={group.label} label={group.label} items={group.items} />
         )}
       </SidebarContent>
+
     </Sidebar>
   )
 }

@@ -58,34 +58,10 @@ const ChartPieDonutWidget = () => {
                 <ChartPieDonut />
             </div>
             <div className='mb-1'>
-                <div className='flex  gap-2 w-full justify-center  items-center  py-2 text-xs font-semibold text-foreground/70 bg-gray-100'>
+                <div className='flex  gap-2 w-full justify-center  items-center  py-2 text-xs font-semibold text-foreground/70 bg-foreground/10 rounded-sm'>
                     <Calendar />
                     <span className='w-33'> 01 January 2020 to 31 December 2020</span>
                 </div>
-
-                {/* table */}
-                {/* <div className='px-4 mt-2 border'>
-                    <Table className='text-xs text-gray-600'>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="">Device</TableHead>
-                                <TableHead>Sessions</TableHead>
-                                <TableHead>Day</TableHead>
-                                <TableHead >Week</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {deviceData.map((item) => (
-                                <TableRow key={item.device}>
-                                    <TableCell className="font-medium">{item.device}</TableCell>
-                                    <TableCell>{item.sessions}</TableCell>
-                                    <TableCell>{item.day}</TableCell>
-                                    <TableCell >{item.week}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </div> */}
             </div>
         </DashboardWidgetContainer>
     )

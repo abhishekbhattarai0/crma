@@ -148,7 +148,7 @@ export function ChartAreaInteractive() {
                                 />
                             }
                             isAnimationActive={false}
-                            
+
                         />
                         <Area
                             dataKey="mobile"
