@@ -23,155 +23,155 @@ interface SidebarData {
   navGroup: NavGroup[];
 }
 
-export const sidebarData: SidebarData = {
-  user: {
-    name: 'Metrica',
-    email: 'metrica@example.com',
-    avatar: '',
-  },
-  navGroup: [
-    {
-      label: 'Dashboard',
-      items: [
-        {
-          title: 'Analytics',
-          url: '/dashboard/analytics',
-          icon: LayoutDashboard,
-        },
-        {
-          title: 'Crypto',
-          url: '/dashboard/crypto',
-          icon: LayoutDashboard,
-        },
-        // {
-        //   title: "Project",
-        //   url: "/dashboard/project",
-        //   icon: LayoutDashboard,
-        // },
-        {
-          title: 'Project',
-          url: '/dashboard/project',
-          icon: LayoutDashboard,
-        },
-        {
-          title: 'Ecommerce',
-          url: '/dashboard/ecommerce',
-          icon: LayoutDashboard,
-        },
-        {
-          title: 'Helpdesk',
-          url: 'dashboard/helpdesk',
-          icon: LayoutDashboard,
-        },
-        {
-          title: 'Hospital',
-          url: 'dashboard/hospital',
-          icon: LayoutDashboard,
-        },
-      ],
-    },
-    {
-      label: 'Apps',
-      items: [
-        {
-          title: 'Analytics',
-          url: 'apps/analytics',
-          icon: LayoutDashboard,
-          items: [
-            {
-              title: 'Customers',
-              url: 'apps/analytics/customers',
-              icon: Dot,
-            },
-            {
-              title: 'Reports',
-              url: 'apps/analytics/reports',
-              icon: Dot,
-            },
-          ],
-        },
-        {
-          title: 'CRM',
-          // url: "apps/crm/contacts",
-          icon: LayoutDashboard,
-          items: [
-            {
-              title: 'Contacts',
-              url: 'apps/crm/contacts',
-              icon: Dot,
-            },
-            {
-              title: 'Opportunities',
-              url: 'apps/crm/opportunities',
-              icon: Dot,
-            },
-            {
-              title: 'Leads',
-              url: 'apps/crm/leads',
-              icon: Dot,
-            },
-            {
-              title: 'Customers',
-              url: 'apps/crm/customers',
-              icon: Dot,
-            },
-          ],
-        },
-        {
-          title: 'Projects',
-          url: 'apps/projects',
-          icon: LayoutDashboard,
-        },
-        {
-          title: 'Chat',
-          url: 'apps/chat',
-          icon: LayoutDashboard,
-        },
-      ],
-    },
-    // {
-    //   label: "Dashboard",
-    //   items: [
-    //     {
-    //       title: "Analytics",
-    //       url: "/dashboard/analytics",
-    //       icon: LayoutDashboard,
+// export const sidebarData: SidebarData = {
+//   user: {
+//     name: 'Metrica',
+//     email: 'metrica@example.com',
+//     avatar: '',
+//   },
+//   navGroup: [
+//     {
+//       label: 'Dashboard',
+//       items: [
+//         {
+//           title: 'Analytics',
+//           url: '/dashboard/analytics',
+//           icon: LayoutDashboard,
+//         },
+//         {
+//           title: 'Crypto',
+//           url: '/dashboard/crypto',
+//           icon: LayoutDashboard,
+//         },
+//         // {
+//         //   title: "Project",
+//         //   url: "/dashboard/project",
+//         //   icon: LayoutDashboard,
+//         // },
+//         {
+//           title: 'Project',
+//           url: '/dashboard/project',
+//           icon: LayoutDashboard,
+//         },
+//         {
+//           title: 'Ecommerce',
+//           url: '/dashboard/ecommerce',
+//           icon: LayoutDashboard,
+//         },
+//         {
+//           title: 'Helpdesk',
+//           url: 'dashboard/helpdesk',
+//           icon: LayoutDashboard,
+//         },
+//         {
+//           title: 'Hospital',
+//           url: 'dashboard/hospital',
+//           icon: LayoutDashboard,
+//         },
+//       ],
+//     },
+//     {
+//       label: 'Apps',
+//       items: [
+//         {
+//           title: 'Analytics',
+//           url: 'apps/analytics',
+//           icon: LayoutDashboard,
+//           items: [
+//             {
+//               title: 'Customers',
+//               url: 'apps/analytics/customers',
+//               icon: Dot,
+//             },
+//             {
+//               title: 'Reports',
+//               url: 'apps/analytics/reports',
+//               icon: Dot,
+//             },
+//           ],
+//         },
+//         {
+//           title: 'CRM',
+//           // url: "apps/crm/contacts",
+//           icon: LayoutDashboard,
+//           items: [
+//             {
+//               title: 'Contacts',
+//               url: 'apps/crm/contacts',
+//               icon: Dot,
+//             },
+//             {
+//               title: 'Opportunities',
+//               url: 'apps/crm/opportunities',
+//               icon: Dot,
+//             },
+//             {
+//               title: 'Leads',
+//               url: 'apps/crm/leads',
+//               icon: Dot,
+//             },
+//             {
+//               title: 'Customers',
+//               url: 'apps/crm/customers',
+//               icon: Dot,
+//             },
+//           ],
+//         },
+//         {
+//           title: 'Projects',
+//           url: 'apps/projects',
+//           icon: LayoutDashboard,
+//         },
+//         {
+//           title: 'Chat',
+//           url: 'apps/chat',
+//           icon: LayoutDashboard,
+//         },
+//       ],
+//     },
+//     // {
+//     //   label: "Dashboard",
+//     //   items: [
+//     //     {
+//     //       title: "Analytics",
+//     //       url: "/dashboard/analytics",
+//     //       icon: LayoutDashboard,
 
-    //     },
-    //     {
-    //       title: "Crypto",
-    //       url: "/dashboard/crypto",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "CRM",
-    //       url: "/dashboard/crm",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "Project",
-    //       url: "/dashboard/project",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "Ecommerce",
-    //       url: "/dashboard/ecommerce",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "Helpdesk",
-    //       url: "dashboard/helpdesk",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "Hospital",
-    //       url: "dashboard/hospital",
-    //       icon: LayoutDashboard,
-    //     },
-    //   ]
-    // },
-  ],
-};
+//     //     },
+//     //     {
+//     //       title: "Crypto",
+//     //       url: "/dashboard/crypto",
+//     //       icon: LayoutDashboard,
+//     //     },
+//     //     {
+//     //       title: "CRM",
+//     //       url: "/dashboard/crm",
+//     //       icon: LayoutDashboard,
+//     //     },
+//     //     {
+//     //       title: "Project",
+//     //       url: "/dashboard/project",
+//     //       icon: LayoutDashboard,
+//     //     },
+//     //     {
+//     //       title: "Ecommerce",
+//     //       url: "/dashboard/ecommerce",
+//     //       icon: LayoutDashboard,
+//     //     },
+//     //     {
+//     //       title: "Helpdesk",
+//     //       url: "dashboard/helpdesk",
+//     //       icon: LayoutDashboard,
+//     //     },
+//     //     {
+//     //       title: "Hospital",
+//     //       url: "dashboard/hospital",
+//     //       icon: LayoutDashboard,
+//     //     },
+//     //   ]
+//     // },
+//   ],
+// };
 
 // // import type { SidebarItem } from "@/components/sidebar/types";
 // import {
@@ -303,3 +303,125 @@ export const sidebarData: SidebarData = {
 //     ],
 //   },
 // ];
+
+
+
+export const sidebarData: SidebarData = {
+  user: {
+    name: 'Metrica',
+    email: 'metrica@example.com',
+    avatar: '',
+  },
+  navGroup: [
+    {
+      label: 'FrontDesk',
+      items: [
+        {
+          title: 'Leads & Customers',
+          url: '/dashboard/analytics',
+          icon: LayoutDashboard,
+          items: [
+            { title: 'Leads', url: 'apps/analytics', icon: Dot },
+            { title: 'Lead Sources', url: 'apps/analytics/customers', icon: Dot },
+            { title: 'Lead Assignment', url: 'apps/analytics/reports', icon: Dot },
+            { title: 'Customers', url: 'apps/crm/contacts', icon: Dot },
+            { title: 'Customer Groups', url: 'apps/crm/opportunities', icon: Dot },
+            { title: 'Customer Activity', url: 'apps/crm/leads', icon: Dot },
+            { title: 'Follow-ups', url: 'apps/crm/customers', icon: Dot },
+          ],
+        },
+        {
+          title: 'Accounts & Organizations',
+          url: '/dashboard/crypto',
+          icon: LayoutDashboard,
+          items: [
+            { title: 'Companies', url: 'apps/projects', icon: Dot },
+            { title: 'Contacts', url: 'apps/chat', icon: Dot },
+            { title: 'Branches', url: 'apps/projects', icon: Dot },
+            { title: 'Departments', url: 'apps/chat', icon: Dot },
+            { title: 'Relationship Map', url: 'apps/projects', icon: Dot },
+          ],
+        },
+        {
+          title: 'Sales Management',
+          url: '/dashboard/project',
+          icon: LayoutDashboard,
+          items: [
+            { title: 'Sales Pipeline', url: 'apps/projects', icon: Dot },
+            { title: 'Opportunities', url: 'apps/chat', icon: Dot },
+            { title: 'Quotations', url: 'apps/projects', icon: Dot },
+            { title: 'Sales Orders', url: 'apps/chat', icon: Dot },
+            { title: 'Invoices', url: 'apps/projects', icon: Dot },
+            { title: 'Payments', url: 'apps/chat', icon: Dot },
+            { title: 'Targets & Commissions', url: 'apps/projects', icon: Dot },
+          ],
+        },
+        {
+          title: 'Marketing',
+          url: '/dashboard/ecommerce',
+          icon: LayoutDashboard,
+          items: [
+            { title: 'Campaigns', url: 'apps/projects', icon: Dot },
+            { title: 'Email Marketing', url: 'apps/chat', icon: Dot },
+            { title: 'SMS Marketing', url: 'apps/projects', icon: Dot },
+            { title: 'WhatsApp Marketing', url: 'apps/chat', icon: Dot },
+            { title: 'Marketing Automation', url: 'apps/projects', icon: Dot },
+            { title: 'Promotions & Offers', url: 'apps/chat', icon: Dot },
+          ],
+        },
+        {
+          title: 'Support & Service',
+          url: 'dashboard/helpdesk',
+          icon: LayoutDashboard,
+          items: [
+            { title: 'Tickets', url: 'apps/projects', icon: Dot },
+            { title: 'Ticket Categories', url: 'apps/chat', icon: Dot },
+            { title: 'SLA Management', url: 'apps/projects', icon: Dot },
+            { title: 'Knowledge Base', url: 'apps/chat', icon: Dot },
+            { title: 'Customer Feedback', url: 'apps/projects', icon: Dot },
+          ],
+        },
+        {
+          title: 'Tasks & Activities',
+          url: 'dashboard/hospital',
+          icon: LayoutDashboard,
+        },
+        {
+          title: 'Products & Services',
+          url: '/dashboard/ecommerce',
+          icon: LayoutDashboard,
+        },
+        {
+          title: 'Finance & Accounting',
+          url: 'dashboard/hospital',
+          icon: LayoutDashboard,
+        },
+        {
+          title: 'Notifications',
+          url: 'apps/chat',
+          icon: LayoutDashboard,
+        },
+        {
+          title: 'Reports & Analytics',
+          url: '/dashboard/analytics',
+          icon: LayoutDashboard,
+        },
+      ],
+    },
+  ],
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
