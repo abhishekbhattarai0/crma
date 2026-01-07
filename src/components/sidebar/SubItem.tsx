@@ -28,7 +28,7 @@ const SubItem = ({
         <SidebarMenuSubItem key={subitem.title} className={className} >
             <SidebarMenuSubButton asChild
                 className={cn(
-                    "text-foreground/85 hover:text-sidebar-accent hover:bg-sidebar-accent/10 active:bg-sidebar-accent/20 active:text-sidebar-accent cursor-pointer ",
+                    "text-foreground/85 hover:text-sidebar-accent dark:hover:text-slate-300 dark:hover:bg-slate-800 hover:bg-sidebar-accent/10 active:bg-sidebar-accent/20 active:text-sidebar-accent cursor-pointer ",
                     isItemActive ? 'w-full  bg-sidebar-accent/10 dark:bg-gray-800 text-sidebar-accent dark:text-foreground/85' : 'text-foreground/85'
                 )}
                 // className="cursor-pointer " 
