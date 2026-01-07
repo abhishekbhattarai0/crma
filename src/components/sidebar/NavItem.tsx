@@ -4,6 +4,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import { SidebarMenuButton, SidebarMenuItem, SidebarMenuSub } from "../ui/sidebar";
 import SubItem from "./SubItem";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const NavItem = ({
     item,
@@ -21,7 +22,7 @@ const NavItem = ({
     },
     location: ReturnType<typeof useLocation>
 }) => {
-
+    const [open, setOpen] = useState(false)
     const path = location.pathname.split('/')
     const activeItem = path[path.length - 2]
 
@@ -37,7 +38,7 @@ const NavItem = ({
                         <CollapsibleTrigger
                             asChild
                             className=" text-foreground/85 cursor-pointer "
-                            onClick={() => { console.log(activeItem, item.title.toLocaleLowerCase()) }}
+                            onClick={() => setOpen(prev => !prev)}
                         >
                             <SidebarMenuButton tooltip={item.title} className={cn(
                                 " text-foreground/85 flex justify-between ",
@@ -50,7 +51,8 @@ const NavItem = ({
                                     </div>
                                     <ChevronRight className={cn(
                                         "group-hover/item:text-white ml-auto text-foreground/85  group-data-[state=open]/collapsible:rotate-90  ",
-                                        activeItem === item.title.toLowerCase() && 'text-white'
+                                        activeItem === item.title.toLowerCase() && 'text-white',
+                                        open ? 'transition duration-300 rotate-90' :' transition duration-300'
                                     )} />
                                 </div>
                             </SidebarMenuButton>
