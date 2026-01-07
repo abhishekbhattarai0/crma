@@ -29,7 +29,7 @@ const SubItem = ({
             <SidebarMenuSubButton asChild
                 className={cn(
                     "text-foreground/85 hover:text-sidebar-accent hover:bg-sidebar-accent/10 active:bg-sidebar-accent/20 active:text-sidebar-accent cursor-pointer ",
-                    isItemActive ? 'w-full  bg-sidebar-accent/10 text-sidebar-accent' : 'text-foreground/85'
+                    isItemActive ? 'w-full  bg-sidebar-accent/10 dark:bg-gray-800 text-sidebar-accent dark:text-foreground/85' : 'text-foreground/85'
                 )}
                 // className="cursor-pointer " 
                 isActive={location.pathname === subitem.url}
