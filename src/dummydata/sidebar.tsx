@@ -1,4 +1,4 @@
-import { Dot, LayoutDashboard, type LucideIcon } from 'lucide-react';
+import { BadgeDollarSign, Banknote, BellDot, Box, CircleUser, Dot, Flag, Funnel, HandHelping, LayoutDashboard, ListTodo, type LucideIcon } from 'lucide-react';
 
 interface User {
   name: string;
@@ -317,12 +317,12 @@ export const sidebarData: SidebarData = {
       label: 'FrontDesk',
       items: [
         {
-          title: 'Leads & Customers',
+          title: 'Leads',
           url: '/dashboard/analytics',
-          icon: LayoutDashboard,
+          icon: Funnel,
           items: [
-            { title: 'Leads', url: 'apps/analytics', icon: Dot },
-            { title: 'Lead Sources', url: 'apps/analytics/customers', icon: Dot },
+            { title: 'Leads', url: 'leads/leads', icon: Dot },
+            { title: 'Lead Sources', url: 'leads/lead-sources', icon: Dot },
             { title: 'Lead Assignment', url: 'apps/analytics/reports', icon: Dot },
             { title: 'Customers', url: 'apps/crm/contacts', icon: Dot },
             { title: 'Customer Groups', url: 'apps/crm/opportunities', icon: Dot },
@@ -331,9 +331,9 @@ export const sidebarData: SidebarData = {
           ],
         },
         {
-          title: 'Accounts & Organizations',
+          title: 'Accounts',
           url: '/dashboard/crypto',
-          icon: LayoutDashboard,
+          icon: CircleUser,
           items: [
             { title: 'Companies', url: 'apps/projects', icon: Dot },
             { title: 'Contacts', url: 'apps/chat', icon: Dot },
@@ -359,7 +359,7 @@ export const sidebarData: SidebarData = {
         {
           title: 'Marketing',
           url: '/dashboard/ecommerce',
-          icon: LayoutDashboard,
+          icon: BadgeDollarSign,
           items: [
             { title: 'Campaigns', url: 'apps/projects', icon: Dot },
             { title: 'Email Marketing', url: 'apps/chat', icon: Dot },
@@ -372,7 +372,7 @@ export const sidebarData: SidebarData = {
         {
           title: 'Support & Service',
           url: 'dashboard/helpdesk',
-          icon: LayoutDashboard,
+          icon: HandHelping,
           items: [
             { title: 'Tickets', url: 'apps/projects', icon: Dot },
             { title: 'Ticket Categories', url: 'apps/chat', icon: Dot },
@@ -384,27 +384,27 @@ export const sidebarData: SidebarData = {
         {
           title: 'Tasks & Activities',
           url: 'dashboard/hospital',
-          icon: LayoutDashboard,
+          icon: ListTodo,
         },
         {
           title: 'Products & Services',
           url: '/dashboard/ecommerce',
-          icon: LayoutDashboard,
+          icon: Box,
         },
         {
           title: 'Finance & Accounting',
           url: 'dashboard/hospital',
-          icon: LayoutDashboard,
+          icon: Banknote,
         },
         {
           title: 'Notifications',
           url: 'apps/chat',
-          icon: LayoutDashboard,
+          icon: BellDot,
         },
         {
           title: 'Reports & Analytics',
           url: '/dashboard/analytics',
-          icon: LayoutDashboard,
+          icon: Flag,
         },
       ],
     },

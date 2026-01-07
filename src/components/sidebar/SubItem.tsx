@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 const SubItem = ({
     subitem,
     location,
-    parentTitle
+    parentTitle,
+    className
 }: {
     subitem: {
         title: string
@@ -15,18 +16,20 @@ const SubItem = ({
         icon?: LucideIcon
     },
     location: ReturnType<typeof useLocation>,
-    parentTitle: string
+    parentTitle: string,
+    className?: string,
+    // openItemId: string,
 }) => {
     const target = (parentTitle === "Auth Pages" || parentTitle === "Errors") ? "_blank" : undefined;
     const rel = target ? "noopener noreferrer" : undefined;
 
     const isItemActive = location.pathname === `/${subitem.url}`;
     return (
-        <SidebarMenuSubItem key={subitem.title} >
+        <SidebarMenuSubItem key={subitem.title} className={className} >
             <SidebarMenuSubButton asChild
                 className={cn(
-                    "text-foreground/85 hover:text-white cursor-pointer ",
-                    isItemActive ? 'w-full  bg-sidebar-accent text-white' : 'text-foreground/85'
+                    "text-foreground/85 hover:text-sidebar-accent hover:bg-sidebar-accent/10 active:bg-sidebar-accent/20 active:text-sidebar-accent cursor-pointer ",
+                    isItemActive ? 'w-full  bg-sidebar-accent/10 text-sidebar-accent' : 'text-foreground/85'
                 )}
                 // className="cursor-pointer " 
                 isActive={location.pathname === subitem.url}
@@ -37,7 +40,7 @@ const SubItem = ({
                     target={target}
                     rel={rel}
                 >
-                    <div className="hover:text-white">
+                    <div className="hover:text-sidebar-accent">
                         {subitem.icon && <subitem.icon />}
                     </div>
                     {subitem.title}

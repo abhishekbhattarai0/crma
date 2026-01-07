@@ -1,5 +1,5 @@
 import PageNotFound from "@/components/common/page-not-found";
-import { appsRoutes } from "@/feathures/apps/route";
+import { appsRoutes } from "@/feathures/leads/route";
 import { loginRoutes } from "@/feathures/auth/routes";
 import { dashboardRoutes } from "@/feathures/dashboard/routes";
 import AppLayout from "@/layouts/AppLayout";
