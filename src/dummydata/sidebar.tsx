@@ -1,4 +1,4 @@
-import { BadgeDollarSign, Banknote, BellDot, Box, CircleUser, Dot, Flag, Funnel, HandHelping, LayoutDashboard, ListTodo, type LucideIcon } from 'lucide-react';
+import { BadgeDollarSign, Banknote, BellDot, Box, Building2, CircleUser, Dot, Flag, Funnel, HandHelping, LayoutDashboard, ListTodo, type LucideIcon } from 'lucide-react';
 
 interface User {
   name: string;
@@ -23,288 +23,6 @@ interface SidebarData {
   navGroup: NavGroup[];
 }
 
-// export const sidebarData: SidebarData = {
-//   user: {
-//     name: 'Metrica',
-//     email: 'metrica@example.com',
-//     avatar: '',
-//   },
-//   navGroup: [
-//     {
-//       label: 'Dashboard',
-//       items: [
-//         {
-//           title: 'Analytics',
-//           url: '/dashboard/analytics',
-//           icon: LayoutDashboard,
-//         },
-//         {
-//           title: 'Crypto',
-//           url: '/dashboard/crypto',
-//           icon: LayoutDashboard,
-//         },
-//         // {
-//         //   title: "Project",
-//         //   url: "/dashboard/project",
-//         //   icon: LayoutDashboard,
-//         // },
-//         {
-//           title: 'Project',
-//           url: '/dashboard/project',
-//           icon: LayoutDashboard,
-//         },
-//         {
-//           title: 'Ecommerce',
-//           url: '/dashboard/ecommerce',
-//           icon: LayoutDashboard,
-//         },
-//         {
-//           title: 'Helpdesk',
-//           url: 'dashboard/helpdesk',
-//           icon: LayoutDashboard,
-//         },
-//         {
-//           title: 'Hospital',
-//           url: 'dashboard/hospital',
-//           icon: LayoutDashboard,
-//         },
-//       ],
-//     },
-//     {
-//       label: 'Apps',
-//       items: [
-//         {
-//           title: 'Analytics',
-//           url: 'apps/analytics',
-//           icon: LayoutDashboard,
-//           items: [
-//             {
-//               title: 'Customers',
-//               url: 'apps/analytics/customers',
-//               icon: Dot,
-//             },
-//             {
-//               title: 'Reports',
-//               url: 'apps/analytics/reports',
-//               icon: Dot,
-//             },
-//           ],
-//         },
-//         {
-//           title: 'CRM',
-//           // url: "apps/crm/contacts",
-//           icon: LayoutDashboard,
-//           items: [
-//             {
-//               title: 'Contacts',
-//               url: 'apps/crm/contacts',
-//               icon: Dot,
-//             },
-//             {
-//               title: 'Opportunities',
-//               url: 'apps/crm/opportunities',
-//               icon: Dot,
-//             },
-//             {
-//               title: 'Leads',
-//               url: 'apps/crm/leads',
-//               icon: Dot,
-//             },
-//             {
-//               title: 'Customers',
-//               url: 'apps/crm/customers',
-//               icon: Dot,
-//             },
-//           ],
-//         },
-//         {
-//           title: 'Projects',
-//           url: 'apps/projects',
-//           icon: LayoutDashboard,
-//         },
-//         {
-//           title: 'Chat',
-//           url: 'apps/chat',
-//           icon: LayoutDashboard,
-//         },
-//       ],
-//     },
-//     // {
-//     //   label: "Dashboard",
-//     //   items: [
-//     //     {
-//     //       title: "Analytics",
-//     //       url: "/dashboard/analytics",
-//     //       icon: LayoutDashboard,
-
-//     //     },
-//     //     {
-//     //       title: "Crypto",
-//     //       url: "/dashboard/crypto",
-//     //       icon: LayoutDashboard,
-//     //     },
-//     //     {
-//     //       title: "CRM",
-//     //       url: "/dashboard/crm",
-//     //       icon: LayoutDashboard,
-//     //     },
-//     //     {
-//     //       title: "Project",
-//     //       url: "/dashboard/project",
-//     //       icon: LayoutDashboard,
-//     //     },
-//     //     {
-//     //       title: "Ecommerce",
-//     //       url: "/dashboard/ecommerce",
-//     //       icon: LayoutDashboard,
-//     //     },
-//     //     {
-//     //       title: "Helpdesk",
-//     //       url: "dashboard/helpdesk",
-//     //       icon: LayoutDashboard,
-//     //     },
-//     //     {
-//     //       title: "Hospital",
-//     //       url: "dashboard/hospital",
-//     //       icon: LayoutDashboard,
-//     //     },
-//     //   ]
-//     // },
-//   ],
-// };
-
-// // import type { SidebarItem } from "@/components/sidebar/types";
-// import {
-//   Home,
-//   LayoutDashboard,
-//   type LucideIcon,
-// } from "lucide-react";
-
-// export type SidebarItem = {
-//   id: string;
-//   label: string;
-//   icon?: LucideIcon
-//   path?: string
-//   children?: SidebarItem[]
-// }
-
-// export const sidebarConfig: SidebarItem[] = [
-
-//   {
-//     id: "dashboard",
-//     label: "Dashboard",
-//     icon: Home,
-//     // path: "/dashboard",
-//     children: [
-//       {
-//         id: "dashboard-analytics",
-//         label: "Analytics",
-//         path: "/dashboard/analytics",
-//       },
-//       {
-//         id: "dashboard-crypto",
-//         label: "Crypto",
-//         path: "/dashboard/crypto",
-//       },
-//       {
-//         id: "dashboard-project",
-//         label: "Project",
-//         path: "/dashboard/project",
-//       },
-//       {
-//         id: "dashboard-ecommerce",
-//         label: "Ecommerce",
-//         path: "/dashboard/ecommerce",
-//       },
-//       {
-//         id: "dashboard-helpdesk",
-//         label: "Helpdesk",
-//         path: "/dashboard/helpdesk",
-//       },
-//       {
-//         id: "dashboard-hospital",
-//         label: "Hospital",
-//         path: "/dashboard/hospital",
-//       },
-//     ],
-//   },
-//   {
-//     id: "Apps",
-//     label: "Apps",
-//     icon: LayoutDashboard,
-//     // path: "/dashboard",
-//     children: [
-//       {
-//         id: "apps-analytics",
-//         label: "Analytics",
-//         // path: "/apps/analytics",
-//         children: [
-//           {
-//             id: "dashboard-analytics",
-//             label: "customers",
-//             path: "/apps/analytics/customers",
-
-//           },
-//           {
-//             id: "dashboard-crypto",
-//             label: "Reports",
-//             path: "/apps/analytics/reports",
-//           },
-//         ],
-
-//       },
-//       {
-//         id: "dashboard-crypto",
-//         label: "Crypto",
-//         // path: "/dashboard/crypto",
-//         children: [
-//           {
-//             id: "dashboard-analytics",
-//             label: "Exchange",
-//             path: "/apps/crypto/exchange",
-
-//           },
-//           {
-//             id: "dashboard-analytics",
-//             label: "Wallet",
-//             path: "/apps/crypto/wallet",
-
-//           },
-//           {
-//             id: "dashboard-analytics",
-//             label: "Crypto News",
-//             path: "/apps/crypto/news",
-
-//           },
-//           {
-//             id: "dashboard-analytics",
-//             label: "ICO List",
-//             path: "/apps/crypto/icolist",
-
-//           },
-//           {
-//             id: "dashboard-analytics",
-//             label: "Settings",
-//             path: "/apps/crypto/settings",
-
-//           },
-//         ],
-//       },
-//       {
-//         id: "dashboard-helpdesk",
-//         label: "Helpdesk",
-//         path: "/dashboard/helpdesk",
-//       },
-//       {
-//         id: "dashboard-hospital",
-//         label: "Hospital",
-//         path: "/dashboard/hospital",
-//       },
-//     ],
-//   },
-// ];
-
-
 
 export const sidebarData: SidebarData = {
   user: {
@@ -314,12 +32,12 @@ export const sidebarData: SidebarData = {
   },
   navGroup: [
     {
-      label: 'FrontDesk',
+      label: 'Main',
       items: [
         {
-          title: 'Leads',
+          title: 'Organization',
           url: '/dashboard/analytics',
-          icon: Funnel,
+          icon: Building2,
           items: [
             { title: 'Leads', url: 'leads/leads', icon: Dot },
             { title: 'Lead Sources', url: 'leads/lead-sources', icon: Dot },
@@ -331,15 +49,29 @@ export const sidebarData: SidebarData = {
           ],
         },
         {
+          title: 'Leads',
+          url: '/dashboard/analytics',
+          icon: Funnel,
+          items: [
+            { title: 'Leads', url: 'leads/leads', icon: Dot },
+            { title: 'Lead Sources', url: 'leads/lead-sources', icon: Dot },
+            { title: 'Lead Assignment', url: 'leads/lead-assignment', icon: Dot },
+            { title: 'Customers', url: 'leads/customers', icon: Dot },
+            { title: 'Customer Groups', url: 'leads/customer-groups', icon: Dot },
+            { title: 'Customer Activity', url: 'leads/customers-activity', icon: Dot },
+            { title: 'Follow-ups', url: 'leads/follow-ups', icon: Dot },
+          ],
+        },
+        {
           title: 'Accounts',
           url: '/dashboard/crypto',
           icon: CircleUser,
           items: [
-            { title: 'Companies', url: 'apps/projects', icon: Dot },
-            { title: 'Contacts', url: 'apps/chat', icon: Dot },
-            { title: 'Branches', url: 'apps/projects', icon: Dot },
-            { title: 'Departments', url: 'apps/chat', icon: Dot },
-            { title: 'Relationship Map', url: 'apps/projects', icon: Dot },
+            { title: 'Companies', url: 'accounts/companies', icon: Dot },
+            { title: 'Contacts', url: 'accounts/contacts', icon: Dot },
+            { title: 'Branches', url: 'accounts/branches', icon: Dot },
+            { title: 'Departments', url: 'accounts/departments', icon: Dot },
+            { title: 'Relationship Map', url: 'accounts/relationship-map', icon: Dot },
           ],
         },
         {
@@ -347,13 +79,13 @@ export const sidebarData: SidebarData = {
           url: '/dashboard/project',
           icon: LayoutDashboard,
           items: [
-            { title: 'Sales Pipeline', url: 'apps/projects', icon: Dot },
-            { title: 'Opportunities', url: 'apps/chat', icon: Dot },
-            { title: 'Quotations', url: 'apps/projects', icon: Dot },
-            { title: 'Sales Orders', url: 'apps/chat', icon: Dot },
-            { title: 'Invoices', url: 'apps/projects', icon: Dot },
-            { title: 'Payments', url: 'apps/chat', icon: Dot },
-            { title: 'Targets & Commissions', url: 'apps/projects', icon: Dot },
+            { title: 'Sales Pipeline', url: 'sales-management/sales-pipeline', icon: Dot },
+            { title: 'Opportunities', url: 'sales-management/opportunities', icon: Dot },
+            { title: 'Quotations', url: 'sales-management/quotations', icon: Dot },
+            { title: 'Sales Orders', url: 'sales-management/sales-orders', icon: Dot },
+            { title: 'Invoices', url: 'sales-management/invoices', icon: Dot },
+            { title: 'Payments', url: 'sales-management/payments', icon: Dot },
+            { title: 'Targets ', url: 'sales-management/targets-comissions', icon: Dot },
           ],
         },
         {

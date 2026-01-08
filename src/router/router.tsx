@@ -6,31 +6,35 @@ import AppLayout from "@/layouts/AppLayout";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectedRoute from "@/router/ProtectedRoute";
 import { PublicRoute } from "@/router/PublicRoute";
+import { accountsRoute } from "@/feathures/accounts/route";
+import { salesManagementRoute } from "@/feathures/sales-management/route";
 
 export const router = createBrowserRouter([
-    {
-        element: <AppLayout />,
+  {
+    element: <AppLayout />,
+    children: [
+      // default redirect when path is "/"
+      { index: true, element: <Navigate to="/dashboard/analytics" replace /> },
+      {
+        element: <ProtectedRoute />,
         children: [
-            // default redirect when path is "/"
-            { index: true, element: <Navigate to="/dashboard/analytics" replace /> },
-            {
-                element: <ProtectedRoute />,
-                children: [
-                    dashboardRoutes,
-                    appsRoutes
-                ]
-            }
-        ],
-    },
-    {
-        path: '/auth',
-        element: <PublicRoute/>,
-        children: [
-            loginRoutes
+          dashboardRoutes,
+          appsRoutes,
+          accountsRoute,
+          salesManagementRoute
         ]
-    },
-    {
-        path: '*',
-        element: <PageNotFound />
-    }
+      }
+    ],
+  },
+  {
+    path: '/auth',
+    element: <PublicRoute />,
+    children: [
+      loginRoutes
+    ]
+  },
+  {
+    path: '*',
+    element: <PageNotFound />
+  }
 ]);

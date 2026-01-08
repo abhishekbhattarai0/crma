@@ -39,6 +39,7 @@ const SubItem = ({
                     to={subitem.url as string}
                     target={target}
                     rel={rel}
+                    className="text-nowrap"
                 >
                     <div className="hover:text-sidebar-accent">
                         {subitem.icon && <subitem.icon />}

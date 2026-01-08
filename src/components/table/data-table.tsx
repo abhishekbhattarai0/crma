@@ -42,16 +42,21 @@ export function DataTable<TData, TValue>({
         pageSize: 10,
     })
 
+    const ranges = [
+        { start: 0, end: 10 },
+        { start: 10, end: 20 },
+        { start: 20, end: 30 },
+    ]
+
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
-        // getPaginationRowModel: getPaginationRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
         onPaginationChange: setPagination,
         state: {
             sorting,
@@ -150,9 +155,32 @@ export function DataTable<TData, TValue>({
                         <div
                             className="flex gap-1"
                         >
-                            {[10, 20, 30, 40, 50].map((pageSize) => (
-                                <Button key={pageSize} value={pageSize} className="text-xs h-6  text-foreground/90 border-foreground/30 rounded-sm " variant={'outline'} size={'icon-sm'}>
+                            {/* {[10, 20, 30, 40, 50].map((pageSize) => (
+                                <Button
+                                    onClick={() => {
+                                        table.setPageIndex(pagination.pageIndex + pagination.pageSize)
+                                        table.setPageSize(Number(pagination.pageSize))
+                                    }}
+                                    key={pageSize}
+                                    value={table.getState().pagination.pageSize}
+                                    className="text-xs h-6  text-foreground/90 border-foreground/30 rounded-sm "
+                                    variant={'outline'}
+                                    size={'icon-sm'}
+                                >
                                     {pageSize}
+                                </Button>
+                            ))} */}
+                            {ranges.map(({ start, end }) => (
+                                <Button
+                                    key={`${start}-${end}`}
+                                    onClick={() => {
+                                        table.setPageIndex(start / (end - start))
+                                        table.setPageSize(end - start)
+                                    }}
+                                    className="text-xs h-6"
+                                    variant="outline"
+                                >
+                                    {end}
                                 </Button>
                             ))}
                         </div>
