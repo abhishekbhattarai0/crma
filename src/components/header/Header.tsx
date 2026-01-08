@@ -2,8 +2,6 @@ import { BellIcon, MenuIcon, MessageSquareTextIcon, Search } from "lucide-react"
 import { Button } from "../ui/button";
 import UserProfileCard from "../user-profile-card";
 import { ModeToggle } from "../mode-toggle";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import user from '@/assets/user.jpg'
 import { useSidebar } from "../ui/sidebar";
 
 const Navbar = () => {
@@ -79,10 +77,8 @@ const Navbar = () => {
 
         {/* profile card */}
         <div>
-          <UserProfileCard className="hidden md:flex" />
-          <Avatar className="size-9 md:hidden flex">
-            <AvatarImage src={user} alt="user" />
-          </Avatar>
+          <UserProfileCard className="" />
+          
         </div>
       </div>
 

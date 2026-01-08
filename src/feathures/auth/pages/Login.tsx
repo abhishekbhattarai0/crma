@@ -10,6 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const loginSchema = z.object({
   username: z.string().min(3, "username must be at least 3 characters"),
@@ -17,7 +19,12 @@ const loginSchema = z.object({
 });
 
 type LoginInputProps = z.infer<typeof loginSchema>
+
+
 const Login = () => {
+
+  const navigate = useNavigate();
+  const { login } = useAuth()
   const [isChecked, setisChecked] = useState(false);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -30,6 +37,10 @@ const Login = () => {
 
   const onSubmit = (data: LoginInputProps) => {
     console.log(data, errors)
+    const value = login(data.username, data.password);
+    if (value) {
+      navigate('/')
+    }
   }
   return (
     <div className="flex h-screen w-screen items-center justify-center">
@@ -112,11 +123,13 @@ const Login = () => {
                 Forgot password?
               </p>
             </div>
+
             {/* login button */}
-            <Button type="submit" className="w-full pt-2">
+            <Button type="submit" className="w-full pt-2 hover:bg-primary/90 active:bg-primary">
               <span>Login</span>
               <LogIn className="ml-0.5 inline size-3.5 font-bold" />
             </Button>
+            <p>test : username = admin, password = admin1</p>
           </div>
         </form>
       </div>

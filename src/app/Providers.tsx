@@ -1,15 +1,18 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import { SidebarProvider } from "@/components/ui/sidebar"
-import { router } from "@/routes/router"
+import { router } from "@/router/router"
+import { AuthProvider } from "@/store/auth/AuthProvider"
 import { RouterProvider } from "react-router-dom"
 
 const Providers = () => {
   return (
-    <ThemeProvider>
-      <SidebarProvider>
-        <RouterProvider router={router} />
-      </SidebarProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <SidebarProvider>
+          <RouterProvider router={router} />
+        </SidebarProvider>
+      </ThemeProvider>
+    </AuthProvider>
   )
 }
 
