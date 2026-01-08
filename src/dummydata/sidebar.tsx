@@ -35,17 +35,15 @@ export const sidebarData: SidebarData = {
       label: 'Main',
       items: [
         {
-          title: 'Organization',
+          title: 'FrontDesk',
           url: '/dashboard/analytics',
           icon: Building2,
           items: [
-            { title: 'Leads', url: 'leads/leads', icon: Dot },
-            { title: 'Lead Sources', url: 'leads/lead-sources', icon: Dot },
-            { title: 'Lead Assignment', url: 'apps/analytics/reports', icon: Dot },
-            { title: 'Customers', url: 'apps/crm/contacts', icon: Dot },
-            { title: 'Customer Groups', url: 'apps/crm/opportunities', icon: Dot },
-            { title: 'Customer Activity', url: 'apps/crm/leads', icon: Dot },
-            { title: 'Follow-ups', url: 'apps/crm/customers', icon: Dot },
+            { title: 'Organization', url: 'leads/leads', icon: Dot },
+            { title: 'Postal Dispatch', url: 'leads/lead-sources', icon: Dot },
+            { title: 'Postal Reciept', url: 'apps/analytics/reports', icon: Dot },
+            { title: 'Fiscal Year', url: 'apps/crm/contacts', icon: Dot },
+            { title: 'Follow-ups', url: 'leads/follow-ups', icon: Dot },
           ],
         },
         {
@@ -59,7 +57,6 @@ export const sidebarData: SidebarData = {
             { title: 'Customers', url: 'leads/customers', icon: Dot },
             { title: 'Customer Groups', url: 'leads/customer-groups', icon: Dot },
             { title: 'Customer Activity', url: 'leads/customers-activity', icon: Dot },
-            { title: 'Follow-ups', url: 'leads/follow-ups', icon: Dot },
           ],
         },
         {
@@ -133,10 +130,19 @@ export const sidebarData: SidebarData = {
           url: 'apps/chat',
           icon: BellDot,
         },
+        //will use map
         {
-          title: 'Reports & Analytics',
+          title: 'Analytics',
           url: '/dashboard/analytics',
           icon: Flag,
+          items: [
+            { title: 'Active Customer', url: 'apps/projects', icon: Dot },
+          ]
+        },
+        {
+          title: 'Settings',
+          url: '/settings',
+          icon: ListTodo,
         },
       ],
     },
