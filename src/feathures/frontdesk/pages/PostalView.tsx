@@ -1,10 +1,6 @@
-
-
 import { Button } from "@/components/ui/button"
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarImage, AvatarImageFallback } from "@/components/ui/avatar"
-import { Pencil, MoreHorizontal, Eye, HourglassIcon, Info, CircleFadingPlus, File, Download } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Info, CircleFadingPlus, File, Download } from "lucide-react"
 
 //  {
 //     referenceNo: "REF-2024-002",
@@ -127,32 +123,7 @@ function Detail({
   )
 }
 
-function Contact({
-  name,
-  role
-}: {
-  name: string;
-  role: string;
-}) {
-  return (
-    <div className="flex items-center justify-between gap-3 border rounded p-2 text-foreground/85 ">
-      <div className="flex gap-4">
-        <Avatar className="size-9">
-          <AvatarImage src="https://i.pravatar.cc/100" />
-          <AvatarImageFallback text="AB" />
-        </Avatar>
-        <div>
-          <p className="text-sm font-medium ">{name}</p>
-          <p className="text-xs text-muted-foreground">{role}</p>
-        </div>
-      </div>
-      <Button variant={'outline'} size={'icon-sm'} className="text-primary/80 rounded-full">
-        <Eye />
-      </Button>
 
-    </div>
-  )
-}
 
 function DocumentCard({
   fileName,

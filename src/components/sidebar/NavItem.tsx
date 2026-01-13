@@ -4,7 +4,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import { SidebarMenuButton, SidebarMenuItem, SidebarMenuSub } from "../ui/sidebar";
 import SubItem from "./SubItem";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const NavItem = ({
   item,

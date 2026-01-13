@@ -1,8 +1,5 @@
 import { type RouteObject, Navigate } from "react-router-dom";
-import Contacts from "./pages/SmsMarketing";
-import Departments from "./pages/Departments";
 import RelationshipMap from "./pages/RelationshipMap";
-import Companies from "./pages/EmailMarketing";
 import User from "./pages/User";
 import EmailMarketing from "./pages/EmailMarketing";
 import SMSMarketing from "./pages/SmsMarketing";

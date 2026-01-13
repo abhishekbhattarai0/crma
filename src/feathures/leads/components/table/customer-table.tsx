@@ -1,12 +1,12 @@
-import { columns } from "./customerColumn"
 import { DataTable } from "@/components/table/data-table"
 import { customerData } from "@/dummydata/CustomerTable"
+import { customerColumns } from "./customerColumn"
 
 
 const ContactTable = () => {
     return (
         <div className="">
-            <DataTable columns={columns} data={customerData} />
+            <DataTable columns={customerColumns} data={customerData} />
         </div>
     )
 }

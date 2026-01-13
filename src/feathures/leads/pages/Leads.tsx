@@ -1,13 +1,13 @@
 
 import { DataTable } from "@/components/table/data-table"
 import { customerData } from "@/dummydata/CustomerTable"
-import { columns } from "../components/table/customerColumn"
+import { customerColumns } from "../components/table/customerColumn"
 
 
 const Leads = () => {
     return (
         <div className="">
-            <DataTable columns={columns} data={customerData} />
+            <DataTable columns={customerColumns} data={customerData} />
         </div>
     )
 }

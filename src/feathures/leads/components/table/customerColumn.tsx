@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import type { CustomerProp } from "@/dummydata/CustomerTable"
 import { type ColumnDef, type Row } from "@tanstack/react-table"
@@ -33,8 +34,7 @@ export const RowCellWithTags = <TData,>({ row, name }: RowCellProps<TData>) => {
 }
 
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const columns: ColumnDef<CustomerProp>[] = [
+export const customerColumns: ColumnDef<CustomerProp>[] = [
     {
         accessorKey: "name",
         header: () => <div className="">Name</div>,
