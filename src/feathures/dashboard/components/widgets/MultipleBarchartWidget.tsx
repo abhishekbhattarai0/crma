@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import DashboardWidgetContainer from './dashboard-widget-container'
-import { SelectComponent } from '../SelectComponent'
 import { ChartBarMultiple } from '../charts/ChartBarMultiple'
+import { SelectComponent } from '@/components/ui/SelectComponent'
 
 const MultipleBarchartWidget = () => {
     const [time, setTime] = useState<'This Year' | 'Last Year' | 'Till Now'>('This Year')

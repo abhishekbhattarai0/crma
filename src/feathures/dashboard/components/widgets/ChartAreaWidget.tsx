@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import DashboardWidgetContainer from './dashboard-widget-container'
-import { SelectComponent } from '../SelectComponent'
+import { SelectComponent } from '../../../../components/ui/SelectComponent'
 import { ChartAreaInteractive } from '../charts/ChartArea'
 
 const ChartAreaWidget = () => {

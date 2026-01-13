@@ -4,7 +4,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import { SidebarMenuButton, SidebarMenuItem, SidebarMenuSub } from "../ui/sidebar";
 import SubItem from "./SubItem";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NavItem = ({
   item,
@@ -26,6 +26,8 @@ const NavItem = ({
   const path = location.pathname.split('/')
   const activeItem = path[path.length - 2]
 
+
+
   return (
     <Collapsible
       key={item.title}
@@ -37,21 +39,23 @@ const NavItem = ({
             {/* sidebar items having subitems */}
             <CollapsibleTrigger
               asChild
-              className=" text-foreground/85 cursor-pointer "
+              className=" text-foreground/85 cursor-pointer text-nowrap"
               onClick={() => setOpen(prev => !prev)}
             >
               <SidebarMenuButton tooltip={item.title} className={cn(
                 " text-foreground/85 flex justify-between ",
-                activeItem === item.title.toLocaleLowerCase() && ' bg-sidebar-accent text-white'
+                'p-0 m-0',
+                // activeItem === item.title.toLocaleLowerCase() && ' bg-sidebar-accent text-white'
+                activeItem === item.url && ' bg-sidebar-accent text-white'
               )}>
-                <div className="flex justify-baseline items-center  w-full group/item ">
+                <div className="flex justify-baseline items-center  w-full group/item px-1 py-1 ">
                   <div className="flex items-center gap-2 ">
                     {item.icon && <item.icon size={16} />}
                     <p className="pt-px"> {item.title}</p>
                   </div>
                   <ChevronRight className={cn(
                     "group-hover/item:text-white ml-auto text-foreground/85  group-data-[state=open]/collapsible:rotate-90  ",
-                    activeItem === item.title.toLowerCase() && 'text-white',
+                    activeItem === item.url && 'text-white',
                     open ? ' rotate-90' : ' '
                   )} />
                 </div>

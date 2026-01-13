@@ -8,6 +8,8 @@ import ProtectedRoute from "@/router/ProtectedRoute";
 import { PublicRoute } from "@/router/PublicRoute";
 import { accountsRoute } from "@/feathures/accounts/route";
 import { salesManagementRoute } from "@/feathures/sales-management/route";
+import { userManagementMap } from "@/feathures/user-management/route";
+import { frontdeskRoute } from "@/feathures/frontdesk/route";
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +20,12 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [
+          frontdeskRoute,
           dashboardRoutes,
           appsRoutes,
           accountsRoute,
-          salesManagementRoute
+          salesManagementRoute,
+          userManagementMap
         ]
       }
     ],

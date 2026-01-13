@@ -2,23 +2,23 @@ import { cn } from "@/utils/cn";
 import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumbs = ({ className }: { className?: string }) => {
-    const location = useLocation();
+  const location = useLocation();
 
-    const pathnames = location.pathname
-        .split("/")
-        .filter(Boolean);
+  const pathnames = location.pathname
+    .split("/")
+    .filter(Boolean);
 
 
-    return (
-        <nav className={cn("", className)} >
-            <div className="flex w-full justify-between">
-                <h1 className="text-foreground/80 font-semibold text-lg capitalize">
-                    {location.pathname
-                        .split("/").at(-1)}
-                </h1>
-                <ol className="flex flex-wrap items-center text-xs sm:text-sm text-gray-500">
-                    {/* Home */}
-                    {/* <li>
+  return (
+    <nav className={cn("", className)} >
+      <div className="flex w-full justify-between">
+        <h1 className="text-foreground/70 font-semibold text-lg capitalize">
+          {location.pathname
+            .split("/").at(-1)}
+        </h1>
+        <ol className="flex flex-wrap items-center text-xs sm:text-sm text-gray-500">
+          {/* Home */}
+          {/* <li>
                     <Link
                         to="/"
                         className="text-blue-600 hover:text-blue-800 transition-colors"
@@ -27,39 +27,39 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
                     </Link>
                 </li> */}
 
-                    {pathnames.map((value, index) => {
-                        const to = "/" + pathnames.slice(0, index + 1).join("/");
-                        const isLast = index === pathnames.length - 1;
+          {pathnames.map((value, index) => {
+            const to = "/" + pathnames.slice(0, index + 1).join("/");
+            const isLast = index === pathnames.length - 1;
 
-                        return (
-                            <li key={to} className="flex items-center text-foreground/80">
-                                {/* Separator */}
+            return (
+              <li key={to} className="flex items-center text-foreground/80">
+                {/* Separator */}
 
-                                {isLast ? (
-                                    <div className="">
-                                        <span className="mx-2 t">/</span>
-                                        <span className="  capitalize">
-                                            {decodeURIComponent(value)}
-                                        </span>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <span className="mx-2">/</span>
-                                        <Link
-                                            to={to}
-                                            className="text-foreground/80 hover:text-blue-800 capitalize transition-colors font-medium"
-                                        >
-                                            {decodeURIComponent(value)}
-                                        </Link>
-                                    </>
-                                )}
-                            </li>
-                        );
-                    })}
-                </ol>
-            </div>
-        </nav>
-    );
+                {isLast ? (
+                  <div className="">
+                    <span className="mx-2 t">/</span>
+                    <span className="  capitalize">
+                      {decodeURIComponent(value)}
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <span className="mx-2">/</span>
+                    <Link
+                      to={to}
+                      className="text-foreground/80 hover:text-blue-800 capitalize transition-colors font-medium"
+                    >
+                      {decodeURIComponent(value)}
+                    </Link>
+                  </>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </nav>
+  );
 };
 
 export default Breadcrumbs

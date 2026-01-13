@@ -13,7 +13,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         // // "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[1px]",
         // "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border-gray-200",
         // "outline-primary/40 outline-px",
-        "border  border-gray-200 rounded-md  px-3 py-1 text-sm text-gray-700   outline-primary/40 outline-px ring-none  w-full h-9 ",
+        "border  border-foreground/20 rounded-md  px-3 py-1 text-sm text-gray-700   outline-primary/40 outline-px ring-none  w-full h-9 ",
         className
       )}
       {...props}

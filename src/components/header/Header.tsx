@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import UserProfileCard from "../user-profile-card";
 import { ModeToggle } from "../mode-toggle";
 import { useSidebar } from "../ui/sidebar";
+import { Input } from "../ui/input";
 
 const Navbar = () => {
   const { toggleSidebar } = useSidebar();
@@ -25,8 +26,8 @@ const Navbar = () => {
         </Button>
 
         <div className="relative w-60 hidden mx-2 md:mx-auto sm:flex">
-          <input
-            className="border   rounded-sm  pl-6 text-xs text-foreground/90   outline-primary/40 outline-px ring-none  w-full  bg-background/80"
+          <Input
+            className="border   rounded-sm  pl-6 text-xs text-foreground/90   outline-primary/40 outline-px dark:outline-none dark:border-gray-600  ring-none  w-full  bg-background/80"
             placeholder="Type text...."
           />
           <div className="absolute left-2 top-3  ">
@@ -76,9 +77,9 @@ const Navbar = () => {
         </div>
 
         {/* profile card */}
-        <div>
+        <div className="">
           <UserProfileCard className="" />
-          
+
         </div>
       </div>
 

@@ -1,10 +1,9 @@
-
+import { columns } from "./customerColumn"
 import { DataTable } from "@/components/table/data-table"
 import { customerData } from "@/dummydata/CustomerTable"
-import { columns } from "../components/table/customerColumn"
 
 
-const AnalyticsCustomer = () => {
+const ContactTable = () => {
     return (
         <div className="">
             <DataTable columns={columns} data={customerData} />
@@ -12,4 +11,4 @@ const AnalyticsCustomer = () => {
     )
 }
 
-export default AnalyticsCustomer 
+export default ContactTable 

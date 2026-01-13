@@ -4,25 +4,25 @@ import type { NavItem as NavItemProp } from "@/dummydata/sidebar";
 import NavItem from "./NavItem";
 
 const NavMain = ({
-    label,
-    items
+  label,
+  items
 }: {
-    label: string
-    items: NavItemProp[]
+  label: string
+  items: NavItemProp[]
 }) => {
 
-    const location = useLocation()
+  const location = useLocation()
 
-    return (
-        <SidebarGroup>
-            <SidebarGroupLabel className="text-xs tracking-wide text-foreground/70 font-semibold ">{label}</SidebarGroupLabel>
-            <SidebarMenu>
-                {items.map((item) => (
-                    <NavItem key={item.title} item={item} location={location} />
-                ))}
-            </SidebarMenu>
-        </SidebarGroup>
-    )
+  return (
+    <SidebarGroup>
+      <SidebarGroupLabel className="text-xs tracking-wide text-foreground/70 font-semibold ">{label}</SidebarGroupLabel>
+      <SidebarMenu>
+        {items.map((item) => (
+          <NavItem key={item.title} item={item} location={location} />
+        ))}
+      </SidebarMenu>
+    </SidebarGroup>
+  )
 }
 
 export default NavMain
