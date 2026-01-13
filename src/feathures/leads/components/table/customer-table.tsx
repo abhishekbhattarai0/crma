@@ -1,6 +1,6 @@
 import { DataTable } from "@/components/table/data-table"
 import { customerData } from "@/dummydata/CustomerTable"
-import { customerColumns } from "./customerColumn"
+import { customerColumns } from "./customerColumn.tsx"
 
 
 const ContactTable = () => {
