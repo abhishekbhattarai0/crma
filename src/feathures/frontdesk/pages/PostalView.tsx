@@ -1,20 +1,7 @@
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Info, CircleFadingPlus, File, Download } from "lucide-react"
-
-//  {
-//     referenceNo: "REF-2024-002",
-//     date: "2024-01-18",
-//     fromDate: "2024-01-17",
-//     address: "Lalitpur Sub-Metropolitan City, Nepal",
-//     note: "Submission of company profile and credentials.",
-//     toTitle: "Procurement Department",
-//     letterNo: "LTR-002",
-//     docs: [
-//       "https://example.com/docs/company-profile.pdf",
-//       "https://example.com/docs/credentials.pdf"
-//     ]
-//   },
+import { Info, CircleFadingPlus, File, } from "lucide-react"
+import DocumentCard from "../components/document-card"
+import Detail from "../components/detail-card"
 
 export default function PostalView() {
   return (
@@ -85,14 +72,14 @@ export default function PostalView() {
 
       {/* Right Column */}
       <div className="space-y-6">
-        <Card className="px-0 gap-1" >
+        {/* <Card className="px-0 gap-1" >
           <CardHeader className="border-b flex justify-between items-center px-2">
             <CardTitle className="text-foreground/85 text-sm">Key Contacts</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 p-2">
 
           </CardContent>
-        </Card>
+        </Card> */}
 
 
       </div>
@@ -100,53 +87,10 @@ export default function PostalView() {
   )
 }
 
-/* Helper Components */
-
-function Detail({
-  label,
-  value,
-  link
-}: {
-  label: string
-  value?: string
-  link?: string
-}) {
-  return (
-    <div>
-      <p className="text-xs font-semibold uppercase text-foreground/65 mb-1">{label}</p>
-
-      {link && <a href={link} className="text-primary hover:underline">
-        {link}
-      </a>}
-      {value && <p className="font-medium text-xs text-foreground/80">{value}</p>}
-    </div>
-  )
-}
 
 
 
-function DocumentCard({
-  fileName,
-}: {
-  fileName: string;
-}) {
-  return (
-    <div className="flex items-center justify-between gap-3 border rounded p-2 text-foreground/85 ">
-      <div className="flex gap-4">
-        <div className="flex items-center justify-center p-1 bg-pink-200
-          ">
-          <File size={18} />
-        </div>
-        <div>
-          <p className="text-sm font-medium text-foreground/85 ">{fileName}</p>
-          {/* <p className="text-xs text-muted-foreground">{role}</p> */}
-        </div>
-      </div>
-      <Button variant={'outline'} size={'icon-sm'} className="text-primary/80 rounded-full">
-        <Download />
-      </Button>
 
-    </div>
-  )
-}
+
+
 

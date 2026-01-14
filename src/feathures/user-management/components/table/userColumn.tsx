@@ -1,95 +1,50 @@
-
-import { type ColumnDef, type Row } from "@tanstack/react-table";
-// user.schema.ts
-export type UserSchema = {
-  personalDetails: {
-    firstName: string;
-    lastName: string;
-    gender: "Male" | "Female" | "Other";
-    profilePhoto: string;
-    dob: string;
-    maritalStatus: string;
-  };
-  contactInformation: {
-    officialEmail: string;
-    personalEmail: string;
-    phone: string;
-    emergencyContactPhone: string;
-    currentAddress: string;
-    permanentAddress: string;
-  };
-  companyInformation: {
-    department: string;
-    team: string;
-    designation: string;
-    jobTitle: string;
-    shift: string;
-  };
-  systemAccess: {
-    username: string;
-    role: "ADMIN" | "DEVELOPER" | "HR" | "MANAGER";
-    permissionGroup: string;
-    status: "ACTIVE" | "INACTIVE" | "SUSPENDED";
-  };
-};
-
-
-type RowCellProps<TData> = {
-  row: Row<TData>;
-  columnId: string;
-};
-
-export const RowCell = <TData,>({ row, columnId }: RowCellProps<TData>) => {
-  return (
-    <div className="font-normal text-foreground/80">
-      {row.getValue(columnId)}
-    </div>
-  );
-};
-
-export const StatusCell = <TData,>({ row, columnId }: RowCellProps<TData>) => {
-  const status = row.getValue(columnId) as string;
-
-  const statusStyles: Record<string, string> = {
-    ACTIVE: "bg-green-100 text-green-700",
-    INACTIVE: "bg-gray-100 text-gray-700",
-    SUSPENDED: "bg-red-100 text-red-700",
-  };
-
-  return (
-    <span
-      className={`px-2 py-0.5 rounded-md text-xs font-medium ${statusStyles[status]
-        }`}
-    >
-      {status}
-    </span>
-  );
-};
-
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import type { UserDataProps } from "@/dummydata/user";
+import { AvatarCell } from "@/components/table/avatar-cell";
+import ActionRow from "@/components/table/action-row";
 
-type AvatarCellProps<TData> = {
-  row: Row<TData>;
-  columnId: string;
-};
+import { type ColumnDef } from "@tanstack/react-table";
+import RowCell from "@/components/table/row-cell";
+import StatusCell from "./status-cell";
+// user.schema.ts
+// type UserSchema = {
+//   personalDetails: {
+//     firstName: string;
+//     lastName: string;
+//     gender: "Male" | "Female" | "Other";
+//     profilePhoto: string;
+//     dob: string;
+//     maritalStatus: string;
+//   };
+//   contactInformation: {
+//     officialEmail: string;
+//     personalEmail: string;
+//     phone: string;
+//     emergencyContactPhone: string;
+//     currentAddress: string;
+//     permanentAddress: string;
+//   };
+//   companyInformation: {
+//     department: string;
+//     team: string;
+//     designation: string;
+//     jobTitle: string;
+//     shift: string;
+//   };
+//   systemAccess: {
+//     username: string;
+//     role: "ADMIN" | "DEVELOPER" | "HR" | "MANAGER";
+//     permissionGroup: string;
+//     status: "ACTIVE" | "INACTIVE" | "SUSPENDED";
+//   };
+// };
 
-export const AvatarCell = <TData,>({
-  row,
-  columnId,
-}: AvatarCellProps<TData>) => {
-  return (
-    <Avatar className="size-8">
-      <AvatarImage src={row.getValue(columnId)} />
-    </Avatar>
-  );
-};
-
-
-
-// eslint-disable-next-line react-refresh/only-export-components
 export const userColumns: ColumnDef<UserDataProps>[] = [
   // Avatar
+  {
+    accessorKey: 'action',
+    header: () => <div className="">Action</div>,
+    cell: () => <ActionRow />,
+  },
   {
     id: "avatar",
     header: "Avatar",

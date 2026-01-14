@@ -3,7 +3,6 @@ import LeadSources from "./pages/LeadSources";
 import LeadAssignment from "./pages/LeadAssignment";
 import Customers from "./pages/Customers";
 import CustomerActivity from "./pages/CustomerActivity";
-import FollowUps from "./pages/FollowUps";
 import CustomerGroups from "./pages/CustomerGroups";
 import Leads from "./pages/Leads";
 
@@ -35,9 +34,6 @@ export const appsRoutes: RouteObject = {
       path: "customers-activity",
       element: <CustomerActivity />
     },
-    {
-      path: "follow-ups",
-      element: <FollowUps />
-    },
+    
   ],
 };

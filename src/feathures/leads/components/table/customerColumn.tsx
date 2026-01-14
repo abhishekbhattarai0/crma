@@ -1,44 +1,19 @@
-/* eslint-disable react-refresh/only-export-components */
+import RowCell from "@/components/table/row-cell";
+import RowCellWithTags from "@/components/table/row-with-tags";
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import type { CustomerProp } from "@/dummydata/CustomerTable"
-import { type ColumnDef, type Row } from "@tanstack/react-table"
-
-type RowCellProps<TData> = {
-    row: Row<TData>;
-    name: keyof TData;
-};
+import { type ColumnDef } from "@tanstack/react-table"
 
 
 
-export const RowCell = <TData,>({ row, name }: RowCellProps<TData>) => {
-    return (
-        <div>
-            <div className="font-normal text-foreground/80">
-                {row.getValue(name as string)}
-            </div>
-        </div>
-    );
-};
 
-
-export const RowCellWithTags = <TData,>({ row, name }: RowCellProps<TData>) => {
-
-    return (
-        <div >
-            <div className=" font-normal text-foreground/80 flex gap-2">
-                {row.getValue(name as string)}
-                {/* {row.getValue(name ).map((item: string) => <div className="bg-blue-500 text-white px-2 py-0.5 rounded-md">{item}</div>)} */}
-            </div>
-        </div>
-    )
-}
 
 
 export const customerColumns: ColumnDef<CustomerProp>[] = [
     {
         accessorKey: "name",
         header: () => <div className="">Name</div>,
-        cell: ({ row }) => <RowCell row={row} name='name' />,
+        cell: ({ row }) => <RowCell row={row} columnId='name' />,
     },
     {
         accessorKey: "avatar",
@@ -55,27 +30,27 @@ export const customerColumns: ColumnDef<CustomerProp>[] = [
     {
         accessorKey: "email",
         header: () => <div className="">Email</div>,
-        cell: ({ row }) => <RowCell row={row} name='email' />,
+        cell: ({ row }) => <RowCell row={row} columnId='email' />,
     },
     {
         accessorKey: "phone",
         header: () => <div className="">Phone</div>,
-        cell: ({ row }) => <RowCell row={row} name='phone' />,
+        cell: ({ row }) => <RowCell row={row} columnId='phone' />,
     },
     {
         accessorKey: "leadScore",
         header: () => <div className="">LeadScore</div>,
-        cell: ({ row }) => <RowCell row={row} name='leadScore' />,
+        cell: ({ row }) => <RowCell row={row} columnId='leadScore' />,
     },
     {
         accessorKey: "company",
         header: () => <div className="">Company</div>,
-        cell: ({ row }) => <RowCell row={row} name='company' />,
+        cell: ({ row }) => <RowCell row={row} columnId='company' />,
     },
     {
         accessorKey: "tags",
         header: () => <div className="">Tags</div>,
-        cell: ({ row }) => <RowCellWithTags row={row} name='tags' />,
+        cell: ({ row }) => <RowCellWithTags row={row} columnId='tags' />,
     },
 
 

@@ -3,6 +3,7 @@ import RelationshipMap from "./pages/RelationshipMap";
 import User from "./pages/User";
 import EmailMarketing from "./pages/EmailMarketing";
 import SMSMarketing from "./pages/SmsMarketing";
+import UserDetails from "./pages/UserDetails";
 
 export const userManagementMap: RouteObject = {
   path: "user-management",
@@ -28,5 +29,9 @@ export const userManagementMap: RouteObject = {
       path: "relationship-map",
       element: <RelationshipMap />
     },
+    {
+      path: "users/profile",
+      element: <UserDetails />
+    }
   ],
 };
