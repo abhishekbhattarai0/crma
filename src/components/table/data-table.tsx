@@ -24,6 +24,8 @@ import Pagination from "./table-pagination"
 import TableSearch from "./table-search"
 import { Button } from "../ui/button"
 import { CgAdd } from "react-icons/cg"
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu"
+import { ChevronDown } from "lucide-react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -69,14 +71,42 @@ export function DataTable<TData, TValue>({
       <div className=" ">
         <div className="mb-4  w-full flex justify-between sm:gap-0 gap-4 ">
           <TableSearch table={table} className="sm:w-1/2 w-full" />
-          {onAdd && <Button
-            variant={'outline'}
-            onClick={onAdd}
-            className="shadow-none"
-          >
-            <CgAdd />
-            Add 
-          </Button>}
+          <div className="flex gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="ml-auto">
+                  Columns <ChevronDown />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {table
+                  .getAllColumns()
+                  .filter((column) => column.getCanHide())
+                  .map((column) => {
+                    return (
+                      <DropdownMenuCheckboxItem
+                        key={column.id}
+                        className="capitalize"
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                          column.toggleVisibility(!!value)
+                        }
+                      >
+                        {column.id}
+                      </DropdownMenuCheckboxItem>
+                    )
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            {onAdd && <Button
+              variant={'outline'}
+              onClick={onAdd}
+              className="shadow-none"
+            >
+              <CgAdd />
+              Add
+            </Button>}
+          </div>
         </div>
         <div className="overflow-hidden rounded-md border">
           <Table>
@@ -126,8 +156,6 @@ export function DataTable<TData, TValue>({
           </Table>
         </div>
         <Pagination table={table} />
-
-
       </div>
     </div>
   )

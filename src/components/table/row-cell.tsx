@@ -3,6 +3,7 @@ import type { Row } from "@tanstack/react-table";
 type RowCellProps<TData> = {
   row: Row<TData>;
   columnId: string;
+  onClick?: () => void
 };
 
 // export const RowCell = <TData,>({ row, name }: RowCellProps<TData>) => {
@@ -15,9 +16,9 @@ type RowCellProps<TData> = {
 //   );
 // };
 
-const RowCell = <TData,>({ row, columnId }: RowCellProps<TData>) => {
+const RowCell = <TData,>({ row, columnId, onClick }: RowCellProps<TData>) => {
   return (
-    <div className="font-normal text-foreground/80">
+    <div onClick={onClick} className="font-normal text-foreground/80">
       {row.getValue(columnId)}
     </div>
   );

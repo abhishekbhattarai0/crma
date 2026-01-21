@@ -5,6 +5,8 @@ import ActionRow from "@/components/table/action-row";
 import { type ColumnDef } from "@tanstack/react-table";
 import RowCell from "@/components/table/row-cell";
 import StatusCell from "./status-cell";
+import { ArrowDownUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 // user.schema.ts
 // type UserSchema = {
 //   personalDetails: {
@@ -55,7 +57,14 @@ export const userColumns: ColumnDef<UserDataProps>[] = [
   // Full Name
   {
     id: "fullName",
-    header: "Full Name",
+    // header: "Full Name",
+    header: ({ column }) => {
+      return (
+        <Button className="bg-white dark:bg-background text-foreground/85" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Full Name <ArrowDownUp />
+        </Button>
+      )
+    },
     accessorFn: (row) =>
       `${row.personalDetails.firstName} ${row.personalDetails.lastName}`,
     cell: ({ row }) => <RowCell row={row} columnId="fullName" />,

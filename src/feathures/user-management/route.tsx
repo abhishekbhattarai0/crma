@@ -4,6 +4,7 @@ import User from "./pages/User";
 import EmailMarketing from "./pages/EmailMarketing";
 import SMSMarketing from "./pages/SmsMarketing";
 import UserDetails from "./pages/UserDetails";
+import AccessControl from "./pages/AccessControl";
 
 export const userManagementMap: RouteObject = {
   path: "user-management",
@@ -32,6 +33,10 @@ export const userManagementMap: RouteObject = {
     {
       path: "users/profile",
       element: <UserDetails />
+    },
+    {
+      path: 'access-control',
+      element: <AccessControl />
     }
   ],
 };

@@ -8,7 +8,7 @@ const CategoryDetailContainer = ({
   icon: Icon
 }: {
   title: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
   children: ReactNode;
 
 }) => {
