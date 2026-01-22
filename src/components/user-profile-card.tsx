@@ -1,17 +1,24 @@
 import { Avatar, AvatarImage } from './ui/avatar'
 import user from '@/assets/user.jpg'
-// import { Button } from './ui/button'
 import { LogOut, Settings } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { CgProfile } from 'react-icons/cg'
 import { cn } from '@/utils/cn'
-import { useAuth } from '@/hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '@/feathures/auth/slice'
 
 
 const UserProfileCard = ({ className }: { className: string }) => {
-  const { logout } = useAuth();
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/auth/login', {
+      replace: true
+    })
+  }
   return (
     <div
       className={cn(
@@ -49,12 +56,7 @@ const UserProfileCard = ({ className }: { className: string }) => {
               <DropdownMenuShortcut><Settings /></DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem variant='destructive' onClick={() => {
-              logout();
-              navigate('/auth/login', {
-                replace: true
-              })
-            }}>
+            <DropdownMenuItem variant='destructive' onClick={handleLogout}>
               Logout
               <DropdownMenuShortcut><LogOut /></DropdownMenuShortcut>
             </DropdownMenuItem>

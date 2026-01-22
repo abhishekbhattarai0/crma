@@ -2,13 +2,14 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
 import { router } from "@/router/router"
-import { AuthProvider } from "@/store/auth/AuthProvider"
-import ModalProvider from "@/store/modal/ModalProvider"
+import { store } from "@/store"
+import ModalProvider from "@/context/modal/ModalProvider"
+import { Provider } from "react-redux"
 import { RouterProvider } from "react-router-dom"
 
-const Providers = () => {
+const AppProvider = () => {
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <ThemeProvider>
         <ModalProvider>
           <SidebarProvider>
@@ -17,8 +18,8 @@ const Providers = () => {
           </SidebarProvider>
         </ModalProvider>
       </ThemeProvider>
-    </AuthProvider>
+    </Provider>
   )
 }
 
-export default Providers
+export default AppProvider 

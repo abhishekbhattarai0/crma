@@ -1,12 +1,15 @@
-import Loader from "@/components/common/Loader"
-import { useAuth } from "@/hooks/useAuth"
+import type { RootState } from "@/store"
+import { useSelector } from "react-redux"
 import { Navigate, Outlet } from "react-router-dom"
 
 const ProtectedRoute = () => {
-    const { isAuthenticated, isLoading } = useAuth()
+    // const { isAuthenticated, isLoading } = useAuth()
+    const isAuthenticated = useSelector(
+        (state: RootState) => state.auth.isAuthenticated
+    )
 
-    if (isLoading) return null
-    if (isAuthenticated === null) return <Loader/>
+    // if (isLoading) return null
+    // if (isAuthenticated === null) return <Loader />
 
     return isAuthenticated
         ? <Outlet />

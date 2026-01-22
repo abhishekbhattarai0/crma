@@ -1,9 +1,6 @@
 import { useState } from "react";
 import Logo from "@/assets/logo.png";
-// import Input from "@/components/ui/Input";
-// import Switch from "@/components/ui/Switch";
 import { LogIn } from "lucide-react";
-
 import { useForm } from "react-hook-form";
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
+import { useLoginMutation } from "../api";
 
 const loginSchema = z.object({
   username: z.string().min(3, "username must be at least 3 characters"),
@@ -23,8 +20,9 @@ type LoginInputProps = z.infer<typeof loginSchema>
 
 const Login = () => {
 
+  const [login,] = useLoginMutation();
+
   const navigate = useNavigate();
-  const { login } = useAuth()
   const [isChecked, setisChecked] = useState(false);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -35,11 +33,17 @@ const Login = () => {
     setisChecked((prev) => !prev);
   };
 
-  const onSubmit = (data: LoginInputProps) => {
+  const onSubmit = async (data: LoginInputProps) => {
     console.log(data, errors)
-    const value = login(data.username, data.password);
-    if (value) {
+    try {
+      await login({
+        username: data.username,
+        password: data.password
+      }).unwrap();
       navigate('/')
+    } catch (error) {
+      console.log("Login failed", error)
+
     }
   }
   return (
