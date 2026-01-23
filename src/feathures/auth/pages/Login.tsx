@@ -9,6 +9,8 @@ import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../api";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../slice";
 
 const loginSchema = z.object({
   username: z.string().min(3, "username must be at least 3 characters"),
@@ -21,6 +23,7 @@ type LoginInputProps = z.infer<typeof loginSchema>
 const Login = () => {
 
   const [login,] = useLoginMutation();
+  const dispatch = useDispatch()
 
   const navigate = useNavigate();
   const [isChecked, setisChecked] = useState(false);
@@ -36,11 +39,24 @@ const Login = () => {
   const onSubmit = async (data: LoginInputProps) => {
     console.log(data, errors)
     try {
-      await login({
+      const value = await login({
         username: data.username,
         password: data.password
       }).unwrap();
-      navigate('/')
+      console.log("login page :", value)
+
+      if (value) {
+
+        dispatch(
+          setCredentials({
+            accessToken: value.accessToken as string,
+            refreshToken: value.refreshToken,
+            user: value.user
+          })
+        )
+
+        navigate('/')
+      }
     } catch (error) {
       console.log("Login failed", error)
 
