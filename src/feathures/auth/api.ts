@@ -23,6 +23,18 @@ type LoginApiResponse = {
     }
 }
 
+type GetUserApiResponse = {
+    statuscode: number,
+    data: {
+        data: {
+            accessToken: string
+            refreshToken: string,
+            user: BackendUser
+        }
+
+    }
+}
+
 type NormalizedLoginResponse = {
     accessToken: string | null
     refreshToken: string
@@ -74,7 +86,7 @@ export const authApi = baseApi.injectEndpoints({
                 // credentials already handled in baseApi
             }),
             transformResponse: (
-                response: LoginApiResponse,
+                response: GetUserApiResponse,
                 // meta: FetchBaseQueryMeta | undefined
             ): NormalizedLoginResponse["user"] => {
                 const user = response.data?.data.user
