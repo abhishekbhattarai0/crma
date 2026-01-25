@@ -14,7 +14,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
       <div className="flex w-full justify-between">
         <h1 className="text-foreground/70 font-semibold text-lg capitalize">
           {location.pathname
-            .split("/").at(-1)}
+            .split("/").at(-1)?.replace('-', " ")}
         </h1>
         <ol className="flex flex-wrap items-center text-xs sm:text-sm text-gray-500">
           {/* Home */}

@@ -66,7 +66,38 @@ export const authApi = baseApi.injectEndpoints({
                 }
             },
         }),
+        // ✅ Get current user
+        getCurrentUser: builder.query<NormalizedLoginResponse["user"], void>({
+            query: () => ({
+                url: "/auth/me",   // endpoint returning the logged-in user
+                method: "GET",
+                // credentials already handled in baseApi
+            }),
+            transformResponse: (
+                response: LoginApiResponse,
+                // meta: FetchBaseQueryMeta | undefined
+            ): NormalizedLoginResponse["user"] => {
+                const user = response.data?.data.user
+                console.log("first", response.data?.data.user)
+                return {
+                    id: user.id,
+                    username: user.username,
+                    role: user.role_id,
+                }
+            },
+        }),
+
+        // logout user
+        logout: builder.query<NormalizedLoginResponse["user"], void>({
+            query: () => ({
+                url: "/auth/logout",   // endpoint returning the logged-in user
+                method: "POST",
+                // credentials already handled in baseApi
+            }),
+        }),
+
     }),
 })
 
-export const { useLoginMutation } = authApi
+
+export const { useLoginMutation, useGetCurrentUserQuery, useLogoutQuery } = authApi

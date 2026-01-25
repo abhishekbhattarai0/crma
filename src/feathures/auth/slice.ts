@@ -1,4 +1,3 @@
-import { clearAuth, getAuth, saveAuth } from "@/lib/authStorage"
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 type User = {
@@ -6,8 +5,6 @@ type User = {
     username: string
     role: string
 }
-
-const persistedAuth = getAuth();
 
 type AuthState = {
     accessToken: string | null
@@ -18,10 +15,10 @@ type AuthState = {
 
 
 const initialState: AuthState = {
-    accessToken: persistedAuth?.accessToken ?? null,
-    refreshToken: persistedAuth?.refreshToken ?? null,
-    isAuthenticated: Boolean(persistedAuth?.accessToken),
-    user: persistedAuth?.user ?? null,
+    accessToken: null,
+    refreshToken: null,
+    isAuthenticated: false,
+    user: null,
 }
 
 const authSlice = createSlice({
@@ -40,12 +37,6 @@ const authSlice = createSlice({
             state.refreshToken = action.payload.refreshToken
             state.user = action.payload.user
             state.isAuthenticated = true
-
-            // persist auth data
-            saveAuth({
-                accessToken: action.payload.accessToken,
-                user: action.payload.user
-            })
         },
         logout: (state) => {
             state.accessToken = null
@@ -53,7 +44,6 @@ const authSlice = createSlice({
             state.isAuthenticated = false
             state.user = null;
 
-            clearAuth()
         },
     },
 })
