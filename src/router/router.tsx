@@ -13,12 +13,12 @@ import { frontdeskRoute } from "@/feathures/frontdesk/route";
 
 export const router = createBrowserRouter([
   {
-    element: <AppLayout />,
+    element: <ProtectedRoute />,
     children: [
       // default redirect when path is "/"
       { index: true, element: <Navigate to="/dashboard/analytics" replace /> },
       {
-        element: <ProtectedRoute />,
+        element: <AppLayout />,
         children: [
           frontdeskRoute,
           dashboardRoutes,
