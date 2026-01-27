@@ -49,11 +49,14 @@ const Login = () => {
 
         dispatch(
           setCredentials({
-            accessToken: value.accessToken as string,
-            refreshToken: value.refreshToken,
-            user: value.user
+            // accessToken: value.accessToken as string,
+            // refreshToken: value.refreshToken,
+            user: value.user,
+            rolePermission: value.role_permission
           })
         )
+
+        console.log(value.user)
 
         navigate('/')
       }

@@ -6,11 +6,19 @@ type User = {
     role: string
 }
 
+type RolePermission = {
+    id: string
+    role: string,
+    permission: string[]
+
+}
+
 type AuthState = {
     accessToken: string | null
     refreshToken: string | null
     isAuthenticated: boolean,
-    user: User | null
+    user: User | null,
+    rolePermission: RolePermission | null
 }
 
 
@@ -19,6 +27,7 @@ const initialState: AuthState = {
     refreshToken: null,
     isAuthenticated: false,
     user: null,
+    rolePermission: null
 }
 
 const authSlice = createSlice({
@@ -28,15 +37,17 @@ const authSlice = createSlice({
         setCredentials: (
             state,
             action: PayloadAction<{
-                accessToken: string;
-                refreshToken: string;
+                // accessToken: string;
+                // refreshToken: string;
                 user: User
+                rolePermission: RolePermission
             }>
         ) => {
-            state.accessToken = action.payload.accessToken
-            state.refreshToken = action.payload.refreshToken
+            // state.accessToken = action.payload.accessToken
+            // state.refreshToken = action.payload.refreshToken
             state.user = action.payload.user
             state.isAuthenticated = true
+            state.rolePermission = action.payload.rolePermission
         },
         logout: (state) => {
             state.accessToken = null
@@ -45,8 +56,18 @@ const authSlice = createSlice({
             state.user = null;
 
         },
+        setUser: (
+            state,
+            action: PayloadAction<{
+                user: User
+                rolePermission: RolePermission
+            }>
+        ) => {
+            state.user = action.payload.user
+            state.rolePermission = action.payload.rolePermission
+        }
     },
 })
 
-export const { setCredentials, logout } = authSlice.actions
+export const { setCredentials, logout, setUser } = authSlice.actions
 export default authSlice.reducer

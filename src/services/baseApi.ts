@@ -6,7 +6,7 @@ import {
   type FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react"
 import type { RootState } from "@/store"
-import { logout, setCredentials } from "@/feathures/auth/slice"
+import { logout } from "@/feathures/auth/slice"
 
 
 const baseQuery = fetchBaseQuery({
@@ -48,18 +48,19 @@ const baseQueryWithReauth: BaseQueryFn<
     if (data) {
       // const newAccessToken = (refreshResult.data as any).accessToken
 
-      api.dispatch(
-        setCredentials({
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
-          user: (api.getState() as RootState).auth.user!,
-        })
-      )
+      // api.dispatch(
+      //   setCredentials({
+      //     // accessToken: data.accessToken,
+      //     refreshToken: data.refreshToken,
+      //     user: (api.getState() as RootState).auth.user!,
+      //   })
+      // )
 
       //  retry original request
       result = await baseQuery(args, api, extraOptions)
     } else {
       api.dispatch(logout())
+      api.dispatch(baseApi.util.resetApiState())
     }
   }
 

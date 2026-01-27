@@ -20,6 +20,7 @@ const UserProfileCard = ({ className }: { className: string }) => {
     console.log('logout')
     await logout().unwrap()
     dispatch(baseApi.util.resetApiState())
+
     navigate('/auth/login', {
       replace: true
     })
