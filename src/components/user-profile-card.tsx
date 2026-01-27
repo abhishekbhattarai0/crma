@@ -5,16 +5,21 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { CgProfile } from 'react-icons/cg'
 import { cn } from '@/utils/cn'
 import { useNavigate } from 'react-router-dom'
+import { useLogoutMutation } from '@/feathures/auth/api'
 import { useDispatch } from 'react-redux'
-import { logout } from '@/feathures/auth/slice'
+import { baseApi } from '@/services/baseApi'
 
 
 const UserProfileCard = ({ className }: { className: string }) => {
+
+  const [logout,] = useLogoutMutation();
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleLogout = () => {
-    dispatch(logout())
+  const handleLogout = async () => {
+    console.log('logout')
+    await logout().unwrap()
+    dispatch(baseApi.util.resetApiState())
     navigate('/auth/login', {
       replace: true
     })
