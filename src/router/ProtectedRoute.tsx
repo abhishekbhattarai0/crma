@@ -28,11 +28,14 @@ const ProtectedRoute = () => {
     // Fetch current user using RTK Query
     const { data: user, isLoading, isError } = useGetCurrentUserQuery()
 
+    // if (isError || !user || isAuthenticated) return <Navigate to="/auth/login" replace />
+
     // Show nothing / loader while fetching
     if (isLoading) return <div>Loading...</div>
 
     // If error or no user → redirect to login
     if (isError || !user) return <Navigate to="/auth/login" replace />
+
 
     // User authenticated → render protected route
     return <Outlet />

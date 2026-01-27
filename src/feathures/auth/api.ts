@@ -85,11 +85,15 @@ export const authApi = baseApi.injectEndpoints({
                 method: "GET",
                 // credentials already handled in baseApi
             }),
+            providesTags: ['getCurrentUser'],
             transformResponse: (
                 response: GetUserApiResponse,
                 // meta: FetchBaseQueryMeta | undefined
             ): NormalizedLoginResponse["user"] => {
                 const user = response.data?.data.user
+                if (!user) {
+                    throw Error("User not found")
+                }
                 console.log("first", response.data?.data.user)
                 return {
                     id: user.id,
@@ -100,16 +104,22 @@ export const authApi = baseApi.injectEndpoints({
         }),
 
         // logout user
-        logout: builder.query<NormalizedLoginResponse["user"], void>({
+
+
+        logout: builder.mutation<void, void>({
             query: () => ({
-                url: "/auth/logout",   // endpoint returning the logged-in user
-                method: "POST",
-                // credentials already handled in baseApi
+                url: '/auth/logout',
+                method: 'POST',
             }),
+            invalidatesTags: ['getCurrentUser'],
+            async onQueryStarted(_, { dispatch, queryFulfilled }) {
+                await queryFulfilled
+                dispatch(baseApi.util.resetApiState())
+            },
         }),
 
     }),
 })
 
 
-export const { useLoginMutation, useGetCurrentUserQuery, useLogoutQuery } = authApi
+export const { useLoginMutation, useGetCurrentUserQuery, useLogoutMutation } = authApi

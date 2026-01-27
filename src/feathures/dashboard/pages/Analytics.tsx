@@ -1,9 +1,6 @@
-
-
 import InfoCard from "../components/info-card"
 import { Clock10, Clock5, HeartIcon, TrendingUp, Users2 } from "lucide-react";
 import MultipleBarchartWidget from "../components/widgets/MultipleBarchartWidget";
-// import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
 import ChartAreaWidget from "../components/widgets/ChartAreaWidget";
 import ChartPieDonutWidget from "../components/widgets/ChartPieDonutWidget";
 
@@ -61,7 +58,7 @@ const Analytics = () => {
             <div className="col-span-12 lg:col-span-9">
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {analayticsCardInfo.map((item, idx) => (
-                        <InfoCard  {...item} key={idx}/>
+                        <InfoCard  {...item} key={idx} />
                     ))}
                 </div>
             </div>
@@ -85,11 +82,11 @@ const Analytics = () => {
             <div className="grid md:grid-cols-2 gap-2">
                 {/* <ChartPieDonutWidget /> */}
                 <div className=" md:grid-cols-1">
-                <ChartAreaWidget />
+                    <ChartAreaWidget />
 
                 </div>
                 <div className="md:grid-cols-1">
-                <ChartAreaWidget />
+                    <ChartAreaWidget />
 
                 </div>
             </div>

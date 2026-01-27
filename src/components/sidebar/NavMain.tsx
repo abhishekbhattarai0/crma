@@ -15,7 +15,10 @@ const NavMain = ({
 
   return (
     <SidebarGroup>
+      {/* sidebar title */}
       <SidebarGroupLabel className="text-xs tracking-wide text-foreground/70 font-semibold ">{label}</SidebarGroupLabel>
+
+      {/* sidebar body */}
       <SidebarMenu>
         {items.map((item) => (
           <NavItem key={item.title} item={item} location={location} />

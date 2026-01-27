@@ -1,6 +1,29 @@
 import { Sidebar, SidebarContent } from '../ui/sidebar'
 import NavMain from './NavMain'
-import { sidebarData } from '@/dummydata/sidebar'
+import { filterSidebarByPermission, sidebarData } from '@/dummydata/sidebar'
+
+// const userPermission: string[] = ["USER_MANAGE", "ROLE_MANAGE", "SYSTEM_SETTINGS", "CRM_VIEW", "CRM_EDIT", "CRM_DELETE", "LEAD_VIEW", "LEAD_ASSIGN", "LEAD_EDIT", "LEAD_DELETE", "CUSTOMER_VIEW", "CUSTOMER_EDIT", "SUPPORT_TICKET_VIEW", "SUPPORT_TICKET_REPLY", "SUPPORT_TICKET_CLOSE", "ACCOUNT_VIEW", "ACCOUNT_EDIT", "INVOICE_MANAGE", "PAYMENT_MANAGE", "MARKETING_VIEW", "MARKETING_EDIT", "CAMPAIGN_MANAGE", "REPORT_VIEW", "REPORT_EXPORT"]
+
+const allPermissions = [
+  "FRONTDESK_VIEW",
+  "LEAD_VIEW",
+  "LEAD_ASSIGN",
+  "CUSTOMER_VIEW",
+  "ACCOUNT_VIEW",
+  "SALES_VIEW",
+  "INVOICE_MANAGE",
+  "PAYMENT_MANAGE",
+  "MARKETING_VIEW",
+  "CAMPAIGN_MANAGE",
+  "SUPPORT_TICKET_VIEW",
+  "TASK_MANAGE",
+  "PRODUCT_VIEW",
+  "FINANCE_VIEW",
+  "REPORT_VIEW",
+  "USER_MANAGE",
+  "ROLE_MANAGE",
+  "SYSTEM_SETTINGS"
+];
 
 const AppSidebar = () => {
   return (
@@ -10,7 +33,9 @@ const AppSidebar = () => {
       </div>
 
       <SidebarContent>
-        {sidebarData?.navGroup.map((group) =>
+        {filterSidebarByPermission(sidebarData,
+          allPermissions,
+        )?.navGroup.map((group) =>
           <NavMain key={group.label} label={group.label} items={group.items} />
         )}
       </SidebarContent>
