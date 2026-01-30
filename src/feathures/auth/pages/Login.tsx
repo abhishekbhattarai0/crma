@@ -1,16 +1,15 @@
-import { useState } from "react";
 import Logo from "@/assets/logo.png";
 import { LogIn } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
+// import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../api";
+import { useLoginMutation } from "../authstore/authApi";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../slice";
+import { setCredentials } from "../authstore/authSlice";
 
 const loginSchema = z.object({
   username: z.string().min(3, "username must be at least 3 characters"),
@@ -22,19 +21,19 @@ type LoginInputProps = z.infer<typeof loginSchema>
 
 const Login = () => {
 
-  const [login,] = useLoginMutation();
+  const [login, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch()
 
   const navigate = useNavigate();
-  const [isChecked, setisChecked] = useState(false);
+  // const [isChecked, setisChecked] = useState(false);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(loginSchema)
   })
 
-  const handleRememberMe = () => {
-    setisChecked((prev) => !prev);
-  };
+  // const handleRememberMe = () => {
+  //   setisChecked((prev) => !prev);
+  // };
 
   const onSubmit = async (data: LoginInputProps) => {
     console.log(data, errors)
@@ -43,15 +42,15 @@ const Login = () => {
         username: data.username,
         password: data.password
       }).unwrap();
-      console.log("login page :", value)
 
       if (value) {
 
         dispatch(
           setCredentials({
-            // accessToken: value.accessToken as string,
-            // refreshToken: value.refreshToken,
-            user: value.user,
+            user: {
+              ...value.user,
+              role: value.user.roleId
+            },
             rolePermission: value.role_permission
           })
         )
@@ -126,7 +125,7 @@ const Login = () => {
           {/* remember me */}
           <div className=" w-full space-y-2 ">
             <div className=" flex h-8 items-center justify-between">
-              <div className="flex h-9 items-center gap-3  " >
+              {/* <div className="flex h-9 items-center gap-3  " >
                 <Switch
                   id="rememberMe"
                   checked={isChecked}
@@ -140,7 +139,7 @@ const Login = () => {
                 >
                   Remember me
                 </label>
-              </div>
+              </div> */}
 
               <p className="cursor-pointer pt-1 text-right text-xs font-normal text-gray-400">
                 Forgot password?
@@ -149,10 +148,22 @@ const Login = () => {
 
             {/* login button */}
             <Button type="submit" className="w-full pt-2 hover:bg-primary/90 active:bg-primary">
-              <span>Login</span>
-              <LogIn className="ml-0.5 inline size-3.5 font-bold" />
+              {!isLoading ? (
+                <>
+                  <span>Login</span>
+                  <LogIn className="ml-0.5 inline size-3.5 font-bold" />
+                </>
+              )
+                : (
+                  <span>Loading...</span>
+
+                )}
             </Button>
             <p>test : username = admin, password = admin1</p>
+            {error && 'data' in error &&
+              // @ts-expect-error/not handled error types
+              <span className="text-xs text-red-600">{error.data?.message}</span>
+            }
           </div>
         </form>
       </div>

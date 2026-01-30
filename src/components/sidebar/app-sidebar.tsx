@@ -3,7 +3,6 @@ import { Sidebar, SidebarContent } from '../ui/sidebar'
 import NavMain from './NavMain'
 import { filterSidebarByPermission, sidebarData } from '@/dummydata/sidebar'
 import { useSelector } from 'react-redux';
-// import { useEffect } from 'react';
 
 // const userPermission: string[] = ["USER_MANAGE", "ROLE_MANAGE", "SYSTEM_SETTINGS", "CRM_VIEW", "CRM_EDIT", "CRM_DELETE", "LEAD_VIEW", "LEAD_ASSIGN", "LEAD_EDIT", "LEAD_DELETE", "CUSTOMER_VIEW", "CUSTOMER_EDIT", "SUPPORT_TICKET_VIEW", "SUPPORT_TICKET_REPLY", "SUPPORT_TICKET_CLOSE", "ACCOUNT_VIEW", "ACCOUNT_EDIT", "INVOICE_MANAGE", "PAYMENT_MANAGE", "MARKETING_VIEW", "MARKETING_EDIT", "CAMPAIGN_MANAGE", "REPORT_VIEW", "REPORT_EXPORT"]
 
@@ -33,6 +32,14 @@ const AppSidebar = () => {
     (state: RootState) => state.auth.rolePermission
   )
 
+  // const isSuperAdmin = useSelector(
+  //   (state: RootState) => state.auth.rolePermission
+  // )
+
+
+  // const isSuperAdmin = rolePermission?.role === 'SUPER_ADMIN'
+  const isSuperAdmin = 'SUPER_ADMIN' === 'SUPER_ADMIN'
+  // console.log(rolePermission?.role)
 
   return (
     <Sidebar>
@@ -42,7 +49,7 @@ const AppSidebar = () => {
 
       <SidebarContent>
         {filterSidebarByPermission(sidebarData,
-          rolePermission?.permission ?? [],
+          rolePermission?.permission ?? [], isSuperAdmin
         )?.navGroup.map((group) =>
           <NavMain key={group.label} label={group.label} items={group.items} />
         )}

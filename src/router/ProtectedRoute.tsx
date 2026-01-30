@@ -21,7 +21,7 @@
 
 
 
-import { useGetCurrentUserQuery } from "@/feathures/auth/api"
+import { useGetCurrentUserQuery } from "@/feathures/auth/authstore/authApi"
 import { Navigate, Outlet } from "react-router-dom"
 
 const ProtectedRoute = () => {

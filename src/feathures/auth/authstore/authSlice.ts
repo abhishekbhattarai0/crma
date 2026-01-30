@@ -11,20 +11,16 @@ type RolePermission = {
     role: string,
     permission: string[]
 
-}
+} | null
 
 type AuthState = {
-    accessToken: string | null
-    refreshToken: string | null
     isAuthenticated: boolean,
     user: User | null,
-    rolePermission: RolePermission | null
+    rolePermission: RolePermission
 }
 
 
 const initialState: AuthState = {
-    accessToken: null,
-    refreshToken: null,
     isAuthenticated: false,
     user: null,
     rolePermission: null
@@ -37,21 +33,15 @@ const authSlice = createSlice({
         setCredentials: (
             state,
             action: PayloadAction<{
-                // accessToken: string;
-                // refreshToken: string;
                 user: User
                 rolePermission: RolePermission
             }>
         ) => {
-            // state.accessToken = action.payload.accessToken
-            // state.refreshToken = action.payload.refreshToken
             state.user = action.payload.user
             state.isAuthenticated = true
             state.rolePermission = action.payload.rolePermission
         },
         logout: (state) => {
-            state.accessToken = null
-            state.refreshToken = null
             state.isAuthenticated = false
             state.user = null;
 
