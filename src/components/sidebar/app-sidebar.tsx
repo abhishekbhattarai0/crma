@@ -28,18 +28,11 @@ import { useSelector } from 'react-redux';
 // ];
 
 const AppSidebar = () => {
+
   const rolePermission = useSelector(
     (state: RootState) => state.auth.rolePermission
   )
-
-  // const isSuperAdmin = useSelector(
-  //   (state: RootState) => state.auth.rolePermission
-  // )
-
-
-  // const isSuperAdmin = rolePermission?.role === 'SUPER_ADMIN'
-  const isSuperAdmin = 'SUPER_ADMIN' === 'SUPER_ADMIN'
-  // console.log(rolePermission?.role)
+  const isSuperAdmin = rolePermission?.role === 'SUPER_ADMIN'
 
   return (
     <Sidebar>
