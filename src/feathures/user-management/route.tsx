@@ -1,10 +1,10 @@
 import { type RouteObject, Navigate } from "react-router-dom";
-import RelationshipMap from "./pages/RelationshipMap";
 import User from "./pages/User";
-import EmailMarketing from "./pages/EmailMarketing";
-import SMSMarketing from "./pages/SmsMarketing";
+import ActivityLog from "./pages/ActivityLogs";
 import UserDetails from "./pages/UserDetails";
 import AccessControl from "./pages/AccessControl";
+import LoginHistory from "./pages/LoginHistory";
+import PasswordSecurity from "./pages/PasswordSecurity";
 
 export const userManagementMap: RouteObject = {
   path: "user-management",
@@ -15,28 +15,32 @@ export const userManagementMap: RouteObject = {
       element: <User />
     },
     {
-      path: "email-marketing",
-      element: <EmailMarketing />
+      path: "activity-logs",
+      element: <ActivityLog />
     },
     {
-      path: "relationship-map",
-      element: < RelationshipMap />
+      path: "login-history",
+      element: <LoginHistory />
     },
     {
-      path: "sms-marketing",
-      element: <SMSMarketing />
+      path: "password-security",
+      element: <PasswordSecurity />
     },
-    {
-      path: "relationship-map",
-      element: <RelationshipMap />
-    },
-    {
-      path: "users/profile",
-      element: <UserDetails />
-    },
+    // {
+    //   path: "users/profile",
+    //   element: <UserDetails />
+    // },
     {
       path: 'access-control',
       element: <AccessControl />
+    },
+    {
+      path: 'user-details/:userId',
+      element: <UserDetails />
+    },
+    {
+      path: 'user-details',
+      element: <Navigate to='/user-management/users' replace />
     }
   ],
 };

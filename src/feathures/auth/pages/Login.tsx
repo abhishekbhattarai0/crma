@@ -1,5 +1,5 @@
 import Logo from "@/assets/logo.png";
-import { LogIn } from "lucide-react";
+import { Loader2, LogIn } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -155,8 +155,7 @@ const Login = () => {
                 </>
               )
                 : (
-                  <span>Loading...</span>
-
+                  <Loader2 className="ml-0.5 inline size-3.5 animate-spin" />
                 )}
             </Button>
             <p>test : username = admin, password = admin1</p>

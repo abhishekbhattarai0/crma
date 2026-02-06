@@ -6,7 +6,7 @@ export function DetailField({
   className
 }: {
   label: string,
-  value: string,
+  value?: string | null,
   className?: string
 }) {
   return (

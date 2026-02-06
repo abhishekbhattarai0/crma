@@ -8,6 +8,9 @@ import useModal from "@/hooks/useModal";
 import { SelectComponent } from "@/components/ui/SelectComponent";
 import { useState } from "react";
 import { z } from "zod";
+import { useAddUserMutation } from "../../userStore/userApi";
+import { userSchema } from "../../types/userType";
+import { Loader2 } from "lucide-react";
 
 type RoleProps =
     | "SUPER_ADMIN"
@@ -16,39 +19,16 @@ type RoleProps =
     | "ACCOUNT_STAFF"
     | "MARKET_STAFF";
 
-const employeeFormSchema = z.object({
-    firstName: z.string().nonempty({error: "cannot be empty"}),
-    lastName: z.string().nonempty({error: "cannot be empty"}),
-    gender: z.enum(["Male", "Female", "Other"]),
-    dob: z.string().nonempty({error: "cannot be empty"}),
-    maritalStatus: z.string().nonempty({error: "cannot be empty"}),
 
-    officialEmail: z.string().email(),
-    personalEmail: z.string().email(),
-    phone: z.string().min(7),
-    emergencyContactPhone: z.string().min(7),
-    currentAddress: z.string().nonempty({error: "cannot be empty"}),
-    permanentAddress: z.string().nonempty({error: "cannot be empty"}),
 
-    department: z.string().nonempty({error: "cannot be empty"}),
-    team: z.string().nonempty({error: "cannot be empty"}),
-    designation: z.string().nonempty({error: "cannot be empty"}),
-    jobTitle: z.string().nonempty({error: "cannot be empty"}),
-    shift: z.string().nonempty({error: "cannot be empty"}),
-
-    username: z.string().nonempty({error: "cannot be empty"}),
-    role: z.string(),
-    permissionGroup: z.string(),
-    status: z.enum(["ACTIVE", "INACTIVE"]),
-});
-
-export type EmployeeFormValues = z.infer<typeof employeeFormSchema>;
+export type EmployeeFormValues = z.infer<typeof userSchema>;
 
 const labelClass = "text-sm text-foreground/75";
 
-const EmployeeForm = () => {
+const CreateUserForm = () => {
     const { setClose } = useModal();
     const [role, setRole] = useState<RoleProps>("ACCOUNT_STAFF");
+    const [addUser, { isLoading, error }] = useAddUserMutation()
 
     const {
         register,
@@ -56,35 +36,21 @@ const EmployeeForm = () => {
         control,
         formState: { errors }
     } = useForm<EmployeeFormValues>({
-        resolver: zodResolver(employeeFormSchema),
-        // defaultValues: {
-        //   firstName: "Sarah",
-        //   lastName: "Johnson",
-        //   gender: "Female",
-        //   dob: "1996-04-12",
-        //   maritalStatus: "Single",
-        //   officialEmail: "sarah.johnson@company.com",
-        //   personalEmail: "sarah@gmail.com",
-        //   phone: "9841000001",
-        //   emergencyContactPhone: "9800000001",
-        //   currentAddress: "Kathmandu",
-        //   permanentAddress: "Lalitpur",
-        //   department: "Engineering",
-        //   team: "Frontend",
-        //   designation: "Developer",
-        //   jobTitle: "React Developer",
-        //   shift: "Day",
-        //   username: "sarahj",
-        //   role: "DEVELOPER",
-        //   permissionGroup: "DEV_STANDARD",
-        //   status: "ACTIVE",
-        // },
+        resolver: zodResolver(userSchema),
     });
 
-    const onSubmit = (data: EmployeeFormValues) => {
-        console.log(data);
-        setClose();
+    const onSubmit = async (data: EmployeeFormValues) => {
+        try {
+            const result = await addUser(data).unwrap(); // unwrap to get real response or throw
+            console.log('Result:', result);
+            setClose();
+        } catch (err) {
+            console.error('Error creating user:', err);
+        }
     };
+
+
+
 
     return (
         <Card className="border-0">
@@ -118,7 +84,22 @@ const EmployeeForm = () => {
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className={labelClass}>Gender</label>
-                            <Input {...register("gender")} />
+                            <Controller
+                                name="gender"
+                                control={control}
+                                render={({ field }) => (
+                                    <SelectComponent
+                                        // value={field.value}
+                                        onValueChange={field.onChange}
+                                        options={[
+                                            { label: "MALE", value: "MALE" },
+                                            { label: "FEMALE", value: "FEMALE" },
+                                            { label: "OTHER", value: "OTHER" },
+                                        ]}
+                                        placeholder="Select Gender"
+                                    />
+                                )}
+                            />
                             {errors.gender && (
                                 <span className="text-xs text-red-600">
                                     {errors.gender.message}
@@ -138,12 +119,28 @@ const EmployeeForm = () => {
 
                     <div>
                         <label className={labelClass}>Marital Status</label>
-                        <Input {...register("maritalStatus")} />
+                        {/* <Input {...register("maritalStatus")} />
                         {errors.maritalStatus && (
                             <span className="text-xs text-red-600">
                                 {errors.maritalStatus.message}
                             </span>
-                        )}
+                        )} */}
+
+                        <Controller
+                            name="maritalStatus"
+                            control={control}
+                            render={({ field }) => (
+                                <SelectComponent
+                                    // value={field.value}
+                                    onValueChange={field.onChange}
+                                    options={[
+                                        { label: "MARRIED", value: "MARRIED" },
+                                        { label: "SINGLE", value: "SINGLE" },
+                                    ]}
+                                    placeholder="Select Marital Status"
+                                />
+                            )}
+                        />
                     </div>
 
                     {/* CONTACT */}
@@ -330,8 +327,12 @@ const EmployeeForm = () => {
                         )}
                     />
 
+                    {error && 'data' in error &&
+                        // @ts-expect-error/not handled error types
+                        <span className="text-xs text-red-600">{error.data?.message}</span>
+                    }
                     <Button type="submit" className="w-full mt-4">
-                        Save Employee
+                        {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Save Employee"}
                     </Button>
 
                 </form>
@@ -340,4 +341,4 @@ const EmployeeForm = () => {
     );
 };
 
-export default EmployeeForm;
+export default CreateUserForm;

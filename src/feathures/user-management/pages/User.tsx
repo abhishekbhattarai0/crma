@@ -1,12 +1,15 @@
 import { DataTable } from "@/components/table/data-table"
-import { userData } from "@/dummydata/user"
-import { userColumns } from "@/feathures/user-management/components/table/userColumn"
+// import { userData } from "@/dummydata/user"
+import { userColumns } from "@/feathures/user-management/components/table/user-column"
 import useModal from "@/hooks/useModal"
 import CustomModal from "@/components/common/custom-modal"
-import UserForm from "../components/form/user-form"
+import UserForm from "../components/form/create-user-form"
+import { useGetAllUsersQuery } from "../userStore/userApi"
 
 const User = () => {
   const { setOpen } = useModal()
+  const { data, isLoading } = useGetAllUsersQuery({})
+  console.log("data", data)
 
   const onAdd = () => {
     setOpen(
@@ -18,7 +21,7 @@ const User = () => {
 
   return (
     <div>
-      <DataTable columns={userColumns} data={userData} onAdd={onAdd} />
+      <DataTable columns={userColumns} data={isLoading ? [] : data?.data} onAdd={onAdd} searchKey="firstName" isLoading={isLoading} />
     </div>
   )
 }

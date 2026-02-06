@@ -39,7 +39,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
                   <div className="">
                     <span className="mx-2 t">/</span>
                     <span className="  capitalize">
-                      {decodeURIComponent(value)}
+                      {decodeURIComponent(value).split("/").at(-1)?.replace('-', " ")}
                     </span>
                   </div>
                 ) : (
@@ -49,7 +49,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
                       to={to}
                       className="text-foreground/80 hover:text-blue-800 capitalize transition-colors font-medium"
                     >
-                      {decodeURIComponent(value)}
+                      {decodeURIComponent(value).split("/").at(-1)?.replace('-', " ")}
                     </Link>
                   </>
                 )}

@@ -25,18 +25,22 @@ import TableSearch from "./table-search"
 import { Button } from "../ui/button"
 import { CgAdd } from "react-icons/cg"
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Loader2 } from "lucide-react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  onAdd?: () => void
+  onAdd?: () => void,
+  searchKey?: string,
+  isLoading?: boolean
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  onAdd
+  onAdd,
+  searchKey,
+  isLoading
 }: DataTableProps<TData, TValue>) {
 
   const [sorting, setSorting] = useState<SortingState>([])
@@ -70,7 +74,7 @@ export function DataTable<TData, TValue>({
     <div className="w-full overflow-auto">
       <div className=" ">
         <div className="mb-4  w-full flex justify-between sm:gap-0 gap-4 ">
-          <TableSearch table={table} className="sm:w-1/2 w-full" />
+          <TableSearch table={table} className="sm:w-1/2 w-full" searchKey={searchKey} />
           <div className="flex gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -148,7 +152,7 @@ export function DataTable<TData, TValue>({
               ) : (
                 <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
-                    No results.
+                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "No results."}
                   </TableCell>
                 </TableRow>
               )}

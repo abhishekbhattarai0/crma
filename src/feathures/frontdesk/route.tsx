@@ -26,7 +26,7 @@ export const frontdeskRoute: RouteObject = {
       element: <PostalRecieve />
     },
     {
-      path: 'postal-view',
+      path: 'postal-details',
       element: <PostalView />
     }
 
