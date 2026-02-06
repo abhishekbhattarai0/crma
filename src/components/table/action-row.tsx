@@ -1,7 +1,7 @@
 import { Button } from "../ui/button"
 import { Eye, Pencil } from "lucide-react"
 
-const ActionRow = ({onView, onEdit}: {onView: () => void, onEdit: () => void}) => {
+const ActionRow = () => {
 
   return (
     <div
@@ -13,7 +13,6 @@ const ActionRow = ({onView, onEdit}: {onView: () => void, onEdit: () => void}) =
         size={'icon-sm'}
         variant={'outline'}
         className="rounded-full"
-        onClick={onView}
       >
         <Eye />
       </Button>
@@ -22,7 +21,6 @@ const ActionRow = ({onView, onEdit}: {onView: () => void, onEdit: () => void}) =
         size={'icon-sm'}
         variant={'outline'}
         className="rounded-full"
-        onClick={onEdit}
       >
         <Pencil />
       </Button>
