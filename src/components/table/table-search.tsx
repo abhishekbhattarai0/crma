@@ -5,7 +5,8 @@ import type { Table } from '@tanstack/react-table'
 
 interface DataTableSearchingProps<TData> {
     table: Table<TData>,
-    className?:string
+    className?: string,
+    searchKey: string
 }
 
 
@@ -13,7 +14,7 @@ interface DataTableSearchingProps<TData> {
 const TableSearch = <TData,>({
     table,
     className,
-    searchKey = "email" // Default to email for now, but should be passed from parent
+    searchKey
 }: DataTableSearchingProps<TData> & { searchKey?: string }) => {
     // 1. Use local state for immediate feedback
     const [value, setValue] = useState<string>((table.getColumn(searchKey)?.getFilterValue() as string) ?? "")
@@ -24,7 +25,8 @@ const TableSearch = <TData,>({
             className,
         )}>
             <Input
-                placeholder={`Filter ${searchKey}...`}
+                // placeholder={`Filter ${searchKey}...`}
+                placeholder={table.getColumn(searchKey)?.columnDef.header as string}
                 value={value}
                 onChange={(event) => {
                     const newValue = event.target.value

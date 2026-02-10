@@ -74,7 +74,7 @@ export function DataTable<TData, TValue>({
     <div className="w-full overflow-auto">
       <div className=" ">
         <div className="mb-4  w-full flex justify-between sm:gap-0 gap-4 ">
-          <TableSearch table={table} className="sm:w-1/2 w-full" searchKey={searchKey} />
+          {searchKey && <TableSearch table={table} className="sm:w-1/2 w-full" searchKey={searchKey} />}
           <div className="flex gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -96,7 +96,7 @@ export function DataTable<TData, TValue>({
                           column.toggleVisibility(!!value)
                         }
                       >
-                        {column.id}
+                        {column.columnDef.header as string}
                       </DropdownMenuCheckboxItem>
                     )
                   })}
@@ -142,7 +142,7 @@ export function DataTable<TData, TValue>({
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}
 
-                        className=" px-2 py-0.5 border-r"
+                        className=" px-2 py-2 border-r"
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>

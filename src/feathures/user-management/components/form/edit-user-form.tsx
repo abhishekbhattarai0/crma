@@ -6,21 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import useModal from "@/hooks/useModal";
 import { SelectComponent } from "@/components/ui/SelectComponent";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { z } from "zod";
-import { useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
+import { useAssignRoleMutation, useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
 import UserFormSkeleton from "./user-form-skelton";
 import { userSchema } from "../../types/userType";
 import { Loader2 } from "lucide-react";
-
-type RoleProps =
-    | "SUPER_ADMIN"
-    | "DEVELOPER"
-    | "SUPPORT_STAFF"
-    | "ACCOUNT_STAFF"
-    | "MARKET_STAFF";
-
-
 
 export type userFormValues = z.infer<typeof userSchema>;
 
@@ -28,10 +19,11 @@ const labelClass = "text-sm text-foreground/75";
 
 const EditUserForm = ({ userId }: { userId: string }) => {
     const { setClose } = useModal();
-    const [role, setRole] = useState<RoleProps>("ACCOUNT_STAFF");
 
     const { data: userData, isLoading, error } = useGetUserByIdQuery(userId)
     const [updateUserById, { isLoading: isUpdating, error: updateError }] = useUpdateUserByIdMutation()
+    const [assignRole] = useAssignRoleMutation()
+    // const { data: roles } = useGetRoleByUserIdQuery(userId)
 
     const {
         register,
@@ -41,31 +33,37 @@ const EditUserForm = ({ userId }: { userId: string }) => {
         formState: { errors }
     } = useForm<userFormValues>({
         resolver: zodResolver(userSchema),
-        defaultValues: userData ?? {},
+        defaultValues: { ...userData },
     });
     useEffect(() => {
         if (userData) {
             reset(userData);
-
         }
-    }, [userData, reset]);
+    }, [userData, reset,]);
 
     const onSubmit = async (data: userFormValues) => {
         try {
             await updateUserById({ userId, data }).unwrap();
+            assignRole({ role: data?.role as string, username: data?.username })
+
             setClose();
         } catch (err) {
             console.error("Update failed:", err);
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onError = (errors: any) => {
+        console.log(errors);
+    }
 
-    if (isLoading) return <UserFormSkeleton />
+
+    if (isLoading && !userData) return <UserFormSkeleton />
 
     return (
         <Card className="border-0">
             <CardContent>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit, onError)} className="space-y-6">
 
                     {/* PERSONAL */}
                     <h3 className="font-semibold">Personal Details</h3>
@@ -99,7 +97,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                                 control={control}
                                 render={({ field }) => (
                                     <SelectComponent
-                                        // value={field.value}
+                                        value={field.value}
                                         onValueChange={field.onChange}
                                         options={[
                                             { label: "MALE", value: "MALE" },
@@ -141,7 +139,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                             control={control}
                             render={({ field }) => (
                                 <SelectComponent
-                                    // value={field.value}
+                                    value={field.value}
                                     onValueChange={field.onChange}
                                     options={[
                                         { label: "MARRIED", value: "MARRIED" },
@@ -285,24 +283,29 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                         )}
                     </div>
 
-                    <div>
-                        <label className={labelClass}>Role</label>
-                        <SelectComponent
-                            onValueChange={(value) => setRole(value as RoleProps)}
-                            options={[
-                                { label: "SUPER_ADMIN", value: "SUPER_ADMIN" },
-                                { label: "DEVELOPER", value: "DEVELOPER" },
-                                { label: "SUPPORT_STAFF", value: "SUPPORT_STAFF" },
-                                { label: "ACCOUNT_STAFF", value: "ACCOUNT_STAFF" },
-                                { label: "MARKET_STAFF", value: "MARKET_STAFF" },
-                            ]}
-                            placeholder={role}
-                            {...register("role")}
-                        />
-                    </div>
+
+                    <Controller
+                        control={control}
+                        name="role"
+                        render={({ field }) => (
+                            <SelectComponent
+                                value={field.value}
+                                onValueChange={field.onChange}
+                                options={[
+                                    { label: "SUPER_ADMIN", value: "SUPER_ADMIN" },
+                                    { label: "DEVELOPER", value: "DEVELOPER" },
+                                    { label: "SUPPORT_STAFF", value: "SUPPORT_STAFF" },
+                                    { label: "ACCOUNT_STAFF", value: "ACCOUNT_STAFF" },
+                                    { label: "MARKET_STAFF", value: "MARKET_STAFF" },
+                                ]}
+                                placeholder="Select role"
+                            />
+                        )}
+                    />
+
 
                     {/* FIXED SELECT WITH CONTROLLER */}
-                    <label className={labelClass}>Permission Group</label>
+                    {/* <label className={labelClass}>Permission Group</label>
                     <Controller
                         name="permissionGroup"
                         control={control}
@@ -318,15 +321,15 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                                 placeholder="Select Permission Group"
                             />
                         )}
-                    />
+                    /> */}
 
                     <label className={labelClass}>Status</label>
                     <Controller
-                        name="status"
+                        name="isActive"
                         control={control}
                         render={({ field }) => (
                             <SelectComponent
-                                // value={field.value}
+                                value={field.value}
                                 onValueChange={field.onChange}
                                 options={[
                                     { label: "ACTIVE", value: "ACTIVE" },

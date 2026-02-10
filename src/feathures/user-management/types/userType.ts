@@ -26,5 +26,6 @@ export const userSchema = z.object({
   username: z.string().nonempty({ error: 'cannot be empty' }),
   role: z.string().optional(),
   permissionGroup: z.string().optional(),
-  status: z.enum(['ACTIVE', 'INACTIVE']),
+  isActive: z.enum(['ACTIVE', 'INACTIVE']),
+  // isActive: z.string().optional(),
 });

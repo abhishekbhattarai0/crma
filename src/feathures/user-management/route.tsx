@@ -5,6 +5,7 @@ import UserDetails from "./pages/UserDetails";
 import AccessControl from "./pages/AccessControl";
 import LoginHistory from "./pages/LoginHistory";
 import PasswordSecurity from "./pages/PasswordSecurity";
+import AccessControlDetails from "./pages/AccessControlDetails";
 
 export const userManagementMap: RouteObject = {
   path: "user-management",
@@ -33,6 +34,10 @@ export const userManagementMap: RouteObject = {
     {
       path: 'access-control',
       element: <AccessControl />
+    },
+    {
+      path: 'access-control/:roleName',
+      element: <AccessControlDetails />
     },
     {
       path: 'user-details/:userId',
