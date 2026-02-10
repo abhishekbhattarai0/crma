@@ -312,7 +312,7 @@ const CreateUserForm = () => {
 
                     <label className={labelClass}>Status</label>
                     <Controller
-                        name="status"
+                        name="isActive"
                         control={control}
                         render={({ field }) => (
                             <SelectComponent
