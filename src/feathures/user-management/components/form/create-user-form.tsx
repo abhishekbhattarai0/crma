@@ -8,7 +8,7 @@ import useModal from "@/hooks/useModal";
 import { SelectComponent } from "@/components/ui/SelectComponent";
 import { useState } from "react";
 import { z } from "zod";
-import { useAddUserMutation } from "../../userStore/userApi";
+import { useAddUserMutation, useGetAllAccessControlQuery } from "../../userStore/userApi";
 import { userSchema } from "../../types/userType";
 import { Loader2 } from "lucide-react";
 
@@ -29,6 +29,7 @@ const CreateUserForm = () => {
     const { setClose } = useModal();
     const [role, setRole] = useState<RoleProps>("ACCOUNT_STAFF");
     const [addUser, { isLoading, error }] = useAddUserMutation()
+    const { data: allRoles } = useGetAllAccessControlQuery({})
 
     const {
         register,
@@ -279,20 +280,17 @@ const CreateUserForm = () => {
                         <label className={labelClass}>Role</label>
                         <SelectComponent
                             onValueChange={(value) => setRole(value as RoleProps)}
-                            options={[
-                                { label: "SUPER_ADMIN", value: "SUPER_ADMIN" },
-                                { label: "DEVELOPER", value: "DEVELOPER" },
-                                { label: "SUPPORT_STAFF", value: "SUPPORT_STAFF" },
-                                { label: "ACCOUNT_STAFF", value: "ACCOUNT_STAFF" },
-                                { label: "MARKET_STAFF", value: "MARKET_STAFF" },
-                            ]}
+                            options={allRoles?.data?.map((role: { role: string }) => ({
+                                label: role.role,
+                                value: role.role,
+                            }))}
                             placeholder={role}
                             {...register("role")}
                         />
                     </div>
 
                     {/* FIXED SELECT WITH CONTROLLER */}
-                    <label className={labelClass}>Permission Group</label>
+                    {/* <label className={labelClass}>Permission Group</label>
                     <Controller
                         name="permissionGroup"
                         control={control}
@@ -308,7 +306,7 @@ const CreateUserForm = () => {
                                 placeholder="Select Permission Group"
                             />
                         )}
-                    />
+                    /> */}
 
                     <label className={labelClass}>Status</label>
                     <Controller

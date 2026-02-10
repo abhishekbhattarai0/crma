@@ -6,8 +6,7 @@ import CategoryDetailContainer from '@/components/category-detail-container'
 import { DetailField } from '@/components/detail-field'
 import { useLocation } from 'react-router-dom'
 import { useGetRoleByUserIdQuery, useGetUserByIdQuery } from '../userStore/userApi'
-import { permissionCategories } from '@/dummydata/accessControlData'
-import { Checkbox } from '@/components/ui/checkbox'
+import RolePermissionView from '../components/role-permission-view'
 
 // const data = {
 //     "id": "c9d0e1f2-8888-4c9b-2k99-bbbb88888888",
@@ -150,31 +149,7 @@ export default function UserDetails() {
               {/* Permissions */}
               <p className="text-sm text-foreground/75">Permissions</p>
               <div className='border p-2'>
-                {permissionCategories.map(category => (
-                  <div key={category.category} >
-                    <h4 className="text-foreground/75 text-xs mb-2 ">
-                      {category.category}
-                    </h4>
-
-                    <div className="grid grid-cols-2 gap-2 pb-5 ">
-                      {category.permissions.map(permission => (
-                        <div
-                          key={permission.key}
-                          className="flex items-center space-x-2 "
-                        >
-                          <Checkbox
-                            id={permission.key}
-                            checked={accessControl?.permission.includes(permission.key)}
-                          />
-
-                          <label htmlFor={permission.key} className="text-sm text-foreground/75">
-                            {permission.label}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                <RolePermissionView permissions={accessControl?.permission} />
               </div>
               <DetailField label="Status" value={data?.isActive} />
             </div>

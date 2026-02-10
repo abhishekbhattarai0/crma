@@ -27,6 +27,7 @@ export const userApi = baseApi.injectEndpoints({
         method: 'GET',
       }),
       transformResponse: (response: { data: userDataProps }) => response.data,
+      providesTags: ['all-users'],
     }),
 
     updateUserById: builder.mutation({

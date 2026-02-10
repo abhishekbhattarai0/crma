@@ -24,7 +24,7 @@ export function SelectComponent({ placeholder, options, onValueChange, value }: 
             </SelectTrigger>
             <SelectContent>
 
-                {options.map((option) => (
+                {options?.map((option) => (
                     <SelectItem value={option.value} key={option.label} className="text-foreground/85">{option.label}</SelectItem>
                 ))}
             </SelectContent>

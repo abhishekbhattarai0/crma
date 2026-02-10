@@ -8,7 +8,7 @@ import useModal from "@/hooks/useModal";
 import { SelectComponent } from "@/components/ui/SelectComponent";
 import { useEffect } from "react";
 import { z } from "zod";
-import { useAssignRoleMutation, useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
+import { useAssignRoleMutation, useGetAllAccessControlQuery, useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
 import UserFormSkeleton from "./user-form-skelton";
 import { userSchema } from "../../types/userType";
 import { Loader2 } from "lucide-react";
@@ -23,6 +23,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
     const { data: userData, isLoading, error } = useGetUserByIdQuery(userId)
     const [updateUserById, { isLoading: isUpdating, error: updateError }] = useUpdateUserByIdMutation()
     const [assignRole] = useAssignRoleMutation()
+    const { data: allRoles } = useGetAllAccessControlQuery({});
     // const { data: roles } = useGetRoleByUserIdQuery(userId)
 
     const {
@@ -284,7 +285,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                     </div>
 
 
-                    <Controller
+                    {/* <Controller
                         control={control}
                         name="role"
                         render={({ field }) => (
@@ -301,27 +302,28 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                                 placeholder="Select role"
                             />
                         )}
+                    /> */}
+
+                    <Controller
+                        control={control}
+                        name="role"
+                        render={({ field }) => (
+                            <SelectComponent
+                                value={field.value}
+                                onValueChange={field.onChange}
+                                options={
+                                    allRoles?.data?.map((role: { role: string }) => ({
+                                        label: role.role,
+                                        value: role.role,
+                                    }))
+                                }
+                                placeholder="Select role"
+                            />
+                        )}
                     />
 
 
-                    {/* FIXED SELECT WITH CONTROLLER */}
-                    {/* <label className={labelClass}>Permission Group</label>
-                    <Controller
-                        name="permissionGroup"
-                        control={control}
-                        render={({ field }) => (
-                            <SelectComponent
-                                // value={field.value}
-                                onValueChange={field.onChange}
-                                options={[
-                                    { label: "DEV_STANDARD", value: "DEV_STANDARD" },
-                                    { label: "ADMIN_FULL", value: "ADMIN_FULL" },
-                                    { label: "SUPPORT_LIMITED", value: "SUPPORT_LIMITED" },
-                                ]}
-                                placeholder="Select Permission Group"
-                            />
-                        )}
-                    /> */}
+
 
                     <label className={labelClass}>Status</label>
                     <Controller

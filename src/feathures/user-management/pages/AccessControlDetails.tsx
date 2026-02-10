@@ -1,10 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { permissionCategories } from "@/dummydata/accessControlData"
 import Detail from "@/feathures/frontdesk/components/detail-card"
 import { Info, } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useGetAccessControlByRoleNameQuery } from "../userStore/userApi";
+import RolePermissionView from "../components/role-permission-view";
 
 
 export default function AccessControlDetails() {
@@ -48,32 +47,8 @@ export default function AccessControlDetails() {
                         Role Information
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4  rounded-md">
-                    {permissionCategories.map(category => (
-                        <div key={category.category} >
-                            <h4 className="text-foreground/75 text-xs mb-2 ">
-                                {category.category}
-                            </h4>
-
-                            <div className="grid grid-cols-2 gap-2">
-                                {category.permissions.map(permission => (
-                                    <div
-                                        key={permission.key}
-                                        className="flex items-center space-x-2"
-                                    >
-                                        <Checkbox
-                                            id={permission.key}
-                                            checked={data?.permission.includes(permission.key)}
-                                        />
-
-                                        <label htmlFor={permission.key} className="text-sm text-foreground/75">
-                                            {permission.label}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                <CardContent className="  rounded-md">
+                    <RolePermissionView permissions={data?.permission} />
                 </CardContent>
             </Card>
 
