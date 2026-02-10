@@ -284,32 +284,12 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                         )}
                     </div>
 
-
-                    {/* <Controller
-                        control={control}
-                        name="role"
-                        render={({ field }) => (
-                            <SelectComponent
-                                value={field.value}
-                                onValueChange={field.onChange}
-                                options={[
-                                    { label: "SUPER_ADMIN", value: "SUPER_ADMIN" },
-                                    { label: "DEVELOPER", value: "DEVELOPER" },
-                                    { label: "SUPPORT_STAFF", value: "SUPPORT_STAFF" },
-                                    { label: "ACCOUNT_STAFF", value: "ACCOUNT_STAFF" },
-                                    { label: "MARKET_STAFF", value: "MARKET_STAFF" },
-                                ]}
-                                placeholder="Select role"
-                            />
-                        )}
-                    /> */}
-
                     <Controller
                         control={control}
                         name="role"
                         render={({ field }) => (
                             <SelectComponent
-                                value={field.value}
+                                value={field.value || ""}
                                 onValueChange={field.onChange}
                                 options={
                                     allRoles?.data?.map((role: { role: string }) => ({
@@ -325,13 +305,14 @@ const EditUserForm = ({ userId }: { userId: string }) => {
 
 
 
+
                     <label className={labelClass}>Status</label>
                     <Controller
                         name="isActive"
                         control={control}
                         render={({ field }) => (
                             <SelectComponent
-                                value={field.value}
+                                value={field.value || ""}
                                 onValueChange={field.onChange}
                                 options={[
                                     { label: "ACTIVE", value: "ACTIVE" },
