@@ -11,6 +11,7 @@ import { useGetAccessControlByRoleNameQuery, useUpdateAccessControlByRoleNameMut
 import { useEffect } from "react"
 import { toast } from "sonner"
 import useModal from "@/hooks/useModal"
+import { Loader2 } from "lucide-react"
 
 
 
@@ -22,7 +23,7 @@ const UpdateAccessControlForm = ({ role }: { role: string }) => {
 
     const { setClose } = useModal()
     const { data, isLoading } = useGetAccessControlByRoleNameQuery(role)
-    const [updateAccessControl] = useUpdateAccessControlByRoleNameMutation()
+    const [updateAccessControl, { isLoading: isUpdating }] = useUpdateAccessControlByRoleNameMutation()
     console.log('update access control form', data)
 
     const { register, handleSubmit, control, reset, formState: { errors } } = useForm<accessControlFormValues>({
@@ -58,7 +59,6 @@ const UpdateAccessControlForm = ({ role }: { role: string }) => {
         <Card className="border-0 p-0">
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {data?.role}
                     <div className="w-full">
                         <label className="text-sm text-foreground/75">Role Name</label>
                         <Input {...register("role")} />
@@ -145,7 +145,13 @@ const UpdateAccessControlForm = ({ role }: { role: string }) => {
                             // @ts-expect-error/not handled error types
                             <span className="text-xs text-red-600">{error.data?.message}</span>
                         } */}
-                    <Button className="w-full" type="submit">Create</Button>
+                    <Button className="w-full" type="submit">
+                        {isUpdating ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                            "Update"
+                        )}
+                    </Button>
                 </form>
             </CardContent>
 
