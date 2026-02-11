@@ -5,50 +5,25 @@ import { Contact2, LocateFixed, } from "lucide-react"
 import CategoryDetailContainer from '@/components/category-detail-container'
 import { DetailField } from '@/components/detail-field'
 import { useLocation } from 'react-router-dom'
-import { useGetRoleByUserIdQuery, useGetUserByIdQuery } from '../userStore/userApi'
+import { useGetUserByIdQuery } from '../userStore/userApi'
 import RolePermissionView from '../components/role-permission-view'
+import Loader from '@/components/common/Loader'
 
-// const data = {
-//     "id": "c9d0e1f2-8888-4c9b-2k99-bbbb88888888",
-//     "username":"sophia",
-//     "firstName": "Sophia",
-//     "lastName": "Martinez",
-//     "gender": "FEMALE",
-//     "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sophia",
-//     "dob": "1994-05-21",
-//     "maritalStatus": "MARRIED",
-//     "officialEmail": "sophia.martinez@company.com",
-//     "personalEmail": "sophia@gmail.com",
-//     "phone": "9841000009",
-//     "emergencyContactPhone": "9800000009",
-//     "currentAddress": "Kathmandu",
-//     "permanentAddress": "Hetauda",
-//     "department": "Marketing",
-//     "team": "Digital",
-//     "designation": "Executive",
-//     "jobTitle": "Digital Marketing Executive",
-//     "shift": "Day",
-//     "isActive": "ACTIVE",
-//     "isLocked": false,
-//     "lockedTill": null,
-//     "createdAt": "2026-02-04T10:07:00.545Z",
-//     "updatedAt": "2026-02-04T10:07:00.545Z"
-//   }
+
 
 
 
 export default function UserDetails() {
 
-  // const [isBranch, setIsBranch] = useState(true)
   const location = useLocation()
   const { data, isLoading } = useGetUserByIdQuery(location.state.userId)
   // const { data: accessControl, isLoading: accessControlLoading } = useGetRoleByUserIdQuery(data?.id)
-  const { data: accessControl, isLoading: isAccessControlLoading } =
-    useGetRoleByUserIdQuery(data?.id as string, {
-      skip: !data?.id,
-    });
-  if (isLoading && isAccessControlLoading) {
-    return <div className="flex h-[50vh] items-center justify-center">Loading...</div>
+  // const { data: accessControl, isLoading: isAccessControlLoading } =
+  //   useGetRoleByUserIdQuery(data?.id as string, {
+  //     skip: !data?.id,
+  //   });
+  if (isLoading) {
+    return <Loader />
   }
 
   return (
@@ -80,9 +55,9 @@ export default function UserDetails() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-foreground/75">
-                    Admin
+                    {data?.role}
                   </h3>
-                  <p className="text-sm text-foreground/45">Active</p>
+                  <p className="text-sm text-foreground/45">{data?.isActive}</p>
                 </div>
               </div>
             </CardContent>
@@ -143,13 +118,12 @@ export default function UserDetails() {
           <CategoryDetailContainer title="System Access" icon={LocateFixed}>
             <div className="flex flex-col gap-4">
               <DetailField label="Username" value={data?.username} />
-              <DetailField label="Role" value={accessControl?.role} />
-              {/* <DetailField label="Permission Group" value={accessControl?.permission.join(', ')} /> */}
+              <DetailField label="Role" value={data?.role} />
 
               {/* Permissions */}
               <p className="text-sm text-foreground/75">Permissions</p>
               <div className='border p-2'>
-                <RolePermissionView permissions={accessControl?.permission} />
+                <RolePermissionView permissions={data?.permission} />
               </div>
               <DetailField label="Status" value={data?.isActive} />
             </div>

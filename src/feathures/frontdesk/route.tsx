@@ -28,7 +28,8 @@ export const frontdeskRoute: RouteObject = {
     {
       path: 'postal-details',
       element: <PostalView />
-    }
+    },
+
 
 
   ],

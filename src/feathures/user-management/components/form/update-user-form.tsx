@@ -8,7 +8,7 @@ import useModal from "@/hooks/useModal";
 import { SelectComponent } from "@/components/ui/SelectComponent";
 import { useEffect } from "react";
 import { z } from "zod";
-import { useAssignRoleMutation, useGetAllAccessControlQuery, useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
+import { useGetAllAccessControlQuery, useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
 import UserFormSkeleton from "./user-form-skelton";
 import { userSchema } from "../../types/userType";
 import { Loader2 } from "lucide-react";
@@ -17,12 +17,11 @@ export type userFormValues = z.infer<typeof userSchema>;
 
 const labelClass = "text-sm text-foreground/75";
 
-const EditUserForm = ({ userId }: { userId: string }) => {
+const UpdateUserForm = ({ userId }: { userId: string }) => {
     const { setClose } = useModal();
 
     const { data: userData, isLoading, error } = useGetUserByIdQuery(userId)
     const [updateUserById, { isLoading: isUpdating, error: updateError }] = useUpdateUserByIdMutation()
-    const [assignRole] = useAssignRoleMutation()
     const { data: allRoles } = useGetAllAccessControlQuery({});
     // const { data: roles } = useGetRoleByUserIdQuery(userId)
 
@@ -31,7 +30,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
         handleSubmit,
         control,
         reset,
-        formState: { errors }
+        formState: { errors, dirtyFields }
     } = useForm<userFormValues>({
         resolver: zodResolver(userSchema),
         defaultValues: { ...userData },
@@ -43,9 +42,15 @@ const EditUserForm = ({ userId }: { userId: string }) => {
     }, [userData, reset,]);
 
     const onSubmit = async (data: userFormValues) => {
+        console.log('jdfldskjfkdjfkldsjflkj', data)
+        if (Object.keys(dirtyFields).length === 0) {
+            console.log("No changes detected. Skipping API call.");
+            return;
+        }
         try {
+
             await updateUserById({ userId, data }).unwrap();
-            assignRole({ role: data?.role as string, username: data?.username })
+            // assignRole({ role: data?.role as string, username: data?.username })
 
             setClose();
         } catch (err) {
@@ -128,12 +133,6 @@ const EditUserForm = ({ userId }: { userId: string }) => {
 
                     <div>
                         <label className={labelClass}>Marital Status</label>
-                        {/* <Input {...register("maritalStatus")} />
-                        {errors.maritalStatus && (
-                            <span className="text-xs text-red-600">
-                                {errors.maritalStatus.message}
-                            </span>
-                        )} */}
 
                         <Controller
                             name="maritalStatus"
@@ -150,6 +149,11 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                                 />
                             )}
                         />
+                        {errors.maritalStatus && (
+                            <span className="text-xs text-red-600">
+                                {errors.maritalStatus.message}
+                            </span>
+                        )}
                     </div>
 
                     {/* CONTACT */}
@@ -303,9 +307,6 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                     />
 
 
-
-
-
                     <label className={labelClass}>Status</label>
                     <Controller
                         name="isActive"
@@ -327,14 +328,14 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                         // @ts-expect-error/not handled error types
                         <span className="text-xs text-red-600">{error.data?.message}</span>
                     }
-                    <Button type="submit" className="w-full mt-4">
-                        {isUpdating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Update User"}
-                    </Button>
-
                     {updateError && 'data' in updateError &&
                         // @ts-expect-error/not handled error types
                         <span className="text-xs text-red-600">{updateError.data?.message}</span>
                     }
+                    <Button type="submit" className="w-full mt-4">
+                        {isUpdating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Update User"}
+                    </Button>
+
 
                 </form>
             </CardContent>
@@ -342,5 +343,5 @@ const EditUserForm = ({ userId }: { userId: string }) => {
     );
 };
 
-export default EditUserForm;
+export default UpdateUserForm;
 

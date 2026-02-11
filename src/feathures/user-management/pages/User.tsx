@@ -21,7 +21,7 @@ const User = () => {
 
   return (
     <div>
-      <DataTable columns={userColumns} data={isLoading ? [] : data?.data} onAdd={onAdd} searchKey="firstName" isLoading={isLoading} />
+      <DataTable columns={userColumns} data={isLoading ? [] : data?.data} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
     </div>
   )
 }

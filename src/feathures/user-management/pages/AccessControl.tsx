@@ -25,7 +25,6 @@ const AccessControl = () => {
     }, [data])
     return (
         <div className="">
-            {isLoading ? <p>Loading...</p> : <p>{data.message}</p>}
             <DataTable columns={accessControlColumns} data={isLoading ? [] : data.data} searchKey="roleName" onAdd={addAccessControl} />
         </div>
     )

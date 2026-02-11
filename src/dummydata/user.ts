@@ -229,36 +229,90 @@
 //     // 👉 Continue same pattern to reach 30 users
 // ]
 
-export type Gender = 'MALE' | 'FEMALE' | 'OTHER';
-export type MaritalStatus = 'SINGLE' | 'MARRIED';
-export type ActiveStatus = 'ACTIVE' | 'INACTIVE';
+// export type Gender = 'MALE' | 'FEMALE' | 'OTHER';
+// export type MaritalStatus = 'SINGLE' | 'MARRIED';
+// export type ActiveStatus = 'ACTIVE' | 'INACTIVE';
 
+// export interface userDataProps {
+//   id: string;
+//   username: string;
+//   firstName: string;
+//   lastName: string;
+//   gender: Gender;
+//   avatar: string | null;
+//   dob: string;
+//   maritalStatus: MaritalStatus;
+//   officialEmail: string;
+//   personalEmail: string;
+//   phone: string;
+//   emergencyContactPhone: string;
+//   currentAddress: string;
+//   permanentAddress: string;
+//   department: string;
+//   team: string;
+//   designation: string;
+//   jobTitle: string;
+//   shift: string;
+//   isActive: ActiveStatus;
+//   isLocked: boolean | null;
+//   lockedTill: string | null;
+//   createdAt: string;
+//   updatedAt: string;
+// }
 export interface userDataProps {
   id: string;
-  username: string;
   firstName: string;
   lastName: string;
-  gender: Gender;
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
   avatar: string | null;
-  dob: string;
-  maritalStatus: MaritalStatus;
+  dob: string; // ISO date string (YYYY-MM-DD)
+  maritalStatus: 'SINGLE' | 'MARRIED';
   officialEmail: string;
-  personalEmail: string;
+  personalEmail?: string;
   phone: string;
-  emergencyContactPhone: string;
+  emergencyContactPhone?: string;
   currentAddress: string;
   permanentAddress: string;
   department: string;
   team: string;
   designation: string;
   jobTitle: string;
-  shift: string;
-  isActive: ActiveStatus;
+  shift: 'Day' | 'Night';
+  isActive: 'ACTIVE' | 'INACTIVE';
   isLocked: boolean | null;
   lockedTill: string | null;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string; // ISO datetime
+  updatedAt: string; // ISO datetime
+  username: string;
+  role?: 'SUPER_ADMIN' | 'ADMIN' | 'USER';
+  permission?: Permission[];
 }
+
+export type Permission =
+  | 'USER_MANAGE'
+  | 'ROLE_MANAGE'
+  | 'SYSTEM_SETTINGS'
+  | 'CRM_VIEW'
+  | 'CRM_EDIT'
+  | 'CRM_DELETE'
+  | 'LEAD_VIEW'
+  | 'LEAD_ASSIGN'
+  | 'LEAD_EDIT'
+  | 'LEAD_DELETE'
+  | 'CUSTOMER_VIEW'
+  | 'CUSTOMER_EDIT'
+  | 'SUPPORT_TICKET_VIEW'
+  | 'SUPPORT_TICKET_REPLY'
+  | 'SUPPORT_TICKET_CLOSE'
+  | 'ACCOUNT_VIEW'
+  | 'ACCOUNT_EDIT'
+  | 'INVOICE_MANAGE'
+  | 'PAYMENT_MANAGE'
+  | 'MARKETING_VIEW'
+  | 'MARKETING_EDIT'
+  | 'CAMPAIGN_MANAGE'
+  | 'REPORT_VIEW'
+  | 'REPORT_EXPORT';
 
 export const userData: userDataProps[] = [
   {

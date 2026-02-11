@@ -7,46 +7,16 @@ import { ArrowDownUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { userDataProps } from "@/dummydata/user";
 import UserActionRow from "./user-action-row";
-// user.schema.ts
-// type UserSchema = {
-//   personalDetails: {
-//     firstName: string;
-//     lastName: string;
-//     gender: "Male" | "Female" | "Other";
-//     profilePhoto: string;
-//     dob: string;
-//     maritalStatus: string;
-//   };
-//   contactInformation: {
-//     officialEmail: string;
-//     personalEmail: string;
-//     phone: string;
-//     emergencyContactPhone: string;
-//     currentAddress: string;
-//     permanentAddress: string;
-//   };
-//   companyInformation: {
-//     department: string;
-//     team: string;
-//     designation: string;
-//     jobTitle: string;
-//     shift: string;
-//   };
-//   systemAccess: {
-//     username: string;
-//     role: "ADMIN" | "DEVELOPER" | "HR" | "MANAGER";
-//     permissionGroup: string;
-//     status: "ACTIVE" | "INACTIVE" | "SUSPENDED";
-//   };
-// };
+
 
 
 
 export const userColumns: ColumnDef<userDataProps>[] = [
   // Avatar
   {
+
+    header: 'Action',
     accessorKey: 'action',
-    header: () => <div className="">Action</div>,
     cell: ({ row }) => <UserActionRow row={row} />,
   },
   {
@@ -59,7 +29,6 @@ export const userColumns: ColumnDef<userDataProps>[] = [
   // Full Name
   {
     id: "fullName",
-    // header: "Full Name",
     header: ({ column }) => {
       return (
         <Button className="bg-white dark:bg-background text-foreground/85" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
@@ -70,6 +39,9 @@ export const userColumns: ColumnDef<userDataProps>[] = [
     accessorFn: (row) =>
       `${row.firstName} ${row.lastName}`,
     cell: ({ row }) => <RowCell row={row} columnId="fullName" />,
+    meta: {
+      label: "Full Name"
+    }
   },
 
   // Department
@@ -120,82 +92,3 @@ export const userColumns: ColumnDef<userDataProps>[] = [
     cell: ({ row }) => <StatusCell row={row} columnId="status" />,
   },
 ];
-
-// export const userColumns: ColumnDef<UserDataProps>[] = [
-//   // Avatar
-//   {
-//     accessorKey: 'action',
-//     header: () => <div className="">Action</div>,
-//     cell: () => <ActionRow />,
-//   },
-//   {
-//     id: "avatar",
-//     header: "Avatar",
-//     accessorFn: (row) => row.personalDetails.profilePhoto,
-//     cell: ({ row }) => <AvatarCell row={row} columnId="avatar" />,
-//   },
-
-//   // Full Name
-//   {
-//     id: "fullName",
-//     // header: "Full Name",
-//     header: ({ column }) => {
-//       return (
-//         <Button className="bg-white dark:bg-background text-foreground/85" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-//           Full Name <ArrowDownUp />
-//         </Button>
-//       )
-//     },
-//     accessorFn: (row) =>
-//       `${row.personalDetails.firstName} ${row.personalDetails.lastName}`,
-//     cell: ({ row }) => <RowCell row={row} columnId="fullName" />,
-//   },
-
-//   // Department
-//   {
-//     id: "department",
-//     header: "Department",
-//     accessorFn: (row) => row.companyInformation.department,
-//     cell: ({ row }) => <RowCell row={row} columnId="department" />,
-//   },
-
-//   // Designation
-//   {
-//     id: "designation",
-//     header: "Designation",
-//     accessorFn: (row) => row.companyInformation.designation,
-//     cell: ({ row }) => <RowCell row={row} columnId="designation" />,
-//   },
-
-//   // Role
-//   {
-//     id: "role",
-//     header: "Role",
-//     accessorFn: (row) => row.systemAccess.role,
-//     cell: ({ row }) => <RowCell row={row} columnId="role" />,
-//   },
-
-//   // Official Email
-//   {
-//     id: "email",
-//     header: "Email",
-//     accessorFn: (row) => row.contactInformation.officialEmail,
-//     cell: ({ row }) => <RowCell row={row} columnId="email" />,
-//   },
-
-//   // Phone
-//   {
-//     id: "phone",
-//     header: "Phone",
-//     accessorFn: (row) => row.contactInformation.phone,
-//     cell: ({ row }) => <RowCell row={row} columnId="phone" />,
-//   },
-
-//   // Status
-//   {
-//     id: "status",
-//     header: "Status",
-//     accessorFn: (row) => row.systemAccess.status,
-//     cell: ({ row }) => <StatusCell row={row} columnId="status" />,
-//   },
-// ];

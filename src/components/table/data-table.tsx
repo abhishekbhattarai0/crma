@@ -96,7 +96,8 @@ export function DataTable<TData, TValue>({
                           column.toggleVisibility(!!value)
                         }
                       >
-                        {column.columnDef.header as string}
+                        {/* {column.columnDef.header as string } */}
+                        {column.columnDef.meta?.label ?? column.id}
                       </DropdownMenuCheckboxItem>
                     )
                   })}
