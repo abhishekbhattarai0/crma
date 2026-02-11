@@ -33,7 +33,7 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
         formState: { errors, dirtyFields }
     } = useForm<userFormValues>({
         resolver: zodResolver(userSchema),
-        defaultValues: { ...userData },
+        defaultValues: userData,
     });
     useEffect(() => {
         if (userData) {
@@ -42,7 +42,6 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
     }, [userData, reset,]);
 
     const onSubmit = async (data: userFormValues) => {
-        console.log('jdfldskjfkdjfkldsjflkj', data)
         if (Object.keys(dirtyFields).length === 0) {
             console.log("No changes detected. Skipping API call.");
             return;
