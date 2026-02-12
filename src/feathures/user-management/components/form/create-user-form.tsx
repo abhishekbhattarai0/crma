@@ -277,6 +277,16 @@ const CreateUserForm = () => {
                     </div>
 
                     <div>
+                        <label className={labelClass}>Password</label>
+                        <Input {...register("password")} />
+                        {errors.password && (
+                            <span className="text-xs text-red-600">
+                                {errors.password.message}
+                            </span>
+                        )}
+                    </div>
+
+                    <div>
                         <label className={labelClass}>Role</label>
                         <SelectComponent
                             onValueChange={(value) => setRole(value as RoleProps)}

@@ -63,6 +63,15 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['all-access-control'],
     }),
+
+    deleteRoleByRoleName: builder.mutation({
+      query: (role: string) => ({
+        url: `auth/delete-role-permission/${role}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['all-access-control'],
+    }),
+
     getAllAccessControl: builder.query({
       query: () => ({
         url: 'auth/roles',
@@ -92,13 +101,38 @@ export const userApi = baseApi.injectEndpoints({
 
     assignRole: builder.mutation({
       query: (data: { role: string; username: string }) => {
-        console.log('datajdflkjfdkjf', data);
         return {
           url: 'auth/users/assign-role',
           method: 'PATCH',
           body: { role: data.role, username: data.username },
         };
       },
+    }),
+
+    // login history
+
+    getLoginHistory: builder.query({
+      query: () => ({
+        url: 'auth/login-history',
+        method: 'GET',
+      }),
+      providesTags: ['all-login-history'],
+    }),
+
+    getActiveSessions: builder.query({
+      query: () => ({
+        url: 'auth/sessions',
+        method: 'GET',
+      }),
+      providesTags: ['all-active-sessions'],
+    }),
+
+    revokeLoginSession: builder.mutation({
+      query: (sessionId: string) => ({
+        url: `auth/sessions/${sessionId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['all-active-sessions'],
     }),
   }),
 });
@@ -114,4 +148,8 @@ export const {
   useUpdateAccessControlByRoleNameMutation,
   useGetRoleByUserIdQuery,
   useAssignRoleMutation,
+  useGetLoginHistoryQuery,
+  useRevokeLoginSessionMutation,
+  useGetActiveSessionsQuery,
+  useDeleteRoleByRoleNameMutation,
 } = userApi;

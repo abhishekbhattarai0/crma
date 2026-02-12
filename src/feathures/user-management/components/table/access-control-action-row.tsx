@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button"
 import useModal from "@/hooks/useModal";
 import { useNavigate } from "react-router-dom"
 import type { Row } from "@tanstack/react-table";
-import { Eye, Pencil } from "lucide-react"
+import { Eye, Pencil, Trash } from "lucide-react"
 // import type { accessControlProps } from "@/dummydata/accessControlData";
 import UpdateAccessControlForm from "../form/update-access-control-form";
 import type { accessControlType } from "./access-control-column";
+import { useDeleteRoleByRoleNameMutation } from "../../userStore/userApi";
+import ConfirmationDialog from "@/components/confirmation-dialog";
 
 type RowCellProps<TData> = {
     row: Row<TData>;
@@ -18,6 +20,7 @@ const AccessControlActionRow = <TData extends accessControlType,>({ row }: RowCe
 
     const navigate = useNavigate()
     const { setOpen } = useModal()
+    const [deleteRoleByRoleName] = useDeleteRoleByRoleNameMutation()
 
     // const onAccessControlView = (roleName: string, roleId: string) => {
     //     console.log('view user')
@@ -37,6 +40,10 @@ const AccessControlActionRow = <TData extends accessControlType,>({ row }: RowCe
                 <UpdateAccessControlForm role={role} key={role} />
             </CustomModal>
         )
+    }
+
+    const handleDeleteAccessControl = (role: string) => {
+        deleteRoleByRoleName(role)
     }
     return (
         <div
@@ -62,6 +69,22 @@ const AccessControlActionRow = <TData extends accessControlType,>({ row }: RowCe
             >
                 <Pencil />
             </Button>
+
+            <ConfirmationDialog
+                title="Delete Access Control"
+                description="Are you sure you want to delete this access control?"
+                onConfirm={() => handleDeleteAccessControl(row.original?.role)}
+                onCancel={() => { }}
+            >
+                <Button
+                    size={'icon-sm'}
+                    variant={'outline'}
+                    className="rounded-full hover:bg-red-500 hover:text-white text-red-500"
+
+                >
+                    <Trash />
+                </Button>
+            </ConfirmationDialog>
         </div>
     )
 }

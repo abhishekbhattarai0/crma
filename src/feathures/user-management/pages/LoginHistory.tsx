@@ -1,6 +1,10 @@
+import LoginHistoryTable from "../components/table/login-history-table"
+
 const LoginHistory = () => {
   return (
-    <div>LoginHistory</div>
+    <div className="p-4">
+      <LoginHistoryTable />
+    </div>
   )
 }
 

@@ -24,6 +24,9 @@ export const userSchema = z.object({
   shift: z.string().nonempty({ error: 'cannot be empty' }),
 
   username: z.string().nonempty({ error: 'cannot be empty' }),
+  password: z
+    .string()
+    .min(6, { error: 'Password must be atleast 6 characters' }),
   role: z.string().optional(),
   permissionGroup: z.string().optional(),
   isActive: z.enum(['ACTIVE', 'INACTIVE']),

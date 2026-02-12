@@ -5,6 +5,7 @@ import useModal from "@/hooks/useModal"
 import CustomModal from "@/components/common/custom-modal"
 import UserForm from "../components/form/create-user-form"
 import { useGetAllUsersQuery } from "../userStore/userApi"
+import { Loader } from "lucide-react"
 
 const User = () => {
   const { setOpen } = useModal()
@@ -13,15 +14,19 @@ const User = () => {
 
   const onAdd = () => {
     setOpen(
-      <CustomModal title="Postal Dispatch Form">
+      <CustomModal title="Create User">
         <UserForm />
       </CustomModal>
     )
   }
 
+  if (isLoading) {
+    return <Loader className="animate-spin mx-auto" />
+  }
+
   return (
     <div>
-      <DataTable columns={userColumns} data={isLoading ? [] : data?.data} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
+      <DataTable columns={userColumns} data={data?.data} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
     </div>
   )
 }

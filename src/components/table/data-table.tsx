@@ -75,6 +75,7 @@ export function DataTable<TData, TValue>({
       <div className=" ">
         <div className="mb-4  w-full flex justify-between sm:gap-0 gap-4 ">
           {searchKey && <TableSearch table={table} className="sm:w-1/2 w-full" searchKey={searchKey} />}
+          {!searchKey && <div className="w-full "></div>}
           <div className="flex gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -143,7 +144,7 @@ export function DataTable<TData, TValue>({
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}
 
-                        className=" px-2 py-2 border-r"
+                        className=" px-1 py-2 border-r"
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>

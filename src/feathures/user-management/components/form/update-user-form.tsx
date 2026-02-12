@@ -287,6 +287,16 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                         )}
                     </div>
 
+                    {/* <div>
+                        <label className={labelClass}>Password</label>
+                        <Input {...register("password")} type="password" placeholder="Enter Password" />
+                        {errors.password && (
+                            <span className="text-xs text-red-600">
+                                {errors.password.message}
+                            </span>
+                        )}
+                    </div> */}
+
                     <Controller
                         control={control}
                         name="role"

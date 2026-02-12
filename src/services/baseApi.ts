@@ -74,5 +74,7 @@ export const baseApi = createApi({
     'getCurrentUser',
     'all-users',
     'all-access-control',
+    'all-login-history',
+    'all-active-sessions',
   ],
 });
