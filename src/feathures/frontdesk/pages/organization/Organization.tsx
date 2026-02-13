@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input"
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { SelectComponent } from '@/components/ui/SelectComponent'
 import CategoryDetailContainer from '@/components/category-detail-container'
+import { useForm } from 'react-hook-form'
 
 
 const deviceData = [
@@ -33,16 +33,85 @@ const deviceData = [
   },
 ];
 
-type InstitutionTypeProp = 'school' | 'campus' | 'cooperative'
+type OrganizationProp = {
+  id: string;
+  institutionName: string;
+  founderName: string;
+  affiliation: string;
+  institutionShortcode: string;
+  panNumber: string;
+  primaryEmail: string;
+  alternateEmail: string;
+  contactNumber: string;
+  officeNumber: string;
+  address: string;
+  province: string;
+  city: string;
+  zipCode: string;
+  institutionType: string;
+  packageType: string;
+  hasBranch: boolean;
+  branchCount: number;
+  logoUrl: string;
+  tagline: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+const organization:OrganizationProp ={
+  "id": "org_001",
+
+  "institutionName": "Himalayan Sunrise Academy Pvt. Ltd.",
+  "founderName": "Suman Shrestha",
+  "affiliation": "National Examination Board (NEB)",
+  "institutionShortcode": "HSA",
+  "panNumber": "604578392",
+
+  "primaryEmail": "info@hsa.edu.np",
+  "alternateEmail": "admin@hsa.edu.np",
+  "contactNumber": "+977-1-4523678",
+  "officeNumber": "+977-1-4529876",
+
+  "address": "Baneshwor-10",
+  "province": "Bagmati",
+  "city": "Kathmandu",
+  "zipCode": "44600",
+
+  "institutionType": "school",
+  "packageType": "premium",
+
+  "hasBranch": true,
+  "branchCount": 3,
+
+  "logoUrl": "https://dummycdn.com/logo-hsa.png",
+  "tagline": "Explore to Invent",
+
+  "createdAt": "2025-01-10T10:00:00Z",
+  "updatedAt": "2025-02-01T15:30:00Z"
+}
+
+
+// type InstitutionTypeProp = 'school' | 'campus' | 'cooperative'
 
 export default function Organization() {
 
   const [isEditActive, setIsEditActive] = useState(false)
   // const [isBranch, setIsBranch] = useState(false)
-  const [type, setType] = useState<InstitutionTypeProp>('school')
+
+  const {
+    register,
+    handleSubmit,
+
+  } = useForm<OrganizationProp>({
+    defaultValues: organization,
+  })
+
+  const onSubmit = (data: OrganizationProp) => {
+    console.log(data)
+  }
 
   return (
-    <div className="  flex flex-col gap-4 pb-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="  flex flex-col gap-4 pb-6">
 
       {/* Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -59,7 +128,7 @@ export default function Organization() {
                 id="institutionName"
                 className="w-full"
                 disabled={!isEditActive}
-                value={'value'}
+                {...register("institutionName")}
               />
             </div>
 
@@ -72,7 +141,7 @@ export default function Organization() {
                   id="founderName"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('founderName')}
                 />
               </div>
               <div className="flex flex-col gap-2 w-full">
@@ -83,7 +152,7 @@ export default function Organization() {
                   id="affiliation"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('affiliation')}
                 />
               </div>
 
@@ -99,7 +168,7 @@ export default function Organization() {
                   id="institutionShortcode"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('institutionShortcode')}
                 />
               </div>
               <div className="flex flex-col gap-2 w-full">
@@ -110,7 +179,7 @@ export default function Organization() {
                   id="panNo"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('panNumber')}
                 />
               </div>
 
@@ -129,7 +198,7 @@ export default function Organization() {
                   id="primaryEmail"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('primaryEmail')}
                 />
               </div>
               <div className="flex flex-col gap-2 w-full">
@@ -140,7 +209,7 @@ export default function Organization() {
                   id="alternateEmail"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('alternateEmail')}
                 />
               </div>
 
@@ -156,7 +225,7 @@ export default function Organization() {
                   id="contactNo"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('contactNumber')}
                 />
               </div>
               <div className="flex flex-col gap-2 w-full">
@@ -167,7 +236,7 @@ export default function Organization() {
                   id="officeNo"
                   className="w-full"
                   disabled={!isEditActive}
-                  value={'value'}
+                  {...register('officeNumber')}
                 />
               </div>
 
@@ -176,48 +245,59 @@ export default function Organization() {
 
           {/* Classification and Location Information */}
           <div className="grid md:grid-cols-2 gap-4 ">
-            <CategoryDetailContainer icon={Contact2} title='Classification' >
+            <CategoryDetailContainer icon={Contact2} title='Location' >
 
 
               <div className="space-y-2">
                 <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="institutionType" className="text-sm text-foreground/75">
-                    Institution Type <span className="text-red-500">*</span> :
+                  <label htmlFor="Address" className="text-sm text-foreground/75">
+                    Address <span className="text-red-500">*</span> :
                   </label>
-                  {/* <Input
-                      id="institutionType"
+                  <Input
+                      id="address"
                       className="w-full"
                       disabled={!isEditActive}
-                      value={'value'}
-                    /> */}
-                  <SelectComponent
-
-                    onValueChange={(value) => setType(value as InstitutionTypeProp)}
-                    options={[
-                      { label: "School", value: "school" },
-                      { label: "campus", value: "cooperative" },
-                      { label: "Co-operative", value: "cooperative" },
-                    ]}
-                    placeholder={type}
-
+                      {...register('address')}
+                    />
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="province" className="text-sm text-foreground/75">
+                    Province:
+                  </label>
+                  <Input
+                    id="province"
+                    className="w-full"
+                    disabled={!isEditActive}
+                    {...register('province')}
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="packageType" className="text-sm text-foreground/75">
-                    Package Type:
+                  <label htmlFor="city" className="text-sm text-foreground/75">
+                    City:
                   </label>
                   <Input
-                    id="packageType"
+                    id="city"
                     className="w-full"
                     disabled={!isEditActive}
-                    value={'value'}
+                    {...register('city')}
+                  />
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="zipCode" className="text-sm text-foreground/75">
+                    Zip Code:
+                  </label>
+                  <Input
+                    id="zipCode"
+                    className="w-full"
+                    disabled={!isEditActive}
+                    {...register('zipCode')}
                   />
                 </div>
               </div>
             </CategoryDetailContainer>
 
 
-            <CategoryDetailContainer icon={LocateFixed} title='Location'>
+            <CategoryDetailContainer icon={LocateFixed} title='Classification'>
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="location" className="text-sm text-foreground/75">
@@ -227,7 +307,7 @@ export default function Organization() {
                     id="location"
                     className="w-full"
                     disabled={!isEditActive}
-                    value={'value'}
+                    {...register('institutionType')}
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
@@ -238,7 +318,7 @@ export default function Organization() {
                     id="packageType"
                     className="w-full"
                     disabled={!isEditActive}
-                    value={'value'}
+                    {...register('packageType')}
                   />
                 </div>
               </div>
@@ -273,7 +353,7 @@ export default function Organization() {
                     max={20}
                     className="w-full"
                     disabled={!isEditActive}
-                    value={'value'}
+                    {...register('branchCount')}
                   />
                 </div>
               </div>
@@ -286,7 +366,7 @@ export default function Organization() {
             <CardHeader className="border-b flex justify-between items-center">
               <CardTitle className="text-foreground/85">Logo</CardTitle>
               <CardAction >
-                <Button variant={'default'} size={'sm'} className="text-white hover:bg-primary/90 active:bg-primary py-1">
+                <Button type='button' variant={'default'} size={'sm'} className="text-white hover:bg-primary/90 active:bg-primary py-1">
                   <Upload size={18} />
                   <div >Update</div>
                 </Button>
@@ -344,27 +424,50 @@ export default function Organization() {
                     <X />
                     Cancel
 
-                  </Button>}
+                  </Button>
+                }
+
+                {isEditActive &&
                 <Button
+                  type='submit'
                   size={'sm'}
                   className={cn(
                     'hover:bg-primary/80 active:bg-primary w-full ',
                     isEditActive && 'w-1/2'
                   )}
+                  // onClick={() => {
+                  //   setIsEditActive(prev => !prev)
+                  // }}
+                >
+                  <Save />
+                  Save
+
+                </Button>
+              }
+
+{!isEditActive &&
+                <Button
+                  type='button'
+                  size={'sm'}
+                  className={cn(
+                    'hover:bg-primary/80 active:bg-primary w-full ',
+                  )}
                   onClick={() => {
                     setIsEditActive(prev => !prev)
                   }}
                 >
-                  {isEditActive ? <Save /> : <Pencil />}
-                  {isEditActive ? "Save" : "Edit"}
+                  <Pencil />
+                  Edit
 
                 </Button>
+              }
+
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
-    </div>
+    </form>
   )
 }
 

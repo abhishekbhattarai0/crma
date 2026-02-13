@@ -2,7 +2,7 @@ import ActionRow from "@/components/table/action-row";
 import RowCell from "@/components/table/row-cell";
 import type { PostalProps } from "@/dummydata/postalData";
 import { type ColumnDef, } from "@tanstack/react-table"
-import RowWithImage from "./row-with-image";
+import RowWithImage from "../row/row-with-image";
 
 
 export const postalColumn: ColumnDef<PostalProps>[] = [

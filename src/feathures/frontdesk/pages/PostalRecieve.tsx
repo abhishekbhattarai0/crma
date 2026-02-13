@@ -2,7 +2,7 @@ import { DataTable } from "@/components/table/data-table"
 import { postal } from "@/dummydata/postalData"
 import useModal from "@/hooks/useModal"
 import CustomModal from "@/components/common/custom-modal"
-import { postalColumn } from "../components/table/postal-column"
+import { postalColumn } from "../components/table/column/postal-column"
 import PostalRecieveForm from "../components/form/postal-recieve-form"
 
 const PostalRecieve = () => {

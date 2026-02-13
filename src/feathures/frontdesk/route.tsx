@@ -1,9 +1,10 @@
 import { type RouteObject, Navigate } from "react-router-dom";
-import Organization from "./pages/Organization";
+// import Organization from "./pages/organization/Organization";
 import Postaldispatch from "./pages/PostalDispatch";
 import PostalRecieve from "./pages/PostalRecieve";
 import PostalView from "./pages/PostalView";
 import FiscalYear from "./pages/FiscalYear";
+import Organization1 from "./pages/organization/Organization1";
 
 export const frontdeskRoute: RouteObject = {
   path: "frontdesk",
@@ -11,7 +12,7 @@ export const frontdeskRoute: RouteObject = {
     { index: true, element: <Navigate to='/leads/leads' replace /> },
     {
       path: "organization",
-      element: <Organization />
+      element: <Organization1 />
     },
     {
       path: "postal-dispatch",
