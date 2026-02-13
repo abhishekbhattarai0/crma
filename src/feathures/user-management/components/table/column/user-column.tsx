@@ -2,11 +2,11 @@ import { AvatarCell } from "@/components/table/avatar-cell";
 
 import { type ColumnDef } from "@tanstack/react-table";
 import RowCell from "@/components/table/row-cell";
-import StatusCell from "./status-cell";
 import { ArrowDownUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { userDataProps } from "@/dummydata/user";
-import UserActionRow from "./user-action-row";
+import UserActionRow from "../row/user-action-row";
+import StatusCell from "../../status-cell";
 
 
 

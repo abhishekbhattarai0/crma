@@ -5,8 +5,8 @@ import { Contact2, LocateFixed, } from "lucide-react"
 import CategoryDetailContainer from '@/components/category-detail-container'
 import { DetailField } from '@/components/detail-field'
 import { useLocation } from 'react-router-dom'
-import { useGetUserByIdQuery } from '../userStore/userApi'
-import RolePermissionView from '../components/role-permission-view'
+import { useGetUserByIdQuery } from '../../userStore/userApi'
+import RolePermissionView from '../../components/role-permission-view'
 import Loader from '@/components/common/Loader'
 
 

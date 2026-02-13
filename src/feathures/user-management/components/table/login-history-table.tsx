@@ -1,10 +1,10 @@
 import { DataTable } from "@/components/table/data-table"
-import { loginHistoryColumn } from "./login-history-column"
+import { loginHistoryColumn } from "./column/login-history-column"
 import { useGetLoginHistoryQuery, useGetActiveSessionsQuery } from "../../userStore/userApi"
 import { Loader, RefreshCw } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { activeSessionColumn } from "./active-session-column"
+import { activeSessionColumn } from "./column/active-session-column"
 
 
 const LoginHistoryTable = () => {

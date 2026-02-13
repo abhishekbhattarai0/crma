@@ -119,9 +119,34 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: ['all-login-history'],
     }),
 
+    getLoginHistoyDistinctUser: builder.query({
+      query: () => ({
+        url: 'auth/sessions/distinct-users',
+        method: 'GET',
+      }),
+      providesTags: ['all-login-history'],
+    }),
+
+    getLoginHistoryById: builder.query({
+      query: (userId: string) => ({
+        url: `auth/login-history/${userId}`,
+        method: 'GET',
+      }),
+      providesTags: ['all-login-history'],
+    }),
+
+
     getActiveSessions: builder.query({
       query: () => ({
         url: 'auth/sessions',
+        method: 'GET',
+      }),
+      providesTags: ['all-active-sessions'],
+    }),
+
+    getActiveSessionsByAuthId: builder.query({
+      query: (authId: string) => ({
+        url: `auth/sessions/${authId}`,
         method: 'GET',
       }),
       providesTags: ['all-active-sessions'],
@@ -149,7 +174,10 @@ export const {
   useGetRoleByUserIdQuery,
   useAssignRoleMutation,
   useGetLoginHistoryQuery,
+  useGetLoginHistoyDistinctUserQuery,
+  useGetLoginHistoryByIdQuery,
   useRevokeLoginSessionMutation,
   useGetActiveSessionsQuery,
+  useGetActiveSessionsByAuthIdQuery,
   useDeleteRoleByRoleNameMutation,
 } = userApi;

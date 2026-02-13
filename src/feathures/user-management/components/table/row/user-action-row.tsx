@@ -5,7 +5,7 @@ import useModal from "@/hooks/useModal";
 import { useNavigate } from "react-router-dom"
 import type { Row } from "@tanstack/react-table";
 import { Eye, Pencil } from "lucide-react"
-import EditUserForm from "../form/update-user-form"
+import EditUserForm from "../../form/update-user-form"
 
 type RowCellProps<TData> = {
     row: Row<TData>;

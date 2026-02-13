@@ -1,7 +1,7 @@
 import RowCell from "@/components/table/row-cell";
 // import type { accessControlProps } from "@/dummydata/accessControlData";
 import type { ColumnDef } from "@tanstack/react-table";
-import AccessControlActionRow from "./access-control-action-row";
+import AccessControlActionRow from "../row/access-control-action-row";
 
 export type accessControlType = {
     permission: string[],

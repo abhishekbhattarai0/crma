@@ -2,8 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Detail from "@/feathures/frontdesk/components/detail-card"
 import { Info, } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { useGetAccessControlByRoleNameQuery } from "../userStore/userApi";
-import RolePermissionView from "../components/role-permission-view";
+import { useGetAccessControlByRoleNameQuery } from "../../userStore/userApi";
+import RolePermissionView from "../../components/role-permission-view";
 
 
 export default function AccessControlDetails() {

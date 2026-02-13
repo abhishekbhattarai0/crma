@@ -3,7 +3,7 @@ import RowCellWithDate from "@/components/table/row-with-date";
 
 import type { LoginHistoryProps } from "@/dummydata/loginHistory";
 import type { ColumnDef } from "@tanstack/react-table";
-import SessionRevokeRow from "./session-revoke-row";
+import SessionRevokeRow from "../row/session-revoke-row";
 
 
 

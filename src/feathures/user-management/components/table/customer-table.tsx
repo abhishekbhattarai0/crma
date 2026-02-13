@@ -1,5 +1,5 @@
 import { DataTable } from "@/components/table/data-table"
-import { userColumns } from "./user-column"
+import { userColumns } from "./column/user-column"
 import { userData } from "@/dummydata/user"
 
 

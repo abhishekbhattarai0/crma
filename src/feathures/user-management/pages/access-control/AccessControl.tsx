@@ -1,10 +1,9 @@
 import { DataTable } from "@/components/table/data-table"
-// import { accessControlData } from "@/dummydata/accessControlData"
-import { accessControlColumns } from "../components/table/access-control-column"
+import { accessControlColumns } from "../../components/table/column/access-control-column"
 import useModal from "@/hooks/useModal"
 import CustomModal from "@/components/common/custom-modal"
-import CreateAccessControlForm from "../components/form/create-access-control-form"
-import { useGetAllAccessControlQuery } from "../userStore/userApi"
+import CreateAccessControlForm from "../../components/form/create-access-control-form"
+import { useGetAllAccessControlQuery } from "../../userStore/userApi"
 import { useEffect } from "react"
 
 

@@ -27,7 +27,7 @@ const ConfirmationDialog = ({
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel onClick={onCancel}>Cancel</AlertDialogCancel>
-                    <AlertDialogAction variant={'destructive'} onClick={onConfirm}>Continue</AlertDialogAction>
+                    <AlertDialogAction onClick={onConfirm} variant={'destructive'} >Continue</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

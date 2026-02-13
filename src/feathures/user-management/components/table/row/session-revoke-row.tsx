@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import type { LoginHistoryProps } from '@/dummydata/loginHistory'
 import type { Row } from '@tanstack/react-table'
-import { useRevokeLoginSessionMutation } from '../../userStore/userApi';
+import { useRevokeLoginSessionMutation } from '../../../userStore/userApi';
 import { toast } from 'sonner';
 import ConfirmationDialog from '@/components/confirmation-dialog';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';

@@ -6,6 +6,7 @@ export interface LoginHistoryProps {
     ipAddress: string;
     userAgent: string;
     username: string;
+    authId: string;
 }
 
 
@@ -17,7 +18,8 @@ export const loginHistory: LoginHistoryProps[] = [
         "revoked": false,
         "ipAddress": "::1",
         "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
-        "username": "admin"
+        "username": "admin",
+        "authId":'jjk'
     },
     {
         "id": "2",
@@ -26,6 +28,7 @@ export const loginHistory: LoginHistoryProps[] = [
         "revoked": false,
         "ipAddress": "::1",
         "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
-        "username": "admin"
+        "username": "admin",
+        authId: 'dlj'
     }
 ]

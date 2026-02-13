@@ -1,15 +1,16 @@
 import { DataTable } from "@/components/table/data-table"
 // import { userData } from "@/dummydata/user"
-import { userColumns } from "@/feathures/user-management/components/table/user-column"
 import useModal from "@/hooks/useModal"
 import CustomModal from "@/components/common/custom-modal"
-import UserForm from "../components/form/create-user-form"
-import { useGetAllUsersQuery } from "../userStore/userApi"
+import UserForm from "../../components/form/create-user-form"
+import { useGetAllUsersQuery } from "../../userStore/userApi"
 import { Loader } from "lucide-react"
+import { userColumns } from "../../components/table/column/user-column"
+import HeaderWithRefetch from "@/components/header/header-with-refetch"
 
 const User = () => {
   const { setOpen } = useModal()
-  const { data, isLoading } = useGetAllUsersQuery({})
+  const { data, isLoading, refetch, isFetching } = useGetAllUsersQuery({})
   console.log("data", data)
 
   const onAdd = () => {
@@ -26,7 +27,10 @@ const User = () => {
 
   return (
     <div>
-      <DataTable columns={userColumns} data={data?.data} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
+      <HeaderWithRefetch refetch={refetch} isFetching={isFetching} />
+      <div className="mt-4">
+        <DataTable columns={userColumns} data={data?.data} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
+      </div>
     </div>
   )
 }

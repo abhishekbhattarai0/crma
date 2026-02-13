@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom"
 import type { Row } from "@tanstack/react-table";
 import { Eye, Pencil, Trash } from "lucide-react"
 // import type { accessControlProps } from "@/dummydata/accessControlData";
-import UpdateAccessControlForm from "../form/update-access-control-form";
-import type { accessControlType } from "./access-control-column";
-import { useDeleteRoleByRoleNameMutation } from "../../userStore/userApi";
+import UpdateAccessControlForm from "../../form/update-access-control-form";
+import type { accessControlType } from "../column/access-control-column";
+import { useDeleteRoleByRoleNameMutation } from "../../../userStore/userApi";
 import ConfirmationDialog from "@/components/confirmation-dialog";
 
 type RowCellProps<TData> = {
