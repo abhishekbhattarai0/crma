@@ -9,7 +9,7 @@ import { SelectComponent } from "@/components/ui/SelectComponent";
 import { useState } from "react";
 import { z } from "zod";
 import { useAddUserMutation, useGetAllAccessControlQuery } from "../../userStore/userApi";
-import { userSchema } from "../../types/userType";
+import { createUserSchema } from "../../types/userType";
 import { Loader2 } from "lucide-react";
 
 type RoleProps =
@@ -21,7 +21,7 @@ type RoleProps =
 
 
 
-export type EmployeeFormValues = z.infer<typeof userSchema>;
+export type CreateUserFormValue = z.infer<typeof createUserSchema>;
 
 const labelClass = "text-sm text-foreground/75";
 
@@ -36,11 +36,11 @@ const CreateUserForm = () => {
         handleSubmit,
         control,
         formState: { errors }
-    } = useForm<EmployeeFormValues>({
-        resolver: zodResolver(userSchema),
+    } = useForm<CreateUserFormValue>({
+        resolver: zodResolver(createUserSchema),
     });
 
-    const onSubmit = async (data: EmployeeFormValues) => {
+    const onSubmit = async (data: CreateUserFormValue) => {
         try {
             const result = await addUser(data).unwrap(); // unwrap to get real response or throw
             console.log('Result:', result);
@@ -59,248 +59,255 @@ const CreateUserForm = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                     {/* PERSONAL */}
-                    <h3 className="font-semibold">Personal Details</h3>
+                    <div className="space-y-6">
+                        <h3 className="font-semibold">Personal Details</h3>
 
-                    <div className="flex gap-2">
-                        <div className="w-full">
-                            <label className={labelClass}>First Name</label>
-                            <Input {...register("firstName")} />
-                            {errors.firstName && (
-                                <span className="text-xs text-red-600">
-                                    {errors.firstName.message}
-                                </span>
-                            )}
-                        </div>
-                        <div className="w-full">
-                            <label className={labelClass}>Last Name</label>
-                            <Input {...register("lastName")} />
-                            {errors.lastName && (
-                                <span className="text-xs text-red-600">
-                                    {errors.lastName.message}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="flex gap-2">
-                        <div className="w-full">
-                            <label className={labelClass}>Gender</label>
-                            <Controller
-                                name="gender"
-                                control={control}
-                                render={({ field }) => (
-                                    <SelectComponent
-                                        // value={field.value}
-                                        onValueChange={field.onChange}
-                                        options={[
-                                            { label: "MALE", value: "MALE" },
-                                            { label: "FEMALE", value: "FEMALE" },
-                                            { label: "OTHER", value: "OTHER" },
-                                        ]}
-                                        placeholder="Select Gender"
-                                    />
+                        <div className="flex gap-2">
+                            <div className="w-full">
+                                <label className={labelClass}>First Name</label>
+                                <Input {...register("firstName")} />
+                                {errors.firstName && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.firstName.message}
+                                    </span>
                                 )}
-                            />
-                            {errors.gender && (
-                                <span className="text-xs text-red-600">
-                                    {errors.gender.message}
-                                </span>
-                            )}
+                            </div>
+                            <div className="w-full">
+                                <label className={labelClass}>Last Name</label>
+                                <Input {...register("lastName")} />
+                                {errors.lastName && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.lastName.message}
+                                    </span>
+                                )}
+                            </div>
                         </div>
-                        <div className="w-full">
-                            <label className={labelClass}>DOB</label>
-                            <Input type="date" {...register("dob")} />
-                            {errors.dob && (
-                                <span className="text-xs text-red-600">
-                                    {errors.dob.message}
-                                </span>
-                            )}
-                        </div>
-                    </div>
 
-                    <div>
-                        <label className={labelClass}>Marital Status</label>
-                        {/* <Input {...register("maritalStatus")} />
+                        <div className="flex gap-2">
+                            <div className="w-full">
+                                <label className={labelClass}>Gender</label>
+                                <Controller
+                                    name="gender"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <SelectComponent
+                                            // value={field.value}
+                                            onValueChange={field.onChange}
+                                            options={[
+                                                { label: "MALE", value: "MALE" },
+                                                { label: "FEMALE", value: "FEMALE" },
+                                                { label: "OTHER", value: "OTHER" },
+                                            ]}
+                                            placeholder="Select Gender"
+                                        />
+                                    )}
+                                />
+                                {errors.gender && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.gender.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="w-full">
+                                <label className={labelClass}>DOB</label>
+                                <Input type="date" {...register("dob")} />
+                                {errors.dob && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.dob.message}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className={labelClass}>Marital Status</label>
+                            {/* <Input {...register("maritalStatus")} />
                         {errors.maritalStatus && (
                             <span className="text-xs text-red-600">
                                 {errors.maritalStatus.message}
                             </span>
                         )} */}
 
-                        <Controller
-                            name="maritalStatus"
-                            control={control}
-                            render={({ field }) => (
-                                <SelectComponent
-                                    // value={field.value}
-                                    onValueChange={field.onChange}
-                                    options={[
-                                        { label: "MARRIED", value: "MARRIED" },
-                                        { label: "SINGLE", value: "SINGLE" },
-                                    ]}
-                                    placeholder="Select Marital Status"
-                                />
-                            )}
-                        />
+                            <Controller
+                                name="maritalStatus"
+                                control={control}
+                                render={({ field }) => (
+                                    <SelectComponent
+                                        // value={field.value}
+                                        onValueChange={field.onChange}
+                                        options={[
+                                            { label: "MARRIED", value: "MARRIED" },
+                                            { label: "SINGLE", value: "SINGLE" },
+                                        ]}
+                                        placeholder="Select Marital Status"
+                                    />
+                                )}
+                            />
+                        </div>
                     </div>
 
                     {/* CONTACT */}
-                    <h3 className="font-semibold">Contact Information</h3>
                     <div>
+                        <h3 className="font-semibold">Contact Information</h3>
+                        <div>
 
-                        <label className={labelClass}>Official Email</label>
-                        <Input {...register("officialEmail")} />
-                        {errors.officialEmail && (
-                            <span className="text-xs text-red-600">
-                                {errors.officialEmail.message}
-                            </span>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className={labelClass}>Personal Email</label>
-                        <Input {...register("personalEmail")} />
-                        {errors.personalEmail && (
-                            <span className="text-xs text-red-600">
-                                {errors.personalEmail.message}
-                            </span>
-                        )}
-                    </div>
-
-                    <div className="flex gap-2">
-                        <div className="w-full">
-                            <label className={labelClass}>Phone</label>
-                            <Input {...register("phone")} />
-                            {errors.phone && (
+                            <label className={labelClass}>Official Email</label>
+                            <Input {...register("officialEmail")} />
+                            {errors.officialEmail && (
                                 <span className="text-xs text-red-600">
-                                    {errors.phone.message}
+                                    {errors.officialEmail.message}
                                 </span>
                             )}
                         </div>
-                        <div className="w-full">
-                            <label className={labelClass}>Emergency Contact</label>
-                            <Input {...register("emergencyContactPhone")} />
-                            {errors.emergencyContactPhone && (
+
+                        <div>
+                            <label className={labelClass}>Personal Email</label>
+                            <Input {...register("personalEmail")} />
+                            {errors.personalEmail && (
                                 <span className="text-xs text-red-600">
-                                    {errors.emergencyContactPhone.message}
+                                    {errors.personalEmail.message}
                                 </span>
                             )}
                         </div>
-                    </div>
 
-                    <div>
-                        <label className={labelClass}>Current Address</label>
-                        <Input {...register("currentAddress")} />
-                        {errors.currentAddress && (
-                            <span className="text-xs text-red-600">
-                                {errors.currentAddress.message}
-                            </span>
-                        )}
-                    </div>
+                        <div className="flex gap-2">
+                            <div className="w-full">
+                                <label className={labelClass}>Phone</label>
+                                <Input {...register("phone")} />
+                                {errors.phone && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.phone.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="w-full">
+                                <label className={labelClass}>Emergency Contact</label>
+                                <Input {...register("emergencyContactPhone")} />
+                                {errors.emergencyContactPhone && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.emergencyContactPhone.message}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
 
-                    <div>
-                        <label className={labelClass}>Permanent Address</label>
-                        <Input {...register("permanentAddress")} />
-                        {errors.permanentAddress && (
-                            <span className="text-xs text-red-600">
-                                {errors.permanentAddress.message}
-                            </span>
-                        )}
+                        <div>
+                            <label className={labelClass}>Current Address</label>
+                            <Input {...register("currentAddress")} />
+                            {errors.currentAddress && (
+                                <span className="text-xs text-red-600">
+                                    {errors.currentAddress.message}
+                                </span>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className={labelClass}>Permanent Address</label>
+                            <Input {...register("permanentAddress")} />
+                            {errors.permanentAddress && (
+                                <span className="text-xs text-red-600">
+                                    {errors.permanentAddress.message}
+                                </span>
+                            )}
+                        </div>
                     </div>
 
                     {/* COMPANY */}
-                    <h3 className="font-semibold">Company Information</h3>
-
-                    <div className="flex gap-2">
-                        <div className="w-full">
-                            <label className={labelClass}>Department</label>
-                            <Input {...register("department")} />
-                            {errors.department && (
-                                <span className="text-xs text-red-600">
-                                    {errors.department.message}
-                                </span>
-                            )}
-                        </div>
-                        <div className="w-full">
-                            <label className={labelClass}>Team</label>
-                            <Input {...register("team")} />
-                            {errors.team && (
-                                <span className="text-xs text-red-600">
-                                    {errors.team.message}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="flex gap-2">
-                        <div className="w-full">
-                            <label className={labelClass}>Designation</label>
-                            <Input {...register("designation")} />
-                            {errors.designation && (
-                                <span className="text-xs text-red-600">
-                                    {errors.designation.message}
-                                </span>
-                            )}
-                        </div>
-                        <div className="w-full">
-                            <label className={labelClass}>Job Title</label>
-                            <Input {...register("jobTitle")} />
-                            {errors.jobTitle && (
-                                <span className="text-xs text-red-600">
-                                    {errors.jobTitle.message}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-
                     <div>
-                        <label className={labelClass}>Shift</label>
-                        <Input {...register("shift")} />
-                        {errors.shift && (
-                            <span className="text-xs text-red-600">
-                                {errors.shift.message}
-                            </span>
-                        )}
+                        <h3 className="font-semibold">Company Information</h3>
+
+                        <div className="flex gap-2">
+                            <div className="w-full">
+                                <label className={labelClass}>Department</label>
+                                <Input {...register("department")} />
+                                {errors.department && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.department.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="w-full">
+                                <label className={labelClass}>Team</label>
+                                <Input {...register("team")} />
+                                {errors.team && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.team.message}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="flex gap-2">
+                            <div className="w-full">
+                                <label className={labelClass}>Designation</label>
+                                <Input {...register("designation")} />
+                                {errors.designation && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.designation.message}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="w-full">
+                                <label className={labelClass}>Job Title</label>
+                                <Input {...register("jobTitle")} />
+                                {errors.jobTitle && (
+                                    <span className="text-xs text-red-600">
+                                        {errors.jobTitle.message}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className={labelClass}>Shift</label>
+                            <Input {...register("shift")} />
+                            {errors.shift && (
+                                <span className="text-xs text-red-600">
+                                    {errors.shift.message}
+                                </span>
+                            )}
+                        </div>
                     </div>
 
                     {/* SYSTEM ACCESS */}
-                    <h3 className="font-semibold">System Access</h3>
-
                     <div>
-                        <label className={labelClass}>Username</label>
-                        <Input {...register("username")} />
-                        {errors.username && (
-                            <span className="text-xs text-red-600">
-                                {errors.username.message}
-                            </span>
-                        )}
-                    </div>
+                        <h3 className="font-semibold">System Access</h3>
 
-                    <div>
-                        <label className={labelClass}>Password</label>
-                        <Input {...register("password")} />
-                        {errors.password && (
-                            <span className="text-xs text-red-600">
-                                {errors.password.message}
-                            </span>
-                        )}
-                    </div>
+                        <div>
+                            <label className={labelClass}>Username</label>
+                            <Input {...register("username")} />
+                            {errors.username && (
+                                <span className="text-xs text-red-600">
+                                    {errors.username.message}
+                                </span>
+                            )}
+                        </div>
 
-                    <div>
-                        <label className={labelClass}>Role</label>
-                        <SelectComponent
-                            onValueChange={(value) => setRole(value as RoleProps)}
-                            options={allRoles?.data?.map((role: { role: string }) => ({
-                                label: role.role,
-                                value: role.role,
-                            }))}
-                            placeholder={role}
-                            {...register("role")}
-                        />
-                    </div>
+                        <div>
+                            <label className={labelClass}>Password</label>
+                            <Input {...register("password")} key={allRoles?.password} />
+                            {errors.password && (
+                                <span className="text-xs text-red-600">
+                                    {errors.password.message}
+                                </span>
+                            )}
+                        </div>
 
-                    {/* FIXED SELECT WITH CONTROLLER */}
-                    {/* <label className={labelClass}>Permission Group</label>
+                        <div>
+                            <label className={labelClass}>Role</label>
+                            <SelectComponent
+                                onValueChange={(value) => setRole(value as RoleProps)}
+                                options={allRoles?.data?.map((role: { role: string }) => ({
+                                    label: role.role,
+                                    value: role.role,
+                                }))}
+                                placeholder={role}
+                                {...register("role")}
+                            />
+                        </div>
+
+                        {/* FIXED SELECT WITH CONTROLLER */}
+                        {/* <label className={labelClass}>Permission Group</label>
                     <Controller
                         name="permissionGroup"
                         control={control}
@@ -318,22 +325,23 @@ const CreateUserForm = () => {
                         )}
                     /> */}
 
-                    <label className={labelClass}>Status</label>
-                    <Controller
-                        name="isActive"
-                        control={control}
-                        render={({ field }) => (
-                            <SelectComponent
-                                // value={field.value}
-                                onValueChange={field.onChange}
-                                options={[
-                                    { label: "ACTIVE", value: "ACTIVE" },
-                                    { label: "INACTIVE", value: "INACTIVE" },
-                                ]}
-                                placeholder="Select Status"
-                            />
-                        )}
-                    />
+                        <label className={labelClass}>Status</label>
+                        <Controller
+                            name="isActive"
+                            control={control}
+                            render={({ field }) => (
+                                <SelectComponent
+                                    // value={field.value}
+                                    onValueChange={field.onChange}
+                                    options={[
+                                        { label: "ACTIVE", value: "ACTIVE" },
+                                        { label: "INACTIVE", value: "INACTIVE" },
+                                    ]}
+                                    placeholder="Select Status"
+                                />
+                            )}
+                        />
+                    </div>
 
                     {error && 'data' in error &&
                         // @ts-expect-error/not handled error types

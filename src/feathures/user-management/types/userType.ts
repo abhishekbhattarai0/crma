@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const userSchema = z.object({
+export const updateUserSchema = z.object({
   firstName: z.string().nonempty({ error: 'cannot be empty' }),
   lastName: z.string().nonempty({ error: 'cannot be empty' }),
   gender: z.enum(['MALE', 'FEMALE', 'OTHER']),
@@ -24,11 +24,15 @@ export const userSchema = z.object({
   shift: z.string().nonempty({ error: 'cannot be empty' }),
 
   username: z.string().nonempty({ error: 'cannot be empty' }),
-  password: z
-    .string()
-    .min(6, { error: 'Password must be atleast 6 characters' }),
+
   role: z.string().optional(),
   permissionGroup: z.string().optional(),
   isActive: z.enum(['ACTIVE', 'INACTIVE']),
   // isActive: z.string().optional(),
 });
+
+export const createUserSchema = updateUserSchema.extend({
+  password: z
+    .string()
+    .min(6, { error: 'Password must be atleast 6 characters' }),
+})

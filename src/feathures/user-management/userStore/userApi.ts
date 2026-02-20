@@ -128,11 +128,21 @@ export const userApi = baseApi.injectEndpoints({
     }),
 
     getLoginHistoryById: builder.query({
-      query: (userId: string) => ({
-        url: `auth/login-history/${userId}`,
+      query: (
+       value:{
+        userId: string,
+        limit: number,
+        cursor: string,
+        ip: string,
+        search: string,
+       }  
+      ) => ({
+        url: `auth/login-history/${value.userId}/?limit=${value.limit ?? null}&cursor=${value.cursor ?? null}&ip=${value.ip ?? null}&search=${value.search ?? null}`,
         method: 'GET',
       }),
       providesTags: ['all-login-history'],
+      transformResponse: (response) =>
+        response.data,
     }),
 
 

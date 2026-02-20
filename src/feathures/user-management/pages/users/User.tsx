@@ -11,11 +11,10 @@ import HeaderWithRefetch from "@/components/header/header-with-refetch"
 const User = () => {
   const { setOpen } = useModal()
   const { data, isLoading, refetch, isFetching } = useGetAllUsersQuery({})
-  console.log("data", data)
 
   const onAdd = () => {
     setOpen(
-      <CustomModal title="Create User">
+      <CustomModal title="Create User" className="!max-w-[calc(100vw-8vw)]">
         <UserForm />
       </CustomModal>
     )
@@ -29,7 +28,7 @@ const User = () => {
     <div>
       <HeaderWithRefetch refetch={refetch} isFetching={isFetching} />
       <div className="mt-4">
-        <DataTable columns={userColumns} data={data?.data} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
+        <DataTable columns={userColumns} data={data?.data || []} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
       </div>
     </div>
   )

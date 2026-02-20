@@ -7,7 +7,14 @@ import HeaderWithRefetch from "@/components/header/header-with-refetch"
 
 const LoginHistoryByUser = () => {
     const { state } = useLocation()
-    const { data: loginHistory, isLoading, refetch, isFetching } = useGetLoginHistoryByIdQuery(state.userId)
+    console.log('statttee')
+    const { data: loginHistory, isLoading, refetch, isFetching } = useGetLoginHistoryByIdQuery({
+        userId: state.userId,
+        limit: 2,
+        cursor: '',
+        ip: '',
+        search: ''
+    })
 
     if (isLoading) {
         return <Loader2 className="animate-spin mx-auto" />
@@ -16,7 +23,7 @@ const LoginHistoryByUser = () => {
         <div className="p-4">
             <HeaderWithRefetch refetch={refetch} isFetching={isFetching} />
             <div className="mt-4">
-                <DataTable data={loginHistory?.data || []} columns={loginHistoryColumn} />
+                <DataTable data={loginHistory?.history || []} columns={loginHistoryColumn} />
             </div>
         </div>
     )

@@ -10,10 +10,10 @@ import { useEffect } from "react";
 import { z } from "zod";
 import { useGetAllAccessControlQuery, useGetUserByIdQuery, useUpdateUserByIdMutation } from "../../userStore/userApi";
 import UserFormSkeleton from "./user-form-skelton";
-import { userSchema } from "../../types/userType";
+import { updateUserSchema } from "../../types/userType";
 import { Loader2 } from "lucide-react";
 
-export type userFormValues = z.infer<typeof userSchema>;
+export type userFormValues = z.infer<typeof updateUserSchema>;
 
 const labelClass = "text-sm text-foreground/75";
 
@@ -32,7 +32,7 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
         reset,
         formState: { errors, dirtyFields }
     } = useForm<userFormValues>({
-        resolver: zodResolver(userSchema),
+        resolver: zodResolver(updateUserSchema),
         defaultValues: userData,
     });
     useEffect(() => {
