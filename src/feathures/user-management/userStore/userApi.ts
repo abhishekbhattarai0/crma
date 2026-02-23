@@ -20,6 +20,18 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ['all-users'],
     }),
+//  getAllUsers: builder.query({
+//       query: (params) => ({
+//         url: '/user/',
+//         params:{
+//           page: params.page,
+//           limit: params.limit,
+//           order: params.order,
+//         },
+//         method: 'GET',
+//       }),
+//       providesTags: ['all-users'],
+//     }),
 
     getUserById: builder.query({
       query: (userId: string) => ({
@@ -127,22 +139,46 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: ['all-login-history'],
     }),
 
+    // getLoginHistoryById: builder.query({
+    //   query: (
+    //    value:{
+    //     userId: string,
+    //     limit: number,
+    //     cursor: string,
+    //     ip: string,
+    //     search: string,
+    //    }  
+    //   ) => ({
+    //     url: `auth/login-history/${value.userId}/?limit=${value.limit ?? null}&cursor=${value.cursor ?? null}&ip=${value.ip ?? null}&search=${value.search ?? null}`,
+    //     method: 'GET',
+    //   }),
+    //   providesTags: ['all-login-history'],
+    //   transformResponse: (response) =>
+    //     response.data,
+    // }),
+
     getLoginHistoryById: builder.query({
-      query: (
-       value:{
-        userId: string,
-        limit: number,
-        cursor: string,
-        ip: string,
-        search: string,
-       }  
-      ) => ({
-        url: `auth/login-history/${value.userId}/?limit=${value.limit ?? null}&cursor=${value.cursor ?? null}&ip=${value.ip ?? null}&search=${value.search ?? null}`,
+      query: (params) => ({
+        url: `auth/login-history/${params.userId}`,
+        params: {
+          page: params.page,
+          limit: params.limit,
+          ip: params.ip,
+          order: params.order,
+          // search: params.search,
+        },
         method: 'GET',
       }),
       providesTags: ['all-login-history'],
-      transformResponse: (response) =>
-        response.data,
+      transformResponse: (response) => ({
+        data: response.data.data,
+        meta: {
+          totalCount: Number(response.data.meta.total),
+          pageIndex: Number(response.data.meta.page),
+          limit: Number(response.data.meta.limit),
+          pageSize: Number(response.data.meta.limit),
+        },
+      }),
     }),
 
 

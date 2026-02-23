@@ -14,7 +14,7 @@ import StatusCell from "../../status-cell";
 export const userColumns: ColumnDef<userDataProps>[] = [
   // Avatar
   {
-
+// id: 'action',
     header: 'Action',
     accessorKey: 'action',
     cell: ({ row }) => <UserActionRow row={row} />,
