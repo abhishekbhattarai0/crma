@@ -6,6 +6,7 @@ import ActiveSessionRow from "./row/active-session-row";
 
 export const sessionWithDistinctUserColumn: ColumnDef<LoginHistoryProps>[] = [
     {
+        id: 'username',
         accessorKey: "username",
         header: "Username",
     },

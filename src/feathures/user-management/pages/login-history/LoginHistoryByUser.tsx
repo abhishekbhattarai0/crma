@@ -25,7 +25,9 @@ const LoginHistoryByUser = () => {
             <div className="mt-4">
                 <DataTable columns={loginHistoryColumn} useQuery={useGetLoginHistoryByIdQuery} searchFields={[
                     { label: "Username", value: "username" },
-                ]} />
+                ]} 
+                searchKey="username"
+                />
             </div>
         </div>
     )

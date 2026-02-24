@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-// import { useDebounce } from "@/hooks/use-debounce"
+import useDebounce from "@/hooks/use-debounce"
 
 interface SearchFieldOption {
     label: string
@@ -10,8 +10,8 @@ interface SearchFieldOption {
 }
 
 interface TableSearchProps {
-    fields: SearchFieldOption[]   // 🔹 NEW: dropdown options
-    defaultField?: string         // 🔹 NEW
+    fields: SearchFieldOption[]   
+    defaultField?: string         
     onSearch: (params: {
         field: string
         term: string
@@ -31,7 +31,7 @@ const TableSearch = ({
 
     const debouncedTerm = useDebounce(term, 500) // 🔹 NEW: debounce
 
-    // 🔹 NEW: fire only when debounce finishes
+    //  NEW: fire only when debounce finishes
     useEffect(() => {
         const trimmed = term.trim();
 
@@ -49,7 +49,7 @@ const TableSearch = ({
             <select
                 value={field}
                 onChange={(e) => setField(e.target.value)}
-                className="border rounded-sm px-2 text-sm"
+                className="border rounded-sm px-2 text-sm "
             >
                 {fields.map((f) => (
                     <option key={f.value} value={f.value}>
@@ -71,18 +71,3 @@ const TableSearch = ({
 export default TableSearch
 
 
-// hooks/use-debounce.ts
-
-function useDebounce<T>(value: T, delay = 400) {
-    const [debounced, setDebounced] = useState(value)
-
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebounced(value)
-        }, delay)
-
-        return () => clearTimeout(handler)
-    }, [value, delay])
-
-    return debounced
-}
