@@ -23,7 +23,9 @@ const LoginHistoryByUser = () => {
         <div className="p-4">
             {/* <HeaderWithRefetch refetch={refetch} isFetching={isFetching} /> */}
             <div className="mt-4">
-                <DataTable  columns={loginHistoryColumn} useQuery={useGetLoginHistoryByIdQuery} />
+                <DataTable columns={loginHistoryColumn} useQuery={useGetLoginHistoryByIdQuery} searchFields={[
+                    { label: "Username", value: "username" },
+                ]} />
             </div>
         </div>
     )

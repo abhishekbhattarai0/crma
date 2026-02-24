@@ -17,7 +17,7 @@ const TableSearch = <TData,>({
     searchKey
 }: DataTableSearchingProps<TData> & { searchKey?: string }) => {
     // 1. Use local state for immediate feedback
-    const [value, setValue] = useState<string>((table.getColumn(searchKey)?.getFilterValue() as string) ?? "")
+    const [value, setValue] = useState<string>((table?.getColumn(searchKey)?.getFilterValue() as string) ?? "")
 
     return (
         <div className={cn(
