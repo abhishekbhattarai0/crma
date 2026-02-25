@@ -11,7 +11,7 @@ import { DataTable } from "@/components/table/data-table2"
 
 const User = () => {
   const { setOpen } = useModal()
-  const { data, isLoading, refetch, isFetching } = useGetAllUsersQuery({})
+  const { isLoading, refetch, isFetching } = useGetAllUsersQuery({})
 
   const onAdd = () => {
     setOpen(
