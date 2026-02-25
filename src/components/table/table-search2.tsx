@@ -39,7 +39,7 @@ const TableSearch = ({
             onSearch({ field, term: "" })
             return;
         }
-        onSearch({ field, term: debouncedTerm })
+        onSearch({ field, term: debouncedTerm.trim() })
     }, [debouncedTerm, field])
 
     return (

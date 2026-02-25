@@ -1,4 +1,4 @@
-import { DataTable } from "@/components/table/data-table"
+// import { DataTable } from "@/components/table/data-table"
 // import { userData } from "@/dummydata/user"
 import useModal from "@/hooks/useModal"
 import CustomModal from "@/components/common/custom-modal"
@@ -7,7 +7,7 @@ import { useGetAllUsersQuery } from "../../userStore/userApi"
 import { Loader } from "lucide-react"
 import { userColumns } from "../../components/table/column/user-column"
 import HeaderWithRefetch from "@/components/header/header-with-refetch";
-// import { DataTable } from "@/components/table/data-table2"
+import { DataTable } from "@/components/table/data-table2"
 
 const User = () => {
   const { setOpen } = useModal()
@@ -29,13 +29,18 @@ const User = () => {
     <div>
       <HeaderWithRefetch refetch={refetch} isFetching={isFetching} />
       <div className="mt-4">
-        <DataTable columns={userColumns} data={data?.data || []} onAdd={onAdd} searchKey="email" isLoading={isLoading} />
-        {/* <DataTable 
+        {/* <DataTable columns={userColumns} data={data?.data || []} onAdd={onAdd} searchKey="email" isLoading={isLoading} /> */}
+        <DataTable 
           columns={userColumns} 
           useQuery={useGetAllUsersQuery} 
           onAdd={onAdd} 
-          searchKey="email"
-        /> */}
+          searchKey="officialEmail"
+          searchFields={[
+            { label: 'Official Email', value: 'officialEmail' },
+            { label: 'First Name', value: 'firstName' },
+            { label: 'Designation', value: 'designation' },
+          ]}
+        /> 
       </div>
     </div>
   )

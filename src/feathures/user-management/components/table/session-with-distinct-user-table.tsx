@@ -11,7 +11,12 @@ const SessionWithDistinctUserTable = () => {
             <HeaderWithRefetch refetch={refetch} isFetching={isFetching} />
             <div className="mt-4">
                 {/* <DataTable columns={sessionWithDistinctUserColumn} data={data?.data || []} /> */}
-                <DataTable columns={sessionWithDistinctUserColumn} useQuery={useGetLoginHistoyDistinctUserQuery} searchKey='username' searchFields={[{ label: 'Username', value: 'username' }]} />
+                <DataTable 
+                    columns={sessionWithDistinctUserColumn} 
+                    useQuery={useGetLoginHistoyDistinctUserQuery} 
+                    searchKey='username' 
+                    searchFields={[{ label: 'Username', value: 'username' }]} 
+                />
             </div>
         </div>
     )
