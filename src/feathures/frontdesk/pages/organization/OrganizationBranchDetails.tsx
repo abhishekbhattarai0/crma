@@ -30,7 +30,7 @@ type BranchProp = {
   updatedAt: string
 }
 
-export default function CreateBranchForm({organizationId}: {organizationId: string}) {
+export default function CreateBranchForm({organizationId}: {organizationId?: string}) {
 
   const [createBranch] = useCreateBranchMutation()
   // const { data: branchData, isLoading } =
