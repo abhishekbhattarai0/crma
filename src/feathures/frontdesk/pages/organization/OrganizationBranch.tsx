@@ -1,21 +1,34 @@
 import { DataTable } from "@/components/table/data-table"
 import { branchColumn } from "@/feathures/frontdesk/components/table/column/branch-column"
 import { useParams } from "react-router-dom"
-import { useGetOrganizationBranchByOrgIdQuery } from "../../api/api"
+import { useGetOrganizationBranchsByOrgIdQuery } from "../../api/api"
+import useModal from "@/hooks/useModal"
+import CustomModal from "@/components/common/custom-modal"
+import CreateBranchForm from "./OrganizationBranchDetails"
 
 
 const OrganizationBranch = () => {
     const {organizationId} = useParams()
-    const {data, isLoading} = useGetOrganizationBranchByOrgIdQuery(organizationId!)
+    const {data, isLoading} = useGetOrganizationBranchsByOrgIdQuery(organizationId!)
+    const { setOpen} = useModal()
     // console.log('organization id', data)
     if(isLoading) return (
     <div className="flex items-center justify-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
     </div>
     )
+    const handleCreateBranch = () => {
+       setOpen(
+        <CustomModal
+            title="Create Branch"
+        >
+            <CreateBranchForm organizationId={organizationId!}/>
+        </CustomModal>
+       ) 
+    }
     return (
         <div>
-            <DataTable columns={branchColumn} data={data?.data || []} />
+            <DataTable columns={branchColumn} data={data?.data || []} onAdd={handleCreateBranch} />
         </div>
     )
 }

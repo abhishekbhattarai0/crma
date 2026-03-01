@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import CategoryDetailContainer from '@/components/category-detail-container'
 import { useForm } from 'react-hook-form'
-import { useCreateOrganizationMutation, useGetOrganizationByIdQuery } from '../../api/api'
+import { useGetOrganizationByIdQuery, useUpdateOrganizationMutation } from '../../api/api'
 import { toast } from 'sonner'
 import { useParams } from 'react-router-dom'
 
@@ -38,46 +38,12 @@ type OrganizationProp = {
   updatedAt: string;
 }
 
-// const organization:OrganizationProp ={
-//   "id": "org_001",
-//   "institutionName": "Himalayan Sunrise Academy Pvt. Ltd.",
-//   "founderName": "Suman Shrestha",
-//   "affiliation": "National Examination Board (NEB)",
-//   "institutionShortCode": "HSA",
-//   "panNumber": "604578392",
-
-//   "primaryEmail": "info@hsa.edu.np",
-//   "alternateEmail": "admin@hsa.edu.np",
-//   "contactNumber": "+977-1-4523678",
-//   "officeNo": "+977-1-4529876",
-
-//   "address": "Baneshwor-10",
-//   "province": "Bagmati",
-//   "city": "Kathmandu",
-//   "zipCode": "44600",
-
-//   "institutionType": "school",
-//   "packageType": "premium",
-
-//   "hasBranch": true,
-//   "branchCount": 3,
-
-//   "logo": "https://dummycdn.com/logo-hsa.png",
-//   "tagline": "Explore to Invent",
-
-//   "createdAt": "2025-01-10T10:00:00Z",
-//   "updatedAt": "2025-02-01T15:30:00Z"
-// }
-
-
-// type InstitutionTypeProp = 'school' | 'campus' | 'cooperative'
-
 export default function Organization() {
 
   const { organizationId } = useParams()
   const [isEditActive, setIsEditActive] = useState(false)
   // const [isBranch, setIsBranch] = useState(false)
-  const [createOrganization] = useCreateOrganizationMutation()
+  const [updateOrganization] = useUpdateOrganizationMutation()
   const { data: organizationData, isLoading } = useGetOrganizationByIdQuery(organizationId as string)
 
   const {
@@ -97,7 +63,7 @@ export default function Organization() {
 
   const onSubmit = async (data: OrganizationProp) => {
     console.log(data)
-    const { data: response, error } = await createOrganization(data);
+    const { data: response, error } = await updateOrganization({ organizationId, data });
     if (response) {
       toast.success("Organization created successfully");
     }

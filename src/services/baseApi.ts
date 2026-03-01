@@ -78,6 +78,7 @@ export const baseApi = createApi({
     'all-active-sessions',
 
     //organization
-    'organization'
+    'organization',
+    'organization-branch'
   ],
 });

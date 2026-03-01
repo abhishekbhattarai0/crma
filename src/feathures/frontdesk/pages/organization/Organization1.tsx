@@ -3,25 +3,28 @@ import { RefreshCw } from 'lucide-react'
 import { useState } from 'react'
 import Organization from './Organization'
 import OrganizationBranch from './OrganizationBranch'
+import { useParams } from 'react-router-dom'
 
 const Organization1 = () => {
-    const [tab, setTab] = useState('organization')
+  const [tab, setTab] = useState('organization')
+  const { organizationId } = useParams()
+  console.log(' org iekjj', organizationId)
   return (
     <div className=" flex flex-col gap-2">
       <div className="flex gap-2 ">
         <Button
           variant={tab === 'organization' ? "default" : "outline"}
-        //   onClick={handleLoginHistory}
-        onClick={()=>setTab('organization')}
+          //   onClick={handleLoginHistory}
+          onClick={() => setTab('organization')}
         > Organization </Button>
         <Button
           variant={tab === 'branch' ? "default" : "outline"}
-        //   onClick={handleActiveSession}
-        onClick={()=>setTab('branch')}
+          //   onClick={handleActiveSession}
+          onClick={() => setTab('branch')}
         > Branch </Button>
         <Button
-        //   onClick={handleRefresh}
-        // onClick={()=>setTab('organization')}
+          //   onClick={handleRefresh}
+          // onClick={()=>setTab('organization')}
           variant={'outline'}
           size={'icon'}
         >
@@ -30,10 +33,10 @@ const Organization1 = () => {
       </div>
       <div>
         {tab === 'organization' && (
-            <Organization />
+          <Organization />
         )}
         {tab === 'branch' && (
-            <OrganizationBranch />
+          <OrganizationBranch />
         )}
 
       </div>

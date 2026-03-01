@@ -43,15 +43,40 @@ export const frontDeskApi = baseApi.injectEndpoints({
             }),
         }),
 
+        updateOrganization: builder.mutation({
+            query: ({ organizationId, data }) => ({
+                url: `/org/${organizationId}`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: ['organization'],
+        }),
+
         // organization branch
-        getOrganizationBranchByOrgId: builder.query({
+        getOrganizationBranchsByOrgId: builder.query({
             query: (organizationId: string) => ({
                 url: `/org/${organizationId}/branches`,
                 method: 'GET',
             }),
-            providesTags: ['organization'],
+            providesTags: ['organization-branch'],
+        }),
+
+        createBranch: builder.mutation({
+            query: ({organizationId, data}) => ({
+                url: `/org/${organizationId}/branch`,
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['organization-branch'],
         }),
     })
 })
 
-export const { useGetOrganizationQuery, useCreateOrganizationMutation, useGetOrganizationByIdQuery, useGetOrganizationBranchByOrgIdQuery } = frontDeskApi;
+export const { 
+    useGetOrganizationQuery, 
+    useCreateOrganizationMutation, 
+    useGetOrganizationByIdQuery, 
+    useGetOrganizationBranchsByOrgIdQuery, 
+    useUpdateOrganizationMutation, 
+    useCreateBranchMutation 
+} = frontDeskApi;

@@ -2,17 +2,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Info, Contact2, LocateFixed, Save } from "lucide-react"
 import { Input } from "@/components/ui/input"
-// import { useEffect } from "react"
 import { cn } from "@/lib/utils"
 import CategoryDetailContainer from "@/components/category-detail-container"
 import { useForm } from "react-hook-form"
-// import {
-//   useCreateBranchMutation,
-//   useGetBranchByIdQuery,
-// } from "../../api/api"
+import {
+  useCreateBranchMutation,
+} from "../../api/api"
 import { toast } from "sonner"
-// import { useParams } from "react-router-dom"
-import { useCreateBranchMutation } from "../../api/api"
+import { useParams } from "react-router-dom"
 
 type BranchProp = {
   id: string
@@ -30,30 +27,20 @@ type BranchProp = {
   updatedAt: string
 }
 
-export default function CreateBranchForm({organizationId}: {organizationId: string}) {
+export default function CreateBranchForm() {
+  const {  organizationId } = useParams()
 
   const [createBranch] = useCreateBranchMutation()
-  // const { data: branchData, isLoading } =
-  //   useGetBranchByIdQuery(branchId as string, {
-  //     skip: !branchId,
-  //   })
+  
 
-  const { 
-    register, 
-    handleSubmit, 
-    // reset 
-  } = useForm<BranchProp>({
+  const { register, handleSubmit  } = useForm<BranchProp>({
     defaultValues: {
       organizationId: organizationId,
       status: "ACTIVE",
     },
   })
 
-  // useEffect(() => {
-  //   if (branchData?.data) {
-  //     reset(branchData.data)
-  //   }
-  // }, [branchData, reset])
+  
 
   const onSubmit = async (data: BranchProp) => {
     const { data: response, error } = await createBranch({organizationId, data})
@@ -67,9 +54,7 @@ export default function CreateBranchForm({organizationId}: {organizationId: stri
     }
   }
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
+  
 
   return (
     <form
