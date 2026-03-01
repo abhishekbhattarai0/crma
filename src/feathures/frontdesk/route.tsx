@@ -6,6 +6,7 @@ import PostalView from "./pages/PostalView";
 import FiscalYear from "./pages/FiscalYear";
 import OrganizationList from "./pages/organization/OrganizationList";
 import Organization1 from "./pages/organization/Organization1";
+import OrganizationBranchDetails from "./pages/organization/OrganizationBranchDetails";
 
 export const frontdeskRoute: RouteObject = {
   path: "frontdesk",
@@ -18,6 +19,10 @@ export const frontdeskRoute: RouteObject = {
     {
       path: "organization/:organizationId",
       element: <Organization1 />
+    },
+    {
+      path: "organization/:organizationId/branches/:branchId",
+      element: <OrganizationBranchDetails />
     },
     {
       path: "postal-dispatch",

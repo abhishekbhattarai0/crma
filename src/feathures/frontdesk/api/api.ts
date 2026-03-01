@@ -42,7 +42,16 @@ export const frontDeskApi = baseApi.injectEndpoints({
                 method: 'GET',
             }),
         }),
+
+        // organization branch
+        getOrganizationBranchByOrgId: builder.query({
+            query: (organizationId: string) => ({
+                url: `/org/${organizationId}/branches`,
+                method: 'GET',
+            }),
+            providesTags: ['organization'],
+        }),
     })
 })
 
-export const { useGetOrganizationQuery, useCreateOrganizationMutation, useGetOrganizationByIdQuery } = frontDeskApi;
+export const { useGetOrganizationQuery, useCreateOrganizationMutation, useGetOrganizationByIdQuery, useGetOrganizationBranchByOrgIdQuery } = frontDeskApi;

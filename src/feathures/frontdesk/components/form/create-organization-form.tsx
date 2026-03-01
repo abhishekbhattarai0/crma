@@ -46,7 +46,15 @@ export default function CreateOrganizationForm() {
     const { organizationId } = useParams()
     const [createOrganization] = useCreateOrganizationMutation()
     const { data: organizationData, isLoading } = useGetOrganizationByIdQuery(organizationId as string)
+//   const [file, setFile] = useState('');
 
+//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const file = e.target.files?.[0];
+//     if (file) {
+//         const url = URL.createObjectURL(file);
+//       setFile(url);
+//     }
+//   };
     const {
         register,
         handleSubmit,
@@ -82,6 +90,11 @@ export default function CreateOrganizationForm() {
 
             {/* Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* <div className="App">
+            <h2>Add Image:</h2>
+            <input type="file" onChange={handleFileChange} />
+            {file && <img src={file} alt="Uploaded preview" />} */}
+        {/* </div> */}
                 {/* Left Column */}
                 <div className="lg:col-span-2 space-y-2 flex flex-col gap-3">
 

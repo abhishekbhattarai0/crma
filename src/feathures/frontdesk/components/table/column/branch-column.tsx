@@ -1,27 +1,27 @@
 import type { ColumnDef } from "@tanstack/react-table";
+import OrganizationBranchActionRow from "../row/organization-branch-action-row";
 
-
-type BranchProps = {
-    id: string,
-    institutionId: string,
-
-    branchName: string,
-    branchHead: string,
-
-    contactNumber: string,
-    email: string,
-
-    address: string,
-    province: string,
-    city: string,
-    zipCode: string,
-
-    status: string,
-
-    createdAt: string,
-    updatedAt: string
-}
+export type BranchProps = {
+            id: string,
+            branchName: string,
+            branchHead: string,
+            contactNumber: string,
+            email: string,
+            address: string,
+            province: string,
+            city: string,
+            zipCode: string,
+            status: string,
+            organizationId: string,
+            createdAt: string,
+            updatedAt: string
+        }
 export const branchColumn: ColumnDef<BranchProps>[] = [
+    {
+        id:'action',
+        header:'Action',
+        cell: ({ row }) => <OrganizationBranchActionRow row={row} />
+    },
     {
         accessorKey: "branchName",
         header: "Branch Name",
