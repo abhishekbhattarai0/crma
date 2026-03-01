@@ -5,45 +5,25 @@ import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/componen
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Pencil, Info, Contact2, LocateFixed, Upload, Save, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import CategoryDetailContainer from '@/components/category-detail-container'
 import { useForm } from 'react-hook-form'
-
-
-const deviceData = [
-  {
-    branch: "Branch 1",
-    sessions: "Someone sharma",
-    day: -3,
-    // week: -12,
-  },
-  {
-    branch: "Branch 2",
-    sessions: "Someone sharma",
-    day: -5,
-    // week: -2,
-  },
-  {
-    branch: "Branch 3",
-    sessions: "Someone sharma",
-    day: -5,
-    // week: -6,
-  },
-];
+import { useCreateOrganizationMutation, useGetOrganizationByIdQuery } from '../../api/api'
+import { toast } from 'sonner'
+import { useParams } from 'react-router-dom'
 
 type OrganizationProp = {
   id: string;
   institutionName: string;
   founderName: string;
   affiliation: string;
-  institutionShortcode: string;
+  institutionShortCode: string;
   panNumber: string;
   primaryEmail: string;
   alternateEmail: string;
   contactNumber: string;
-  officeNumber: string;
+  officeNo: string;
   address: string;
   province: string;
   city: string;
@@ -52,62 +32,82 @@ type OrganizationProp = {
   packageType: string;
   hasBranch: boolean;
   branchCount: number;
-  logoUrl: string;
+  logo: string;
   tagline: string;
   createdAt: string;
   updatedAt: string;
 }
 
-const organization:OrganizationProp ={
-  "id": "org_001",
+// const organization:OrganizationProp ={
+//   "id": "org_001",
+//   "institutionName": "Himalayan Sunrise Academy Pvt. Ltd.",
+//   "founderName": "Suman Shrestha",
+//   "affiliation": "National Examination Board (NEB)",
+//   "institutionShortCode": "HSA",
+//   "panNumber": "604578392",
 
-  "institutionName": "Himalayan Sunrise Academy Pvt. Ltd.",
-  "founderName": "Suman Shrestha",
-  "affiliation": "National Examination Board (NEB)",
-  "institutionShortcode": "HSA",
-  "panNumber": "604578392",
+//   "primaryEmail": "info@hsa.edu.np",
+//   "alternateEmail": "admin@hsa.edu.np",
+//   "contactNumber": "+977-1-4523678",
+//   "officeNo": "+977-1-4529876",
 
-  "primaryEmail": "info@hsa.edu.np",
-  "alternateEmail": "admin@hsa.edu.np",
-  "contactNumber": "+977-1-4523678",
-  "officeNumber": "+977-1-4529876",
+//   "address": "Baneshwor-10",
+//   "province": "Bagmati",
+//   "city": "Kathmandu",
+//   "zipCode": "44600",
 
-  "address": "Baneshwor-10",
-  "province": "Bagmati",
-  "city": "Kathmandu",
-  "zipCode": "44600",
+//   "institutionType": "school",
+//   "packageType": "premium",
 
-  "institutionType": "school",
-  "packageType": "premium",
+//   "hasBranch": true,
+//   "branchCount": 3,
 
-  "hasBranch": true,
-  "branchCount": 3,
+//   "logo": "https://dummycdn.com/logo-hsa.png",
+//   "tagline": "Explore to Invent",
 
-  "logoUrl": "https://dummycdn.com/logo-hsa.png",
-  "tagline": "Explore to Invent",
-
-  "createdAt": "2025-01-10T10:00:00Z",
-  "updatedAt": "2025-02-01T15:30:00Z"
-}
+//   "createdAt": "2025-01-10T10:00:00Z",
+//   "updatedAt": "2025-02-01T15:30:00Z"
+// }
 
 
 // type InstitutionTypeProp = 'school' | 'campus' | 'cooperative'
 
 export default function Organization() {
 
+  const { organizationId } = useParams()
   const [isEditActive, setIsEditActive] = useState(false)
   // const [isBranch, setIsBranch] = useState(false)
+  const [createOrganization] = useCreateOrganizationMutation()
+  const { data: organizationData, isLoading } = useGetOrganizationByIdQuery(organizationId as string)
 
   const {
     register,
     handleSubmit,
-
+    reset,
   } = useForm<OrganizationProp>({
-    defaultValues: organization,
+    // defaultValues: organization,
+    defaultValues: organizationData,
   })
 
-  const onSubmit = (data: OrganizationProp) => {
+  useEffect(() => {
+    if (organizationData) {
+      reset(organizationData?.data)
+    }
+  }, [organizationData])
+
+  const onSubmit = async (data: OrganizationProp) => {
     console.log(data)
+    const { data: response, error } = await createOrganization(data);
+    if (response) {
+      toast.success("Organization created successfully");
+    }
+    if (error) {
+      toast.error("Failed to create organization");
+    }
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -168,7 +168,7 @@ export default function Organization() {
                   id="institutionShortcode"
                   className="w-full"
                   disabled={!isEditActive}
-                  {...register('institutionShortcode')}
+                  {...register('institutionShortCode')}
                 />
               </div>
               <div className="flex flex-col gap-2 w-full">
@@ -236,7 +236,7 @@ export default function Organization() {
                   id="officeNo"
                   className="w-full"
                   disabled={!isEditActive}
-                  {...register('officeNumber')}
+                  {...register('officeNo')}
                 />
               </div>
 
@@ -254,12 +254,13 @@ export default function Organization() {
                     Address <span className="text-red-500">*</span> :
                   </label>
                   <Input
-                      id="address"
-                      className="w-full"
-                      disabled={!isEditActive}
-                      {...register('address')}
-                    />
+                    id="address"
+                    className="w-full"
+                    disabled={!isEditActive}
+                    {...register('address')}
+                  />
                 </div>
+
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="province" className="text-sm text-foreground/75">
                     Province:
@@ -310,6 +311,19 @@ export default function Organization() {
                     {...register('institutionType')}
                   />
                 </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="location" className="text-sm text-foreground/75">
+                    Institution Shortcode <span className="text-red-500">*</span> :
+                  </label>
+                  <Input
+                    id="institutionShortcode"
+                    className="w-full"
+                    disabled={!isEditActive}
+                    {...register('institutionShortCode')}
+                  />
+                </div>
+
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="packageType" className="text-sm text-foreground/75">
                     Package Type:
@@ -331,36 +345,13 @@ export default function Organization() {
 
         {/* Right Column */}
         <div className="flex flex-col gap-4">
-
-          <Card className="px-0 py-1 shadow-xs ">
-            <CardContent className=" space-y-3 text-xs px-4  py-2 w-full">
-              <div className="">
-                <div className="flex flex-row gap-2 items-center">
-                  <Input type="checkbox" id='hasBranch' className="size-3" />
-
-                  <label htmlFor="hasBranch" className="text-sm text-foreground/75 text-nowrap">
-                    Any Branch ?
-                  </label>
-                </div>
-                <div className="flex flex-col gap-2 w-full pt-3">
-                  <label htmlFor="branchCount" className="text-sm text-foreground/75">
-                    No of Branch :
-                  </label>
-                  <Input
-                    id="branchCount"
-                    type="number"
-                    min={1}
-                    max={20}
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('branchCount')}
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-
+          <Input
+            id="branchCount"
+            // type="file"
+            className="w-full"
+            disabled={!isEditActive}
+            {...register('logo')}
+          />
           {/* Logo */}
           <Card className=''>
             <CardHeader className="border-b flex justify-between items-center">
@@ -385,31 +376,6 @@ export default function Organization() {
             </CardContent>
           </Card>
 
-          {/* Branch info */}
-          <div className='px-4 mt-2 border'>
-            <Table className='text-xs text-gray-600'>
-              {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="">Branch Name</TableHead>
-                  <TableHead>Head</TableHead>
-                  <TableHead>Day</TableHead>
-                  <TableHead >Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {deviceData.map((item) => (
-                  <TableRow key={item.branch}>
-                    <TableCell className="font-medium">{item.branch}</TableCell>
-                    <TableCell>{item.sessions}</TableCell>
-                    <TableCell>{item.day}</TableCell>
-                    {/* <TableCell >{item.week}</TableCell> */}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-
           <Card >
             <CardContent className=''>
               <div className='flex gap-2'>
@@ -428,39 +394,39 @@ export default function Organization() {
                 }
 
                 {isEditActive &&
-                <Button
-                  type='submit'
-                  size={'sm'}
-                  className={cn(
-                    'hover:bg-primary/80 active:bg-primary w-full ',
-                    isEditActive && 'w-1/2'
-                  )}
+                  <Button
+                    type='submit'
+                    size={'sm'}
+                    className={cn(
+                      'hover:bg-primary/80 active:bg-primary w-full ',
+                      isEditActive && 'w-1/2'
+                    )}
                   // onClick={() => {
                   //   setIsEditActive(prev => !prev)
                   // }}
-                >
-                  <Save />
-                  Save
+                  >
+                    <Save />
+                    Save
 
-                </Button>
-              }
+                  </Button>
+                }
 
-{!isEditActive &&
-                <Button
-                  type='button'
-                  size={'sm'}
-                  className={cn(
-                    'hover:bg-primary/80 active:bg-primary w-full ',
-                  )}
-                  onClick={() => {
-                    setIsEditActive(prev => !prev)
-                  }}
-                >
-                  <Pencil />
-                  Edit
+                {!isEditActive &&
+                  <Button
+                    type='button'
+                    size={'sm'}
+                    className={cn(
+                      'hover:bg-primary/80 active:bg-primary w-full ',
+                    )}
+                    onClick={() => {
+                      setIsEditActive(prev => !prev)
+                    }}
+                  >
+                    <Pencil />
+                    Edit
 
-                </Button>
-              }
+                  </Button>
+                }
 
               </div>
             </CardContent>

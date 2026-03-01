@@ -4,6 +4,7 @@ import Postaldispatch from "./pages/PostalDispatch";
 import PostalRecieve from "./pages/PostalRecieve";
 import PostalView from "./pages/PostalView";
 import FiscalYear from "./pages/FiscalYear";
+import OrganizationList from "./pages/organization/OrganizationList";
 import Organization1 from "./pages/organization/Organization1";
 
 export const frontdeskRoute: RouteObject = {
@@ -12,6 +13,10 @@ export const frontdeskRoute: RouteObject = {
     { index: true, element: <Navigate to='/leads/leads' replace /> },
     {
       path: "organization",
+      element: <OrganizationList />
+    },
+    {
+      path: "organization/:organizationId",
       element: <Organization1 />
     },
     {

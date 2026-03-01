@@ -4,7 +4,7 @@ import { Avatar, AvatarImage, AvatarImageFallback } from "@/components/ui/avatar
 import { Contact2, LocateFixed, } from "lucide-react"
 import CategoryDetailContainer from '@/components/category-detail-container'
 import { DetailField } from '@/components/detail-field'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useGetUserByIdQuery } from '../../userStore/userApi'
 import RolePermissionView from '../../components/role-permission-view'
 import Loader from '@/components/common/Loader'
@@ -15,8 +15,9 @@ import Loader from '@/components/common/Loader'
 
 export default function UserDetails() {
 
-  const location = useLocation()
-  const { data, isLoading } = useGetUserByIdQuery(location.state.userId)
+  const {userId} = useParams()
+  console.log(userId)
+  const { data, isLoading } = useGetUserByIdQuery(userId as string)
   // const { data: accessControl, isLoading: accessControlLoading } = useGetRoleByUserIdQuery(data?.id)
   // const { data: accessControl, isLoading: isAccessControlLoading } =
   //   useGetRoleByUserIdQuery(data?.id as string, {

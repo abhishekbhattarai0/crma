@@ -59,7 +59,7 @@ const CreateUserForm = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                     {/* PERSONAL */}
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         <h3 className="font-semibold">Personal Details</h3>
 
                         <div className="flex gap-2">
@@ -83,7 +83,7 @@ const CreateUserForm = () => {
                             </div>
                         </div>
 
-                        <div className="flex gap-2">
+                        <div className="flex sm:flex-row flex-col gap-2 sm:items-center ">
                             <div className="w-full">
                                 <label className={labelClass}>Gender</label>
                                 <Controller
@@ -117,9 +117,8 @@ const CreateUserForm = () => {
                                     </span>
                                 )}
                             </div>
-                        </div>
 
-                        <div>
+                        <div className="w-full">
                             <label className={labelClass}>Marital Status</label>
                             {/* <Input {...register("maritalStatus")} />
                         {errors.maritalStatus && (
@@ -144,10 +143,12 @@ const CreateUserForm = () => {
                                 )}
                             />
                         </div>
+
+                        </div>
                     </div>
 
                     {/* CONTACT */}
-                    <div>
+                    <div className="space-y-4">
                         <h3 className="font-semibold">Contact Information</h3>
                         <div>
 
@@ -213,7 +214,7 @@ const CreateUserForm = () => {
                     </div>
 
                     {/* COMPANY */}
-                    <div>
+                    <div className="space-y-4">
                         <h3 className="font-semibold">Company Information</h3>
 
                         <div className="flex gap-2">
@@ -270,7 +271,7 @@ const CreateUserForm = () => {
                     </div>
 
                     {/* SYSTEM ACCESS */}
-                    <div>
+                    <div className="space-y-4">
                         <h3 className="font-semibold">System Access</h3>
 
                         <div>

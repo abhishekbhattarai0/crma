@@ -76,5 +76,8 @@ export const baseApi = createApi({
     'all-access-control',
     'all-login-history',
     'all-active-sessions',
+
+    //organization
+    'organization'
   ],
 });

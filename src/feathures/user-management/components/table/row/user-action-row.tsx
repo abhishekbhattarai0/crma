@@ -18,10 +18,10 @@ const UserActionRow = <TData extends userDataProps,>({ row }: RowCellProps<TData
     const navigate = useNavigate()
     const { setOpen } = useModal()
 
-    const onUserView = (username: string, userId: string) => {
+    const onUserView = (userId: string) => {
         console.log('view user')
-        console.log(username, userId)
-        navigate(`/user-management/user-details/${username}`, { state: { userId: userId } })
+        console.log(userId)
+        navigate(`/user-management/user-details/${userId}`)
     }
 
     const onUserEdit = (userId: string) => {
@@ -40,7 +40,7 @@ const UserActionRow = <TData extends userDataProps,>({ row }: RowCellProps<TData
                 size={'icon-sm'}
                 variant={'outline'}
                 className="rounded-full"
-                onClick={() => onUserView(row.original?.firstName, row.original?.id)}
+                onClick={() => onUserView(row.original?.id)}
             >
                 <Eye />
             </Button>
