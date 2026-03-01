@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
 import type { ColumnDef } from "@tanstack/react-table";
-import { Pencil, Trash } from "lucide-react";
 import OrganizationActionRow from "../row/organization-action-row";
 
 
