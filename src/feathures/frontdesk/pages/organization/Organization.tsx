@@ -8,35 +8,12 @@ import { Input } from "@/components/ui/input"
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import CategoryDetailContainer from '@/components/category-detail-container'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useGetOrganizationByIdQuery, useUpdateOrganizationMutation } from '../../api/api'
 import { toast } from 'sonner'
 import { useParams } from 'react-router-dom'
+import type { OrganizationProp } from '../../types/organizationType'
 
-type OrganizationProp = {
-  id: string;
-  institutionName: string;
-  founderName: string;
-  affiliation: string;
-  institutionShortCode: string;
-  panNumber: string;
-  primaryEmail: string;
-  alternateEmail: string;
-  contactNumber: string;
-  officeNo: string;
-  address: string;
-  province: string;
-  city: string;
-  zipCode: string;
-  institutionType: string;
-  packageType: string;
-  hasBranch: boolean;
-  branchCount: number;
-  logo: string;
-  tagline: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
 export default function Organization() {
 
@@ -47,7 +24,7 @@ export default function Organization() {
   const { data: organizationData, isLoading } = useGetOrganizationByIdQuery(organizationId as string)
 
   const {
-    register,
+    control,
     handleSubmit,
     reset,
   } = useForm<OrganizationProp>({
@@ -62,7 +39,6 @@ export default function Organization() {
   }, [organizationData])
 
   const onSubmit = async (data: OrganizationProp) => {
-    console.log(data)
     const { data: response, error } = await updateOrganization({ organizationId, data });
     if (response) {
       toast.success("Organization created successfully");
@@ -90,11 +66,12 @@ export default function Organization() {
               <label htmlFor="institutionName" className="text-sm text-foreground/75">
                 Institution Name <span className="text-red-500">*</span> :
               </label>
-              <Input
-                id="institutionName"
-                className="w-full"
-                disabled={!isEditActive}
-                {...register("institutionName")}
+              <Controller
+                name="institutionName"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
               />
             </div>
 
@@ -103,23 +80,25 @@ export default function Organization() {
                 <label htmlFor="founderName" className="text-sm text-foreground/75">
                   Founder Name <span className="text-red-500">*</span> :
                 </label>
-                <Input
-                  id="founderName"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('founderName')}
-                />
+                <Controller
+                name="founderName"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="affiliation" className="text-sm text-foreground/75">
                   Affiliation <span className="text-red-500">*</span> :
                 </label>
-                <Input
-                  id="affiliation"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('affiliation')}
-                />
+                <Controller
+                name="affiliation"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
 
             </div>
@@ -130,23 +109,25 @@ export default function Organization() {
                 <label htmlFor="institutionShortcode" className="text-sm text-foreground/75">
                   Institution Shortcode :
                 </label>
-                <Input
-                  id="institutionShortcode"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('institutionShortCode')}
-                />
+                <Controller
+                name="institutionShortCode"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="panNo" className="text-sm text-foreground/75">
                   PAN Number <span className="text-red-500">*</span> :
                 </label>
-                <Input
-                  id="panNo"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('panNumber')}
-                />
+                <Controller
+                name="panNumber"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
 
             </div>
@@ -160,23 +141,25 @@ export default function Organization() {
                 <label htmlFor="primaryEmail" className="text-sm text-foreground/75">
                   Primary Email <span className="text-red-500">*</span> :
                 </label>
-                <Input
-                  id="primaryEmail"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('primaryEmail')}
-                />
+                <Controller
+                name="primaryEmail"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="alternateEmail" className="text-sm text-foreground/75">
                   Alternate Email :
                 </label>
-                <Input
-                  id="alternateEmail"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('alternateEmail')}
-                />
+                <Controller
+                name="alternateEmail"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
 
             </div>
@@ -184,26 +167,28 @@ export default function Organization() {
 
             <div className="flex gap-2">
               <div className="flex flex-col gap-2 w-full">
-                <label htmlFor="contactNo" className="text-sm text-foreground/75">
+                <label htmlFor="contactNumber" className="text-sm text-foreground/75">
                   Contact:
                 </label>
-                <Input
-                  id="contactNo"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('contactNumber')}
-                />
+                <Controller
+                name="contactNumber"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="officeNo" className="text-sm text-foreground/75">
                   Office No :
                 </label>
-                <Input
-                  id="officeNo"
-                  className="w-full"
-                  disabled={!isEditActive}
-                  {...register('officeNo')}
-                />
+                <Controller
+                name="officeNo"
+                control={control}
+                render={({ field }) => (
+                    <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                )}
+              />
               </div>
 
             </div>
@@ -219,46 +204,62 @@ export default function Organization() {
                   <label htmlFor="Address" className="text-sm text-foreground/75">
                     Address <span className="text-red-500">*</span> :
                   </label>
-                  <Input
-                    id="address"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('address')}
-                  />
+                  <Controller
+                  name="address"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="province" className="text-sm text-foreground/75">
                     Province:
                   </label>
-                  <Input
-                    id="province"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('province')}
-                  />
+                  <Controller
+                  name="province"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="city" className="text-sm text-foreground/75">
                     City:
                   </label>
-                  <Input
-                    id="city"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('city')}
-                  />
+                  <Controller
+                  name="city"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="zipCode" className="text-sm text-foreground/75">
                     Zip Code:
                   </label>
-                  <Input
-                    id="zipCode"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('zipCode')}
-                  />
+                  <Controller
+                  name="zipCode"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="zipCode" className="text-sm text-foreground/75">
+                    Zip Code:
+                  </label>
+                  <Controller
+                  name="zipCode"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
               </div>
             </CategoryDetailContainer>
@@ -270,36 +271,39 @@ export default function Organization() {
                   <label htmlFor="location" className="text-sm text-foreground/75">
                     Institution Type <span className="text-red-500">*</span> :
                   </label>
-                  <Input
-                    id="location"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('institutionType')}
-                  />
+                  <Controller
+                  name="institutionType"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="location" className="text-sm text-foreground/75">
                     Institution Shortcode <span className="text-red-500">*</span> :
                   </label>
-                  <Input
-                    id="institutionShortcode"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('institutionShortCode')}
-                  />
+                  <Controller
+                  name="institutionShortCode"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="packageType" className="text-sm text-foreground/75">
                     Package Type:
                   </label>
-                  <Input
-                    id="packageType"
-                    className="w-full"
-                    disabled={!isEditActive}
-                    {...register('packageType')}
-                  />
+                  <Controller
+                  name="packageType"
+                  control={control}
+                  render={({ field }) => (
+                      <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+                  )}
+                />
                 </div>
               </div>
 
@@ -311,13 +315,13 @@ export default function Organization() {
 
         {/* Right Column */}
         <div className="flex flex-col gap-4">
-          <Input
-            id="branchCount"
-            // type="file"
-            className="w-full"
-            disabled={!isEditActive}
-            {...register('logo')}
-          />
+          <Controller
+          name="logo"
+          control={control}
+          render={({ field }) => (
+              <Input value={field.value} onChange={field.onChange} disabled={!isEditActive}/>
+          )}
+        />
           {/* Logo */}
           <Card className=''>
             <CardHeader className="border-b flex justify-between items-center">
@@ -373,7 +377,6 @@ export default function Organization() {
                   >
                     <Save />
                     Save
-
                   </Button>
                 }
 

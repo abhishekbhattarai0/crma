@@ -11,7 +11,6 @@ const OrganizationBranch = () => {
     const {organizationId} = useParams()
     const {data, isLoading} = useGetOrganizationBranchsByOrgIdQuery(organizationId!)
     const { setOpen} = useModal()
-    // console.log('organization id', data)
     if(isLoading) return (
     <div className="flex items-center justify-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -21,8 +20,9 @@ const OrganizationBranch = () => {
        setOpen(
         <CustomModal
             title="Create Branch"
+            className="max-w-[900px]!"
         >
-            <CreateBranchForm organizationId={organizationId!}/>
+            <CreateBranchForm />
         </CustomModal>
        ) 
     }

@@ -12,33 +12,12 @@ import { useForm } from 'react-hook-form'
 import { useCreateOrganizationMutation, useGetOrganizationByIdQuery } from '../../api/api'
 import { toast } from 'sonner'
 import { useParams } from 'react-router-dom'
+import { OrganizationProp } from '../../types/organizationType'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 
 
-type OrganizationProp = {
-    id: string;
-    institutionName: string;
-    founderName: string;
-    affiliation: string;
-    institutionShortCode: string;
-    panNumber: string;
-    primaryEmail: string;
-    alternateEmail: string;
-    contactNumber: string;
-    officeNo: string;
-    address: string;
-    province: string;
-    city: string;
-    zipCode: string;
-    institutionType: string;
-    packageType: string;
-    hasBranch: boolean;
-    branchCount: number;
-    logo: string;
-    tagline: string;
-    createdAt: string;
-    updatedAt: string;
-}
+
 
 
 export default function CreateOrganizationForm() {
@@ -59,8 +38,10 @@ export default function CreateOrganizationForm() {
         register,
         handleSubmit,
         reset,
+        formState: { errors },
     } = useForm<OrganizationProp>({
         // defaultValues: organization,
+        resolver: zodResolver(OrganizationProp), 
         defaultValues: {...organizationData, tagline: ' this is tagline'},
     })
 
@@ -109,6 +90,9 @@ export default function CreateOrganizationForm() {
                                 className="w-full"
                                 {...register("institutionName")}
                             />
+                            {errors.institutionName && (
+                                <p className="text-red-500">{errors.institutionName.message}</p>
+                            )}
                         </div>
 
                         <div className="flex gap-2">
@@ -121,6 +105,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('founderName')}
                                 />
+                                 {errors.founderName && (
+                                    <p className="text-red-500">{errors.founderName.message}</p>
+                                )}
                             </div>
                             <div className="flex flex-col gap-2 w-full">
                                 <label htmlFor="affiliation" className="text-sm text-foreground/75">
@@ -131,6 +118,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('affiliation')}
                                 />
+                                {errors.affiliation && (
+                                    <p className="text-red-500">{errors.affiliation.message}</p>
+                                )}
                             </div>
 
                         </div>
@@ -146,6 +136,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('institutionShortCode')}
                                 />
+                                {errors.institutionShortCode && (
+                                    <p className="text-red-500">{errors.institutionShortCode.message}</p>
+                                )}
                             </div>
                             <div className="flex flex-col gap-2 w-full">
                                 <label htmlFor="panNo" className="text-sm text-foreground/75">
@@ -156,6 +149,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('panNumber')}
                                 />
+                                {errors.panNumber && (
+                                    <p className="text-red-500">{errors.panNumber.message}</p>
+                                )}
                             </div>
 
                         </div>
@@ -174,6 +170,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('primaryEmail')}
                                 />
+                                {errors.primaryEmail && (
+                                    <p className="text-red-500">{errors.primaryEmail.message}</p>
+                                )}
                             </div>
                             <div className="flex flex-col gap-2 w-full">
                                 <label htmlFor="alternateEmail" className="text-sm text-foreground/75">
@@ -184,6 +183,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('alternateEmail')}
                                 />
+                                {errors.alternateEmail && (
+                                    <p className="text-red-500">{errors.alternateEmail.message}</p>
+                                )}
                             </div>
 
                         </div>
@@ -199,6 +201,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('contactNumber')}
                                 />
+                                {errors.contactNumber && (
+                                    <p className="text-red-500">{errors.contactNumber.message}</p>
+                                )}
                             </div>
                             <div className="flex flex-col gap-2 w-full">
                                 <label htmlFor="officeNo" className="text-sm text-foreground/75">
@@ -209,6 +214,9 @@ export default function CreateOrganizationForm() {
                                     className="w-full"
                                     {...register('officeNo')}
                                 />
+                                {errors.officeNo && (
+                                    <p className="text-red-500">{errors.officeNo.message}</p>
+                                )}
                             </div>
 
                         </div>
@@ -229,6 +237,9 @@ export default function CreateOrganizationForm() {
                                         className="w-full"
                                         {...register('address')}
                                     />
+                                    {errors.address && (
+                                        <p className="text-red-500">{errors.address.message}</p>
+                                    )}
                                 </div>
 
                                 <div className="flex flex-col gap-2 w-full">
@@ -240,6 +251,9 @@ export default function CreateOrganizationForm() {
                                         className="w-full"
                                         {...register('province')}
                                     />
+                                    {errors.province && (
+                                        <p className="text-red-500">{errors.province.message}</p>
+                                    )}
                                 </div>
                                 <div className="flex flex-col gap-2 w-full">
                                     <label htmlFor="city" className="text-sm text-foreground/75">
@@ -250,6 +264,9 @@ export default function CreateOrganizationForm() {
                                         className="w-full"
                                         {...register('city')}
                                     />
+                                    {errors.city && (
+                                        <p className="text-red-500">{errors.city.message}</p>
+                                    )}
                                 </div>
                                 <div className="flex flex-col gap-2 w-full">
                                     <label htmlFor="zipCode" className="text-sm text-foreground/75">
@@ -260,6 +277,9 @@ export default function CreateOrganizationForm() {
                                         className="w-full"
                                         {...register('zipCode')}
                                     />
+                                    {errors.zipCode && (
+                                        <p className="text-red-500">{errors.zipCode.message}</p>
+                                    )}
                                 </div>
                             </div>
                         </CategoryDetailContainer>
@@ -276,6 +296,9 @@ export default function CreateOrganizationForm() {
                                         className="w-full"
                                         {...register('institutionType')}
                                     />
+                                    {errors.institutionType && (
+                                        <p className="text-red-500">{errors.institutionType.message}</p>
+                                    )}
                                 </div>
 
                                 <div className="flex flex-col gap-2 w-full">
@@ -287,6 +310,9 @@ export default function CreateOrganizationForm() {
                                         className="w-full"
                                         {...register('packageType')}
                                     />
+                                    {errors.packageType && (
+                                        <p className="text-red-500">{errors.packageType.message}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -305,6 +331,9 @@ export default function CreateOrganizationForm() {
                         className="w-full"
                         {...register('logo')}
                     />
+                    {errors.logo && (
+                        <p className="text-red-500">{errors.logo.message}</p>
+                    )}
                     {/* Logo */}
                     <Card className=''>
                         <CardHeader className="border-b flex justify-between items-center">

@@ -10,22 +10,11 @@ import {
 } from "../../api/api"
 import { toast } from "sonner"
 import { useParams } from "react-router-dom"
+import type { BranchProp } from "../../types/branchType"
+import { branchSchema } from "../../types/branchType"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-type BranchProp = {
-  id: string
-  branchName: string
-  branchHead: string
-  contactNumber: string
-  email: string
-  address: string
-  province: string
-  city: string
-  zipCode: string
-  status: string
-  organizationId: string
-  createdAt: string
-  updatedAt: string
-}
+
 
 export default function CreateBranchForm() {
   const {  organizationId } = useParams()
@@ -33,11 +22,8 @@ export default function CreateBranchForm() {
   const [createBranch] = useCreateBranchMutation()
   
 
-  const { register, handleSubmit  } = useForm<BranchProp>({
-    defaultValues: {
-      organizationId: organizationId,
-      status: "ACTIVE",
-    },
+  const { register, handleSubmit, formState: { errors }  } = useForm<BranchProp>({
+    resolver: zodResolver(branchSchema),
   })
 
   
@@ -71,6 +57,9 @@ export default function CreateBranchForm() {
                 Branch Name <span className="text-red-500">*</span> :
               </label>
               <Input {...register("branchName")} />
+              {errors.branchName && (
+                <p className="text-red-500">{errors.branchName.message}</p>
+              )}
             </div>
 
             <div className="flex flex-col w-full gap-2">
@@ -78,6 +67,9 @@ export default function CreateBranchForm() {
                 Branch Head <span className="text-red-500">*</span> :
               </label>
               <Input {...register("branchHead")} />
+              {errors.branchHead && (
+                <p className="text-red-500">{errors.branchHead.message}</p>
+              )}
             </div>
           </CategoryDetailContainer>
 
@@ -89,6 +81,9 @@ export default function CreateBranchForm() {
                   Contact Number :
                 </label>
                 <Input {...register("contactNumber")} />
+                {errors.contactNumber && (
+                  <p className="text-red-500">{errors.contactNumber.message}</p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2 w-full">
@@ -96,6 +91,9 @@ export default function CreateBranchForm() {
                   Email :
                 </label>
                 <Input {...register("email")} />
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
               </div>
             </div>
           </CategoryDetailContainer>
@@ -109,6 +107,9 @@ export default function CreateBranchForm() {
                     Address <span className="text-red-500">*</span> :
                   </label>
                   <Input {...register("address")} />
+                  {errors.address && (
+                    <p className="text-red-500">{errors.address.message}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
@@ -116,6 +117,9 @@ export default function CreateBranchForm() {
                     Province :
                   </label>
                   <Input {...register("province")} />
+                  {errors.province && (
+                    <p className="text-red-500">{errors.province.message}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
@@ -123,6 +127,9 @@ export default function CreateBranchForm() {
                     City :
                   </label>
                   <Input {...register("city")} />
+                  {errors.city && (
+                    <p className="text-red-500">{errors.city.message}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
@@ -130,6 +137,9 @@ export default function CreateBranchForm() {
                     Zip Code :
                   </label>
                   <Input {...register("zipCode")} />
+                  {errors.zipCode && (
+                    <p className="text-red-500">{errors.zipCode.message}</p>
+                  )}
                 </div>
               </div>
             </CategoryDetailContainer>
@@ -141,12 +151,10 @@ export default function CreateBranchForm() {
                   Status :
                 </label>
                 <Input {...register("status")} />
+                {errors.status && (
+                  <p className="text-red-500">{errors.status.message}</p>
+                )}
               </div>
-
-              <Input
-                type="hidden"
-                {...register("organizationId")}
-              />
             </CategoryDetailContainer>
           </div>
         </div>

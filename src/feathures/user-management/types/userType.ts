@@ -9,11 +9,13 @@ export const updateUserSchema = z.object({
 
   officialEmail: z.string().email(),
   personalEmail: z.string().email().optional(),
-  phone: z.string().regex(/^9[78]\d{8}$/, 'Invalid Nepal phone number'),
-  emergencyContactPhone: z
-    .string()
-    .regex(/^9[78]\d{8}$/, 'Invalid Nepal phone number')
-    .optional(),
+  phone: z.string().optional(),
+  emergencyContactPhone: z.string().optional(),
+  // phone: z.string().regex(/^9[78]\d{8}$/, 'Invalid Nepal phone number'),
+  // emergencyContactPhone: z
+  //   .string()
+  //   .regex(/^9[78]\d{8}$/, 'Invalid Nepal phone number')
+  //   .optional(),
   currentAddress: z.string().nonempty({ error: 'cannot be empty' }),
   permanentAddress: z.string().nonempty({ error: 'cannot be empty' }),
 

@@ -26,7 +26,7 @@ const UpdateAccessControlForm = ({ role }: { role: string }) => {
     const [updateAccessControl, { isLoading: isUpdating }] = useUpdateAccessControlByRoleNameMutation()
     console.log('update access control form', data)
 
-    const { register, handleSubmit, control, reset, formState: { errors } } = useForm<accessControlFormValues>({
+    const { handleSubmit, control, reset, formState: { errors } } = useForm<accessControlFormValues>({
         resolver: zodResolver(accessControlSchema),
         defaultValues: {
             role: data?.role,
@@ -61,7 +61,13 @@ const UpdateAccessControlForm = ({ role }: { role: string }) => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="w-full">
                         <label className="text-sm text-foreground/75">Role Name</label>
-                        <Input {...register("role")} />
+                        <Controller
+                            name="role"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.role && (
                             <span className="text-xs text-red-600">
                                 {errors.role.message}
@@ -70,7 +76,13 @@ const UpdateAccessControlForm = ({ role }: { role: string }) => {
                     </div>
                     <div className="w-full">
                         <label className="text-sm text-foreground/75">Description</label>
-                        <Input {...register("description")} />
+                        <Controller
+                            name="description"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.description && (
                             <span className="text-xs text-red-600">
                                 {errors.description.message}

@@ -26,26 +26,22 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
     // const { data: roles } = useGetRoleByUserIdQuery(userId)
 
     const {
-        register,
         handleSubmit,
         control,
         reset,
-        formState: { errors, dirtyFields }
+        formState: { errors }
     } = useForm<userFormValues>({
         resolver: zodResolver(updateUserSchema),
         defaultValues: userData,
     });
     useEffect(() => {
         if (userData) {
-            reset(userData);
+            reset({ ...userData, isActive: userData.isActive ? "ACTIVE" : "INACTIVE" });
         }
     }, [userData, reset,]);
 
     const onSubmit = async (data: userFormValues) => {
-        if (Object.keys(dirtyFields).length === 0) {
-            console.log("No changes detected. Skipping API call.");
-            return;
-        }
+       
         try {
 
             await updateUserById({ userId, data }).unwrap();
@@ -76,7 +72,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className={labelClass}>First Name</label>
-                            <Input {...register("firstName")} />
+                            <Controller
+                                name="firstName"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.firstName && (
                                 <span className="text-xs text-red-600">
                                     {errors.firstName.message}
@@ -85,7 +87,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                         </div>
                         <div className="w-full">
                             <label className={labelClass}>Last Name</label>
-                            <Input {...register("lastName")} />
+                            <Controller
+                                name="lastName"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.lastName && (
                                 <span className="text-xs text-red-600">
                                     {errors.lastName.message}
@@ -121,7 +129,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                         </div>
                         <div className="w-full">
                             <label className={labelClass}>DOB</label>
-                            <Input type="date" {...register("dob")} />
+                            <Controller
+                                name="dob"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input type="date" value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.dob && (
                                 <span className="text-xs text-red-600">
                                     {errors.dob.message}
@@ -160,7 +174,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                     <div>
 
                         <label className={labelClass}>Official Email</label>
-                        <Input {...register("officialEmail")} />
+                        <Controller
+                            name="officialEmail"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.officialEmail && (
                             <span className="text-xs text-red-600">
                                 {errors.officialEmail.message}
@@ -170,7 +190,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
 
                     <div>
                         <label className={labelClass}>Personal Email</label>
-                        <Input {...register("personalEmail")} />
+                        <Controller
+                            name="personalEmail"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.personalEmail && (
                             <span className="text-xs text-red-600">
                                 {errors.personalEmail.message}
@@ -181,7 +207,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className={labelClass}>Phone</label>
-                            <Input {...register("phone")} />
+                            <Controller
+                                name="phone"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.phone && (
                                 <span className="text-xs text-red-600">
                                     {errors.phone.message}
@@ -190,7 +222,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                         </div>
                         <div className="w-full">
                             <label className={labelClass}>Emergency Contact</label>
-                            <Input {...register("emergencyContactPhone")} />
+                            <Controller
+                                name="emergencyContactPhone"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.emergencyContactPhone && (
                                 <span className="text-xs text-red-600">
                                     {errors.emergencyContactPhone.message}
@@ -201,7 +239,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
 
                     <div>
                         <label className={labelClass}>Current Address</label>
-                        <Input {...register("currentAddress")} />
+                        <Controller
+                            name="currentAddress"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.currentAddress && (
                             <span className="text-xs text-red-600">
                                 {errors.currentAddress.message}
@@ -211,7 +255,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
 
                     <div>
                         <label className={labelClass}>Permanent Address</label>
-                        <Input {...register("permanentAddress")} />
+                        <Controller
+                            name="permanentAddress"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.permanentAddress && (
                             <span className="text-xs text-red-600">
                                 {errors.permanentAddress.message}
@@ -225,7 +275,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className={labelClass}>Department</label>
-                            <Input {...register("department")} />
+                            <Controller
+                                name="department"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.department && (
                                 <span className="text-xs text-red-600">
                                     {errors.department.message}
@@ -234,7 +290,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                         </div>
                         <div className="w-full">
                             <label className={labelClass}>Team</label>
-                            <Input {...register("team")} />
+                            <Controller
+                                name="team"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.team && (
                                 <span className="text-xs text-red-600">
                                     {errors.team.message}
@@ -246,7 +308,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className={labelClass}>Designation</label>
-                            <Input {...register("designation")} />
+                            <Controller
+                                name="designation"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.designation && (
                                 <span className="text-xs text-red-600">
                                     {errors.designation.message}
@@ -255,7 +323,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
                         </div>
                         <div className="w-full">
                             <label className={labelClass}>Job Title</label>
-                            <Input {...register("jobTitle")} />
+                            <Controller
+                                name="jobTitle"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.jobTitle && (
                                 <span className="text-xs text-red-600">
                                     {errors.jobTitle.message}
@@ -266,7 +340,13 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
 
                     <div>
                         <label className={labelClass}>Shift</label>
-                        <Input {...register("shift")} />
+                        <Controller
+                            name="shift"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
                         {errors.shift && (
                             <span className="text-xs text-red-600">
                                 {errors.shift.message}
@@ -279,7 +359,18 @@ const UpdateUserForm = ({ userId }: { userId: string }) => {
 
                     <div>
                         <label className={labelClass}>Username</label>
-                        <Input {...register("username")} />
+                        <Controller
+                            name="username"
+                            control={control}
+                            render={({ field }) => (
+                                <Input value={field.value} onChange={field.onChange} />
+                            )}
+                        />
+                        {errors.username && (
+                            <span className="text-xs text-red-600">
+                                {errors.username.message}
+                            </span>
+                        )}
                         {errors.username && (
                             <span className="text-xs text-red-600">
                                 {errors.username.message}

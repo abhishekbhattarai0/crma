@@ -2,17 +2,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Info, Contact2, LocateFixed, Save } from "lucide-react"
 import { Input } from "@/components/ui/input"
-// import { useEffect } from "react"
 import { cn } from "@/lib/utils"
 import CategoryDetailContainer from "@/components/category-detail-container"
-import { useForm } from "react-hook-form"
-// import {
-//   useCreateBranchMutation,
-//   useGetBranchByIdQuery,
-// } from "../../api/api"
+import { Controller, useForm } from "react-hook-form"
+
 import { toast } from "sonner"
-// import { useParams } from "react-router-dom"
-import { useCreateBranchMutation } from "../../api/api"
+import {  useGetBranchByIdQuery, useUpdateBranchMutation } from "../../api/api"
+import { useParams } from "react-router-dom"
+import { useEffect } from "react"
 
 type BranchProp = {
   id: string
@@ -30,33 +27,31 @@ type BranchProp = {
   updatedAt: string
 }
 
-export default function CreateBranchForm({organizationId}: {organizationId?: string}) {
+export default function CreateBranchForm() {
+  const { organizationId, branchId} = useParams()
 
-  const [createBranch] = useCreateBranchMutation()
-  // const { data: branchData, isLoading } =
-  //   useGetBranchByIdQuery(branchId as string, {
-  //     skip: !branchId,
-  //   })
+  const [updateBranch] = useUpdateBranchMutation()
+  const { data: branchData, isLoading } =
+    useGetBranchByIdQuery({organizationId: organizationId as string, branchId: branchId as string}, {
+      skip: !branchId,
+    })
 
   const { 
-    register, 
     handleSubmit, 
-    // reset 
+    reset ,
+    control,
   } = useForm<BranchProp>({
-    defaultValues: {
-      organizationId: organizationId,
-      status: "ACTIVE",
-    },
+    defaultValues: branchData?.data 
   })
 
-  // useEffect(() => {
-  //   if (branchData?.data) {
-  //     reset(branchData.data)
-  //   }
-  // }, [branchData, reset])
+  useEffect(() => {
+    if (branchData?.data) {
+      reset(branchData.data)
+    }
+  }, [branchData, reset])
 
   const onSubmit = async (data: BranchProp) => {
-    const { data: response, error } = await createBranch({organizationId, data})
+    const { data: response, error } = await updateBranch({organizationId, branchId, data})
 
     if (response) {
       toast.success("Branch saved successfully")
@@ -67,16 +62,15 @@ export default function CreateBranchForm({organizationId}: {organizationId?: str
     }
   }
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-4 pb-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* LEFT COLUMN */}
         <div className="lg:col-span-2 space-y-2 flex flex-col gap-3">
           {/* General Information */}
@@ -85,14 +79,26 @@ export default function CreateBranchForm({organizationId}: {organizationId?: str
               <label className="text-sm text-foreground/75">
                 Branch Name <span className="text-red-500">*</span> :
               </label>
-              <Input {...register("branchName")} />
+              <Controller
+                name="branchName"
+                control={control}
+                render={({field}) => (
+                  <Input {...field}  />
+                )}
+              />
             </div>
 
             <div className="flex flex-col w-full gap-2">
               <label className="text-sm text-foreground/75">
                 Branch Head <span className="text-red-500">*</span> :
               </label>
-              <Input {...register("branchHead")} />
+              <Controller
+                name="branchHead"
+                control={control}
+                render={({field}) => (
+                  <Input {...field}  />
+                )}
+              />
             </div>
           </CategoryDetailContainer>
 
@@ -103,14 +109,26 @@ export default function CreateBranchForm({organizationId}: {organizationId?: str
                 <label className="text-sm text-foreground/75">
                   Contact Number :
                 </label>
-                <Input {...register("contactNumber")} />
+                <Controller
+                  name="contactNumber"
+                  control={control}
+                  render={({field}) => (
+                    <Input {...field}  />
+                  )}
+                  />
               </div>
 
               <div className="flex flex-col gap-2 w-full">
                 <label className="text-sm text-foreground/75">
                   Email :
                 </label>
-                <Input {...register("email")} />
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({field}) => (
+                    <Input {...field}  />
+                  )}
+                  />
               </div>
             </div>
           </CategoryDetailContainer>
@@ -123,28 +141,52 @@ export default function CreateBranchForm({organizationId}: {organizationId?: str
                   <label className="text-sm text-foreground/75">
                     Address <span className="text-red-500">*</span> :
                   </label>
-                  <Input {...register("address")} />
+                  <Controller
+                    name="address"
+                    control={control}
+                    render={({field}) => (
+                      <Input {...field}  />
+                    )}
+                    />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <label className="text-sm text-foreground/75">
                     Province :
                   </label>
-                  <Input {...register("province")} />
+                  <Controller
+                    name="province"
+                    control={control}
+                    render={({field}) => (
+                      <Input {...field}  />
+                    )}
+                    />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <label className="text-sm text-foreground/75">
                     City :
                   </label>
-                  <Input {...register("city")} />
+                  <Controller
+                    name="city"
+                    control={control}
+                    render={({field}) => (
+                      <Input {...field}  />
+                    )}
+                    />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <label className="text-sm text-foreground/75">
                     Zip Code :
                   </label>
-                  <Input {...register("zipCode")} />
+                  <Controller
+                    name="zipCode"
+                    control={control}
+                    render={({field}) => (
+                      <Input {...field}  />
+                    )}
+                    />
                 </div>
               </div>
             </CategoryDetailContainer>
@@ -155,26 +197,32 @@ export default function CreateBranchForm({organizationId}: {organizationId?: str
                 <label className="text-sm text-foreground/75">
                   Status :
                 </label>
-                <Input {...register("status")} />
+                <Controller
+                  name="status"
+                  control={control}
+                  render={({field}) => (
+                    <Input {...field}  />
+                  )}
+                  />
               </div>
 
-              <Input
-                type="hidden"
-                {...register("organizationId")}
+              <Controller
+                name="organizationId"
+                control={control}
+                render={({field}) => (
+                  <Input {...field} type="hidden" />
+                )}
               />
             </CategoryDetailContainer>
           </div>
-        </div>
 
-        {/* RIGHT COLUMN */}
-        <div className="flex flex-col gap-4">
           <Card>
             <CardContent>
               <Button
                 type="submit"
                 size="sm"
                 className={cn(
-                  "hover:bg-primary/80 active:bg-primary w-full"
+                  "hover:bg-primary/80 active:bg-primary w-"
                 )}
               >
                 <Save />
@@ -182,7 +230,6 @@ export default function CreateBranchForm({organizationId}: {organizationId?: str
               </Button>
             </CardContent>
           </Card>
-        </div>
       </div>
     </form>
   )

@@ -65,7 +65,13 @@ const CreateUserForm = () => {
                         <div className="flex gap-2">
                             <div className="w-full">
                                 <label className={labelClass}>First Name</label>
-                                <Input {...register("firstName")} />
+                                <Controller
+                                    name="firstName"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.firstName && (
                                     <span className="text-xs text-red-600">
                                         {errors.firstName.message}
@@ -74,7 +80,13 @@ const CreateUserForm = () => {
                             </div>
                             <div className="w-full">
                                 <label className={labelClass}>Last Name</label>
-                                <Input {...register("lastName")} />
+                                <Controller
+                                    name="lastName"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.lastName && (
                                     <span className="text-xs text-red-600">
                                         {errors.lastName.message}
@@ -110,7 +122,13 @@ const CreateUserForm = () => {
                             </div>
                             <div className="w-full">
                                 <label className={labelClass}>DOB</label>
-                                <Input type="date" {...register("dob")} />
+                                <Controller
+                                    name="dob"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} type="date" />
+                                    )}
+                                />
                                 {errors.dob && (
                                     <span className="text-xs text-red-600">
                                         {errors.dob.message}
@@ -120,13 +138,6 @@ const CreateUserForm = () => {
 
                         <div className="w-full">
                             <label className={labelClass}>Marital Status</label>
-                            {/* <Input {...register("maritalStatus")} />
-                        {errors.maritalStatus && (
-                            <span className="text-xs text-red-600">
-                                {errors.maritalStatus.message}
-                            </span>
-                        )} */}
-
                             <Controller
                                 name="maritalStatus"
                                 control={control}
@@ -153,7 +164,13 @@ const CreateUserForm = () => {
                         <div>
 
                             <label className={labelClass}>Official Email</label>
-                            <Input {...register("officialEmail")} />
+                            <Controller
+                                name="officialEmail"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.officialEmail && (
                                 <span className="text-xs text-red-600">
                                     {errors.officialEmail.message}
@@ -163,7 +180,13 @@ const CreateUserForm = () => {
 
                         <div>
                             <label className={labelClass}>Personal Email</label>
-                            <Input {...register("personalEmail")} />
+                            <Controller
+                                name="personalEmail"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.personalEmail && (
                                 <span className="text-xs text-red-600">
                                     {errors.personalEmail.message}
@@ -174,7 +197,13 @@ const CreateUserForm = () => {
                         <div className="flex gap-2">
                             <div className="w-full">
                                 <label className={labelClass}>Phone</label>
-                                <Input {...register("phone")} />
+                                <Controller
+                                    name="phone"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.phone && (
                                     <span className="text-xs text-red-600">
                                         {errors.phone.message}
@@ -183,7 +212,13 @@ const CreateUserForm = () => {
                             </div>
                             <div className="w-full">
                                 <label className={labelClass}>Emergency Contact</label>
-                                <Input {...register("emergencyContactPhone")} />
+                                <Controller
+                                    name="emergencyContactPhone"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.emergencyContactPhone && (
                                     <span className="text-xs text-red-600">
                                         {errors.emergencyContactPhone.message}
@@ -194,7 +229,13 @@ const CreateUserForm = () => {
 
                         <div>
                             <label className={labelClass}>Current Address</label>
-                            <Input {...register("currentAddress")} />
+                            <Controller
+                                name="currentAddress"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.currentAddress && (
                                 <span className="text-xs text-red-600">
                                     {errors.currentAddress.message}
@@ -204,7 +245,13 @@ const CreateUserForm = () => {
 
                         <div>
                             <label className={labelClass}>Permanent Address</label>
-                            <Input {...register("permanentAddress")} />
+                            <Controller
+                                name="permanentAddress"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.permanentAddress && (
                                 <span className="text-xs text-red-600">
                                     {errors.permanentAddress.message}
@@ -220,7 +267,13 @@ const CreateUserForm = () => {
                         <div className="flex gap-2">
                             <div className="w-full">
                                 <label className={labelClass}>Department</label>
-                                <Input {...register("department")} />
+                                <Controller
+                                    name="department"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.department && (
                                     <span className="text-xs text-red-600">
                                         {errors.department.message}
@@ -229,7 +282,13 @@ const CreateUserForm = () => {
                             </div>
                             <div className="w-full">
                                 <label className={labelClass}>Team</label>
-                                <Input {...register("team")} />
+                                <Controller
+                                    name="team"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.team && (
                                     <span className="text-xs text-red-600">
                                         {errors.team.message}
@@ -241,7 +300,13 @@ const CreateUserForm = () => {
                         <div className="flex gap-2">
                             <div className="w-full">
                                 <label className={labelClass}>Designation</label>
-                                <Input {...register("designation")} />
+                                <Controller
+                                    name="designation"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.designation && (
                                     <span className="text-xs text-red-600">
                                         {errors.designation.message}
@@ -250,7 +315,13 @@ const CreateUserForm = () => {
                             </div>
                             <div className="w-full">
                                 <label className={labelClass}>Job Title</label>
-                                <Input {...register("jobTitle")} />
+                                <Controller
+                                    name="jobTitle"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input value={field.value} onChange={field.onChange} />
+                                    )}
+                                />
                                 {errors.jobTitle && (
                                     <span className="text-xs text-red-600">
                                         {errors.jobTitle.message}
@@ -261,7 +332,13 @@ const CreateUserForm = () => {
 
                         <div>
                             <label className={labelClass}>Shift</label>
-                            <Input {...register("shift")} />
+                            <Controller
+                                name="shift"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.shift && (
                                 <span className="text-xs text-red-600">
                                     {errors.shift.message}
@@ -276,7 +353,13 @@ const CreateUserForm = () => {
 
                         <div>
                             <label className={labelClass}>Username</label>
-                            <Input {...register("username")} />
+                            <Controller
+                                name="username"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.username && (
                                 <span className="text-xs text-red-600">
                                     {errors.username.message}
@@ -286,7 +369,13 @@ const CreateUserForm = () => {
 
                         <div>
                             <label className={labelClass}>Password</label>
-                            <Input {...register("password")} key={allRoles?.password} />
+                            <Controller
+                                name="password"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input value={field.value} onChange={field.onChange} />
+                                )}
+                            />
                             {errors.password && (
                                 <span className="text-xs text-red-600">
                                     {errors.password.message}
