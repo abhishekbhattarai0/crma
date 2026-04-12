@@ -13,7 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "../ui/button";
 import { CgAdd } from "react-icons/cg";
 import { ChevronDown, Loader2, LucideSortAsc, LucideSortDesc } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Pagination from "./table-pagination2";
 import TableSearch from "./table-search2";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu"
@@ -53,9 +53,12 @@ export function DataTable<TData, TValue>({
   const [toggle, settoggle] = useState(false)
 
   const state = useLocation().state
+  const params = useParams()
 
   const { data, isLoading, isFetching } = useQuery({
+    refetchOnMountOrArgChange: true,
     userId: state?.userId,
+    organizationId: params?.organizationId,
     page: pageIndex + 1,      // TanStack is 0-indexed, your API is 1-indexed (page 1)
     limit: pageSize,          // Mapped to "limit"
     order: toggle ? "asc" : "desc",             // Mapped to "order"

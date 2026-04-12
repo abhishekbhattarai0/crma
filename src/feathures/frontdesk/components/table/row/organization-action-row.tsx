@@ -24,7 +24,7 @@ const OrganizationActionRow = <TData extends OrganizationProp,>({ row }: RowCell
     const onOrganizationView = (organizationId: string) => {
         console.log('view user')
         console.log(organizationId)
-        navigate(`/frontdesk/organization/${organizationId}`)
+        navigate(`/frontdesk/organization/${organizationId}`, { state: { organizationId: organizationId } })
     }
 
   

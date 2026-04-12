@@ -9,15 +9,13 @@ import {
   useCreateBranchMutation,
 } from "../../api/api"
 import { toast } from "sonner"
-import { useParams } from "react-router-dom"
 import type { BranchProp } from "../../types/branchType"
 import { branchSchema } from "../../types/branchType"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 
 
-export default function CreateBranchForm() {
-  const {  organizationId } = useParams()
+export default function CreateBranchForm({organizationId}: {organizationId: string}) {
 
   const [createBranch] = useCreateBranchMutation()
   
@@ -29,6 +27,7 @@ export default function CreateBranchForm() {
   
 
   const onSubmit = async (data: BranchProp) => {
+    console.log(organizationId)
     const { data: response, error } = await createBranch({organizationId, data})
 
     if (response) {

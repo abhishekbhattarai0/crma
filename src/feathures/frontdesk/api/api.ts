@@ -54,9 +54,31 @@ export const frontDeskApi = baseApi.injectEndpoints({
 
         // organization branch
         getOrganizationBranchsByOrgId: builder.query({
-            query: (organizationId: string) => ({
-                url: `/org/${organizationId}/branches`,
+            query: (params: {
+                organizationId: string,
+                page: number,
+                limit: number,
+                order: string,
+                searchTerm: string,
+                searchField: string}) => ({
+                url: `/org/${params.organizationId}/branches`,
                 method: 'GET',
+                params: {
+                    page: params.page,
+                    limit: params.limit,
+                    order: params.order,
+                    searchTerm: params.searchTerm,
+                    searchField: params.searchField,
+                },
+            }),
+            transformResponse: (response) => ({
+                data: response.data.data,
+                meta: {
+                    totalCount: Number(response.data.meta.total),
+                    pageIndex: Number(response.data.meta.page),
+                    limit: Number(response.data.meta.limit),
+                    pageSize: Number(response.data.meta.limit),
+                },
             }),
             providesTags: ['organization-branch'],
         }),

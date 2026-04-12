@@ -27,7 +27,7 @@ type BranchProp = {
   updatedAt: string
 }
 
-export default function CreateBranchForm() {
+export default function OrganizationBranchDetails() {
   const { organizationId, branchId} = useParams()
 
   const [updateBranch] = useUpdateBranchMutation()
